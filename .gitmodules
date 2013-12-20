@@ -1,0 +1,3 @@
+[submodule "PSPDFKit-Demo"]
+	path = PSPDFKit-Demo
+	url = https://github.com/PSPDFKit/PSPDFKit-Demo.git

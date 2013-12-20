@@ -1,0 +1,281 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Close";
+"Cancel" = "Cancel";
+"OK" = "OK";
+"Open" = "Open";
+"Untitled" = "Untitled";
+"File Not Found" = "File Not Found";
+"Unnamed PDF" = "Unnamed PDF";
+"Page %d" = "Page %d";
+"All (%d Pages)" = "All (%d Pages)";
+"Next" = "Next";
+"Previous" = "Previous";
+
+// toolbar
+"Outline" = "Outline";
+"No Outline" = "No Outline";
+"Search Outline" = "Search Outline";
+"Search" = "Search";
+"Email" = "Email";
+"Send via Email" = "Send via Email";
+"Send" = "Send";
+"Open in..." = "Open in…";
+"Open" = "Open";
+"Commit" = "Commit";
+"Sending to %@..." = "Sending to %@…";
+"Pages" = "Pages";
+"Print with annotations" = "Print with annotations";
+"Print document only" = "Print document only";
+"No Applications found" = "There are no applications installed that can open PDF documents.";
+"Print" = "Print";
+"Annotations" = "Annotations";
+"No Annotations" = "No Annotations";
+"%d Annotation" = "%d Annotation";
+"%d Annotations" = "%d Annotations";
+"Bookmarks" = "Bookmarks";
+"No Bookmarks" = "No Bookmarks";
+"Add Bookmark" = "Add Bookmark";
+"Remove Bookmark" = "Remove Bookmark";
+"Bookmark added" = "Bookmark added";
+"Brightness" = "Brightness";
+"Share..." = "Share…";
+"Preparing..." = "Preparing…";
+"Loading..." = "Loading…";
+
+// thumbnails
+"Bookmarked" = "Bookmarked";
+"Annotated" = "Annotated";
+"All" = "All";
+
+// password
+"Unlock" = "Unlock";
+"Please enter the password." = "Please enter the password.";
+"This document cannot be unlocked. %@ is unsupported." = "This document cannot be unlocked. %@ is unsupported.";
+
+// page
+"%d of %d" = "%d of %d";
+"%d-%d of %d" = "%d-%d of %d";
+"%@ (%d of %d)" = "%@ (%d of %d)";
+
+// search
+"Search Document" = "Search Document";
+"No matches found" = "No matches found";
+"One match found" = "One match found";
+"%d matches found" = "%d matches found";
+"Searching Page %d of %d..." = "Searching Page %d of %d…";
+"Search Completed" = "Search Completed";
+"Search Cancelled" = "Search Cancelled";
+
+// inline browser
+"Copy Link" = "Copy Link";
+"Open in Safari" = "Open in Safari";
+"Mail Link to this Page" = "Mail Link to this Page";
+"Your %@ is not configured to send emails." = "Your %@ is not configured to send emails.";
+"The link is requesting to open %@Would you like to continue?" = "The link is requesting to open %@Would you like to continue?";
+"an external application" = "an external application";
+"the App Store" = "the App Store";
+"Mail" = "Mail";
+"No handler found for %@" = "No handler found for %@";
+
+// text selection
+"Save To Camera Roll" = "Save To Camera Roll";
+"Failed to extract image." = "Failed to extract image.";
+
+// annotations
+"Add %@" = "Add %@";
+"Remove %@" = "Remove %@";
+"Remove" = "Remove";
+"Edit" = "Edit";
+"Undo" = "Undo";
+"Redo" = "Redo";
+"Type..." = "Type…";
+"Font..." = "Font…";
+"Size..." = "Size…";
+"Size" = "Size";
+"Font" = "Font";
+"Fonts" = "Fonts";
+"Downloadable Fonts" = "Downloadable Fonts";
+"Choose Color" = "Choose Color";
+"Choose Fill Color" = "Choose Fill Color";
+"Rainbow" = "Rainbow";
+"Monochrome" = "Monochrome";
+"Color" = "Color";
+"Color..." = "Color…";
+"Border..." = "Border…";
+"Fill Color" = "Fill Color";
+"Fill Color..." = "Fill Color…";
+"Opacity" = "Opacity";
+"Opacity..." = "Opacity…";
+"Custom..." = "Custom…";
+"Thickness..." = "Thickness…";
+"Thickness" = "Thickness";
+"%@ pt" = "%@ pt";
+"Note..." = "Note…";
+"Yellow" = "Yellow";
+"Green" = "Green";
+"Red" = "Red";
+"Blue" = "Blue";
+"Pink" = "Pink";
+"Black" = "Black";
+"Transparent" = "Transparent";
+"Define" = "Define";
+"Wikipedia" = "Wikipedia";
+"Highlight" = "Highlight";
+"Underline" = "Underline";
+"Strikeout" = "Strike Out";
+"Sketch" = "Sketch";
+"Rectangle" = "Rectangle";
+"Ellipse" = "Ellipse";
+"Line" = "Line";
+"Polyline" = "Polyline";
+"Polygon" = "Polygon";
+"Signature" = "Signature";
+"Signatures" = "Signatures";
+"Stamp" = "Stamp";
+"Stamps" = "Stamps";
+"Custom" = "Custom";
+"Create Stamp" = "Create Stamp";
+"Preview" = "Preview";
+"Stamp Text" = "Stamp Text";
+"Add Signature" = "Add Signature";
+"My Signature" = "My Signature";
+"Customer Signature" = "Customer Signature";
+"Note" = "Note";
+"Text" = "Text";
+"Drawing Color" = "Drawing Color";
+"Delete Note" = "Delete Note";
+"Remove Note" = "Remove Note";
+"%@ could not be found." = "%@ could not be found.";
+"Photo Library" = "Photo Library";
+"Camera" = "Camera";
+"Image" = "Image";
+"Low Quality" = "Low Quality";
+"Medium Quality" = "Medium Quality";
+"High Quality" = "High Quality";
+"Clear All" = "Clear All";
+"Style" = "Style";
+"Style..." = "Style…";
+"Link" = "Link";
+"Ink" = "Ink";
+"FreeText" = "Text";
+"Screen" = "Screen";
+"RichMedia" = "Rich Media";
+"Left" = "Left";
+"Center" = "Center";
+"Right" = "Right";
+"Alignment..." = "Alignment…";
+"Alignment" = "Alignment";
+"Preview File" = "Preview File";
+"Copy" = "Copy";
+"Paste" = "Paste";
+"Inspector..." = "Inspector...";
+"Group" = "Group";
+"Ungroup" = "Ungroup";
+"Sample" = "Sample";
+
+// PDF annotation name overrides
+"Square" = "Rectangle";
+"Circle" = "Ellipse";
+"PolyLine" = "Polyline";
+
+// named actions
+"NextPage" = "Next Page";
+"PrevPage" = "Previous Page";
+"FirstPage" = "First Page";
+"LastPage" = "Last Page";
+"GoBack" = "Go Back";
+"GoForward" = "Go Forward";
+"GoToPage" = "Go To Page";
+"Find" = "Find";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Zoom In";
+"ZoomOut" = "Zoom Out";
+"Execute JavaScript" = "Execute JavaScript";
+"Rich Media Action" = "Rich Media Action";
+"Rendition Action" = "Rendition Action";
+"Hide Action" = "Hide Action";
+"Submit Form" = "Submit Form";
+"Reset" = "Reset";
+
+// line annotations
+"Start..." = "Start…";
+"End..." = "End…";
+"Line.None" = "None";
+"Line.ClosedArrow" = "Closed Arrow";
+"Line.OpenArrow" = "Open Arrow";
+"Line.Square" = "Square";
+"Line.Circle" = "Circle";
+"Line.Diamond" = "Diamond";
+"Line.ROpenArrow" = "Reverse Open Arrow";
+"Line.RClosedArrow" = "Reverse Closed Arrow";
+"Line.Slash" = "Slash";
+"Line.Butt" = "Butt";
+"Start Point" = "Start Point";
+"End Point" = "End Point";
+"Line Start" = "Line Start";
+"Line End" = "Line End";
+"%d Points" = "%d Points";
+
+// link annotation editing
+"Create Link..." = "Create Link...";
+"Add Link" = "Add Link";
+"Edit Link" = "Edit Link";
+"Move Link" = "Move Link";
+"Remove Link" = "Remove Link";
+"Open Link" = "Open Link";
+"Go to Page %d" = "Go to Page %d";
+"Save" = "Save";
+"Link Destination" = "Link Destination";
+"Enter page index or a http:// address to link to an URL." = "Enter page index or a http:// address to link to an URL.";
+
+// voiceover accessibility
+"Page" = "Page";
+"Grid" = "Grid";
+
+// PSPDFDocumentSharingViewController
+"Ignore Annotations" = "Ignore Annotations";
+"The PDF will not contain any annotations." = "The PDF will not contain any annotations.";
+"Embed Annotations" = "Embed Annotations";
+"Annotations will remain editable and are embedded into the PDF." = "Annotations will remain editable and are embedded into the PDF.";
+"Flatten Annotations" = "Flatten Annotations";
+"Annotations are drawn into the PDF and are readonly." = "Annotations are drawn into the PDF and are readonly.";
+"Annotation Summary" = "Annotation Summary";
+"Embed Annotations into the PDF and also list them in the email." = "Embed Annotations into the PDF and also list them in the email.";
+"Files" = "Files";
+"Send as single files" = "Send as single files";
+"Merge files" = "Merge files";
+
+// sound annotations
+"Play" = "Play";
+"Pause" = "Pause";
+"Pause Recording" = "Pause Recording";
+"Continue Recording" = "Continue Recording";
+"Finish Recording" = "Finish Recording";
+"Audio Problem" = "Audio Problem";
+"Mic Permission Not Granted" = "Mic Permission Not Granted";
+"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone.";
+"Sorry, but there was a problem trying to record audio." = "Sorry, but there was a problem trying to record audio.";
+"Sorry, but there was a problem trying to play this audio." = "Sorry, but there was a problem trying to play this audio.";
+"Already Recording" = "Already Recording";
+"You are already recording on page %@." = "You are already recording on page %@.";
+"Go to Page %@" = "Go to Page %@";
+
+// Forms
+"Form Element" = "Form Element";
+"Text Field" = "Text Field";
+"Button" = "Button";
+"Choice Field" = "Choice Field";
+"Signature Field" = "Signature Field";
+"Clear Field" = "Clear Field";

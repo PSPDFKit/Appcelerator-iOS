@@ -1,0 +1,71 @@
+PSPDFKit Appcelerator Titanium Module
+=====================================
+
+** PSPDFKit needs Xcode 5 to compile and works with iOS 6.0 upwards. ***
+
+To compile the module, you need to set up titanium first in your shell.
+Open ~/.bash_profile and add this line; replace <LATEST VERSION> with the latest appcelerator version folder name.
+
+alias titanium='/Library/Application\ Support/Titanium/mobilesdk/osx/<LATEST VERSION>/titanium.py'
+
+Then restart your terminal.
+
+To set the minimum iOS version, edit tiapp.xml and add:
+
+    <ios>
+        <min-ios-ver>6.0</min-ios-ver>
+    </ios>
+
+
+INSTALL YOUR MODULE
+--------------------
+
+(replace X with the real version number)
+
+./build.py
+cp com.pspdfkit-iphone-3.X.X.zip /Library/Application\ Support/Titanium/
+
+
+REGISTER YOUR MODULE
+---------------------
+
+Register your module with your application by editing `tiapp.xml` and adding your module.
+Example:
+
+<modules>
+	<module version="3.X">com.pspdfkit</module>
+</modules>
+
+When you run your project, the compiler will know automatically compile in your module
+dependencies and copy appropriate image assets into the application.
+
+You also need to change the minimum deployment target. Add this to `tiapp.xml` by editing it in text.
+
+    <ios>
+        <min-ios-ver>5.0</min-ios-ver>
+    </ios>
+
+
+USING YOUR MODULE IN CODE
+-------------------------
+
+To use your module in code, you will need to require it.
+
+For example,
+
+	var pspdfkit = require('com.pspdfkit');
+	pspdfkit.foo();
+
+
+TESTING YOUR MODULE
+-------------------
+
+Run the `titanium.py` script to test your module or test from within XCode.
+To test with the script, execute:
+
+	titanium run --dir=YOURMODULEDIR
+
+
+This will execute the app.js in the example folder as a Titanium application.
+
+Cheers!

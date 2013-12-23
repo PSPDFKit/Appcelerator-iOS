@@ -14,7 +14,7 @@
 #import "PSPDFUtils.h"
 #import "TiUtils.h"
 #import "PSPDFKitGlobal+Private.h"
-#import "NSObject+PSPDFDeallocationBlock.h"
+#import "NSObject+PSPDFKitAdditions.h"
 
 @implementation PSPDFUtils
 

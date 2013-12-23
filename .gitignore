@@ -21,3 +21,4 @@ DerivedData
 Pods
 .build
 build
+com.pspdfkit*

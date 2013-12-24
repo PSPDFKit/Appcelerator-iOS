@@ -9,7 +9,7 @@ Then on your project modify the tiapp.xml and include the following before the f
 </modules>
 This will allow Titanium to find the module at compilation time.
 
-Note: PSPDFKit v3 needs at least Xcode 4.6 or higher and supports iOS 5.0+.
+Note: PSPDFKit v3 needs at least Xcode 5.0 or higher and supports iOS 6.0+.
 Type "xcode-select --print-path" in the console and check that it lists the correct Xcode version.
 
 To synchronize popovers, you can listen for the "didPresentPopover" event that PSPDFKit fires after opening a popover.
@@ -188,7 +188,7 @@ modalButton.addEventListener('click', function(e) {
     pdfController.addEventListener('didTapOnAnnotation', function(dict) {
         Ti.API.log("didTapOnAnnotation " + dict.siteLinkTarget);
     });
-	
+    
     pdfController.addEventListener('willShowHUD', function(dict) {
         Ti.API.log("willShowHUD - show your custom HUD");
     });
@@ -285,8 +285,8 @@ var button3 = Titanium.UI.createButton({
     right : 20
 });
 
-// create a NavigationGroup, push "first" window onto it
-var navGroup = Ti.UI.iPhone.createNavigationGroup({
+// create a NavigationWindow, push "first" window onto it
+var navigationWindow = Titanium.UI.iOS.createNavigationWindow({
     window : window
 });
 
@@ -314,7 +314,7 @@ button3.addEventListener("click", function(e) {
 
     // add PSPDFKit view to second window and push second window to nav group
     pushedWindow.add(pdfView);
-    navGroup.open(pushedWindow);
+    navigationWindow.open(pushedWindow);
 });
 
 
@@ -336,45 +336,45 @@ button4.addEventListener("click", function(e) {
     ////////////////////////////////
     // custom toolbar
     var customToolbarView = Ti.UI.createView({
-    	top:20,
-    	left:5,
-    	right:5,
-    	height:30,
-    	backgroundColor:"transparent",
-    	opacity:0.8
+        top:20,
+        left:5,
+        right:5,
+        height:30,
+        backgroundColor:"transparent",
+        opacity:0.8
     });
     
     var viewMode = Ti.UI.createButtonBar({
-    	labels:['Close', 'Search', 'Share', 'Bookmark', 'Outline'],
-    	backgroundColor:"#222",
-	    style:Ti.UI.iPhone.SystemButtonStyle.BAR
-	});
-	customToolbarView.add(viewMode);
+        labels:['Close', 'Search', 'Share', 'Bookmark', 'Outline'],
+        backgroundColor:"#222",
+        style:Ti.UI.iPhone.SystemButtonStyle.BAR
+    });
+    customToolbarView.add(viewMode);
     
     viewMode.addEventListener("click", function(e){
-    	switch(e.index){
-    		case 0:
-    			//close the window
-    			pushedWindow.close();
-    			break;
-    		case 1:
-    			//show the search 
-    			pdfView.showSearchView(viewMode);
-    			break;
-    		case 2:
-    			// show the activity view for sharing
-    			pdfView.showActivityView(viewMode);
-    			break;
-    		case 3:
-    			//bookmark the current page
-    			pdfView.bookmarkPage();
-    			alert("Page has been bookmarked!");
-    			break;		
-    		case 4:
-    			//show the outline
-    			pdfView.showOutlineView(viewMode);
-    			break;	
-    	}
+        switch(e.index){
+            case 0:
+                //close the window
+                pushedWindow.close();
+                break;
+            case 1:
+                //show the search 
+                pdfView.showSearchView(viewMode);
+                break;
+            case 2:
+                // show the activity view for sharing
+                pdfView.showActivityView(viewMode);
+                break;
+            case 3:
+                //bookmark the current page
+                pdfView.bookmarkPage();
+                alert("Page has been bookmarked!");
+                break;      
+            case 4:
+                //show the outline
+                pdfView.showOutlineView(viewMode);
+                break;  
+        }
     });
 
     // create PSPDFKit view
@@ -386,17 +386,17 @@ button4.addEventListener("click", function(e) {
             useParentNavigationBar : false,
         }
     });
-	
-	pdfView.addEventListener('willShowHUD', function(dict) {
+    
+    pdfView.addEventListener('willShowHUD', function(dict) {
         customToolbarView.animate({opacity:0.8, duration:350});
     });
     
     pdfView.addEventListener('willHideHUD', function(dict) {
         customToolbarView.animate({opacity:0, duration:350});
     });
-	
-	//add your custom toolbar to the pdfView
-	pdfView.add(customToolbarView);
+    
+    //add your custom toolbar to the pdfView
+    pdfView.add(customToolbarView);
     pushedWindow.add(pdfView);
     pushedWindow.open();
 });
@@ -445,7 +445,4 @@ Ti.App.addEventListener('test_pdf_downloaded', function(e) {
     pspdfkit.showPDFAnimated(e.filePath);
 });
 
-// create main window of app, add navigation group to it
-var main = Ti.UI.createWindow();
-main.add(navGroup);
-main.open();
+navigationWindow.open();

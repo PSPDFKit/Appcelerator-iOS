@@ -15,7 +15,7 @@
 // Helper class for argument parsing.
 @interface PSPDFUtils : NSObject
 
-// Returns a integer from an argument array
+// Returns a integer from an argument array.
 + (NSInteger)intValue:(id)args;
 
 // Returns a integer from an argument array, on a specific position. Position starts at 0. Returns NSNotFound if invalid.
@@ -24,7 +24,7 @@
 // Uses KVO to set an option on an object.
 + (void)applyOptions:(NSDictionary *)options onObject:(id)object;
 
-// Accept both NSString and NSArray
+// Accept both NSString and NSArray.
 + (NSArray *)resolvePaths:(id)filePaths;
 
 // Returns PSPDFDocument's if the file could be resolved and exists.

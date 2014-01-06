@@ -17,9 +17,7 @@
 #import "TiApp.h"
 #import "TiBase.h"
 #import "PSPDFUtils.h"
-#import "PSPDFLinkAnnotationView.h"
 #import "ComPspdfkitViewProxy.h"
-#import "PSPDFKitGlobal+Private.h"
 #import <objc/runtime.h>
 
 @interface TIPSPDFViewControllerProxy() {
@@ -116,7 +114,7 @@
     NSMutableOrderedSet *editableAnnotationTypes = [NSMutableOrderedSet orderedSet];
     if ([arg isKindOfClass:NSArray.class]) {
         for (__strong NSString *item in arg) {
-            item = PSPDFSafeCast(item, NSString.class);
+            item = PSSafeCast(item, NSString.class);
             if (PSPDFAnnotationTypeFromString(item) > 0) {
                 [editableAnnotationTypes addObject:item];
             }
@@ -132,7 +130,7 @@
     NSMutableOrderedSet *filterOptions = [NSMutableOrderedSet orderedSetWithCapacity:3];
     if ([arg isKindOfClass:NSArray.class]) {
         for (__strong NSString *filter in arg) {
-            filter = [PSPDFSafeCast(filter, NSString.class) lowercaseString];
+            filter = [PSSafeCast(filter, NSString.class) lowercaseString];
             if ([filter isEqual:@"all"]) {
                 [filterOptions addObject:@(PSPDFThumbnailViewFilterShowAll)];
             }else if ([filter isEqual:@"bookmarks"]) {
@@ -151,7 +149,7 @@
     NSMutableOrderedSet *filterOptions = [NSMutableOrderedSet orderedSetWithCapacity:3];
     if ([arg isKindOfClass:NSArray.class]) {
         for (__strong NSString *filter in arg) {
-            filter = [PSPDFSafeCast(filter, NSString.class) lowercaseString];
+            filter = [PSSafeCast(filter, NSString.class) lowercaseString];
             if ([filter isEqual:@"outline"]) {
                 [filterOptions addObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
             }else if ([filter isEqual:@"bookmarks"]) {
@@ -170,7 +168,7 @@
     NSMutableOrderedSet *menuActions = [NSMutableOrderedSet orderedSetWithCapacity:3];
     if ([arg isKindOfClass:NSArray.class]) {
         for (__strong NSString *filter in arg) {
-            filter = [PSPDFSafeCast(filter, NSString.class) lowercaseString];
+            filter = [PSSafeCast(filter, NSString.class) lowercaseString];
             if ([filter isEqual:@"search"]) {
                 [menuActions addObject:@(PSPDFTextSelectionMenuActionSearch)];
             }else if ([filter isEqual:@"define"]) {
@@ -193,7 +191,7 @@
 - (void)scrollToPage:(id)args {
     ENSURE_UI_THREAD(scrollToPage, args);
 
-    PSPDFLog(@"scrollToPage: %@", args);
+    PSCLog(@"scrollToPage: %@", args);
     NSUInteger pageValue = [PSPDFUtils intValue:args onPosition:0];
     NSUInteger animationValue = [PSPDFUtils intValue:args onPosition:1];
     BOOL animated = animationValue == NSNotFound || animationValue == 1;
@@ -203,7 +201,7 @@
 - (void)setViewMode:(id)args {
     ENSURE_UI_THREAD(setViewMode, args);
 
-    PSPDFLog(@"setViewMode: %@", args);
+    PSCLog(@"setViewMode: %@", args);
     NSUInteger viewModeValue = [PSPDFUtils intValue:args onPosition:0];
     NSUInteger animationValue = [PSPDFUtils intValue:args onPosition:1];
     BOOL animated = animationValue == NSNotFound || animationValue == 1;
@@ -214,11 +212,11 @@
     ENSURE_UI_THREAD(searchForString, args);
 
     if (![args isKindOfClass:NSArray.class] || [args count] < 1 || ![args[0] isKindOfClass:NSString.class]) {
-        PSPDFLog(@"Argument error, expected 1-2 arguments: %@", args);
+        PSCLog(@"Argument error, expected 1-2 arguments: %@", args);
         return;
     }
 
-    PSPDFLog(@"searchForString: %@", args);
+    PSCLog(@"searchForString: %@", args);
     NSString *searchString = args[0];
     BOOL animated = [PSPDFUtils intValue:args onPosition:1] > 0;
     [_controller searchForString:searchString options:nil animated:animated];
@@ -227,7 +225,7 @@
 - (void)close:(id)args {
     ENSURE_UI_THREAD(close, args);
 
-    PSPDFLog(@"Closing controller: %@", _controller);
+    PSCLog(@"Closing controller: %@", _controller);
     NSUInteger animationValue = [PSPDFUtils intValue:args onPosition:1];
     BOOL animated = animationValue == NSNotFound || animationValue == 1;
 
@@ -237,7 +235,7 @@
 - (void)setDidTapOnAnnotationCallback:(id)callback {
     ENSURE_SINGLE_ARG(callback, KrollCallback);
 
-    PSPDFLog(@"registering annotation callback: %@", callback);
+    PSCLog(@"registering annotation callback: %@", callback);
     if (_didTapOnAnnotationCallback != callback) {
         _didTapOnAnnotationCallback = callback;
     }
@@ -273,7 +271,7 @@
     NSError *error = nil;
     BOOL success = [_controller.document saveAnnotationsWithError:&error];
     if (!success && [PSPDFTextSelectionView isTextSelectionFeatureAvailable]) {
-        PSPDFLogWarning(@"Saving annotations failed: %@", [error localizedDescription]);
+        PSCLog(@"Saving annotations failed: %@", [error localizedDescription]);
     }
     [[self eventProxy] fireEvent:@"didSaveAnnotations" withObject:@{@"success" : @(success)}];
 }
@@ -365,10 +363,10 @@
 #pragma mark - TiProxyDelegate
 
 - (void)propertyChanged:(NSString*)key oldValue:(id)oldValue newValue:(id)newValue proxy:(TiProxy *)proxy {
-    PSPDFLog(@"Received property change: %@ -> %@", key, newValue);
+    PSCLog(@"Received property change: %@ -> %@", key, newValue);
 
     // PSPDFViewController is *not* thread safe. only set on main thread.
-    pspdf_dispatch_main_async(^{
+    ps_dispatch_main_async(^{
         [PSPDFUtils applyOptions:@{key: newValue} onObject:_controller];
     });
 }
@@ -421,7 +419,7 @@
     if(_didTapOnAnnotationCallback) {
         id retVal = [_didTapOnAnnotationCallback call:@[eventDict] thisObject:nil];
         processed = [retVal boolValue];
-        PSPDFLog(@"retVal: %d", processed);
+        PSCLog(@"retVal: %d", processed);
     }
     
     if ([[self eventProxy] _hasListeners:@"didTapOnAnnotation"]) {
@@ -502,3 +500,8 @@
 }
 
 @end
+
+id PSSafeCast(id object, Class targetClass) {
+    NSCParameterAssert(targetClass);
+    return [object isKindOfClass:targetClass] ? object : nil;
+}

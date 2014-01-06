@@ -13,9 +13,6 @@
 #import "TIPSPDFViewController.h"
 #import "TIPSPDFViewControllerProxy.h"
 #import "ComPspdfkitModule.h"
-#import "PSPDFKit.h"
-#import "PSPDFViewHelper.h"
-#import "PSPDFLogging.h"
 #import <objc/runtime.h>
 
 @interface TIPSPDFViewControllerProxy (PSPDFInternal)
@@ -43,7 +40,7 @@
 }
 
 - (void)closeControllerAnimated:(BOOL)animated {
-    PSPDFLog(@"closing controller animated: %d", animated);
+    PSCLog(@"closing controller animated: %d", animated);
     [self dismissViewControllerAnimated:animated completion:NULL];
 }
 
@@ -56,15 +53,6 @@
     if (self.navigationController.isBeingDismissed) {
         [self.proxy fireEvent:@"willCloseController" withObject:nil];
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    // Under certain conditions, the navigation bar might be mis-placed in PSPDFKit.
-    // One condition is if our controller is within a tab bar, then we are mis-paced by a 20 pixel offset from the statusbar.
-    // This call compensates the bug.
-    PSPDFFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

@@ -23,9 +23,6 @@
 #import "TIPSPDFViewController.h"
 #import "TIPSPDFViewControllerProxy.h"
 #import "TIPSPDFAnnotationProxy.h"
-#import "PSPDFLogging.h"
-#import "PSPDFKitGlobal+Private.h"
-#import "NSArray+PSPDFHigherOrderAdditions.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
 
@@ -76,13 +73,13 @@ BOOL PSPDFShouldRelayBarButtonSetter(id _self) {
         // check if we should ignore the call
         UIView *view = [[_self valueForKey:@"controller"] view];
         UIView *comPspdfkitView = nil;
-        if ((comPspdfkitView = PSPDFViewInsideViewWithPrefix(view, NSStringFromClass(ComPspdfkitView.class)))) {
+        if ((comPspdfkitView = PSViewInsideViewWithPrefix(view, NSStringFromClass(ComPspdfkitView.class)))) {
             PSPDFViewController *pdfController = [[(ComPspdfkitView *)comPspdfkitView controllerProxy] controller];
             shouldRelay = !pdfController.useParentNavigationBar;
         }
     }
     @catch (NSException *exception) {
-        PSPDFLogError(@"Error while checking PSPDFShouldRelayBarButtonSetter: %@", exception);
+        PSCLog(@"Error while checking PSPDFShouldRelayBarButtonSetter: %@", exception);
     }
     return shouldRelay;
 }
@@ -147,7 +144,7 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
 // internal helper for pushing the PSPDFViewController on the view
 - (TIPSPDFViewControllerProxy *)pspdf_displayPdfInternal:(NSArray *)pdfNames animation:(NSUInteger)animation options:(NSDictionary *)options documentOptions:(NSDictionary *)documentOptions {
     __block TIPSPDFViewControllerProxy *proxy = nil;
-    pspdf_dispatch_main_sync(^{
+    ps_dispatch_main_sync(^{
         PSPDFDocument *document = nil;
 
         // Support encryption
@@ -209,7 +206,7 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
     [self printVersionStringOnce];
 
     if (pathArray.count < 1 || pathArray.count > 4 || ![pathArray[0] isKindOfClass:NSString.class] || [pathArray[0] length] == 0) {
-        PSPDFLogError(@"PSPDFKit Error. At least one argument is needed: pdf filename (either absolute or relative (application bundle and documents directory are searched for it)\n \
+        PSCLog(@"PSPDFKit Error. At least one argument is needed: pdf filename (either absolute or relative (application bundle and documents directory are searched for it)\n \
                       Argument 2 sets animated to true or false. (optional, defaults to true)\n \
                       Argument 3 can be an array with options for PSPDFViewController. See http://pspdfkit.com/documentation.html for details. You need to write the numeric equivalent for enumeration values (e.g. PSPDFPageModeDouble has the numeric value of 1)\
                       Argument 4 can be an array with options for PSPDFDocument.\
@@ -230,15 +227,15 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
     NSDictionary *options = [self dictionaryFromInput:pathArray position:2];
     NSDictionary *documentOptions = [self dictionaryFromInput:pathArray position:3];
 
-    if (options) PSPDFLog(@"options: %@", options);
-    if (documentOptions) PSPDFLog(@"documentOptions: %@", documentOptions);
+    if (options) PSCLog(@"options: %@", options);
+    if (documentOptions) PSCLog(@"documentOptions: %@", documentOptions);
 
-    PSPDFLog(@"Opening PSPDFViewController for %@.", pdfPaths);
+    PSCLog(@"Opening PSPDFViewController for %@.", pdfPaths);
     return [self pspdf_displayPdfInternal:pdfPaths animation:animation options:options documentOptions:documentOptions];
 }
 
 - (void)clearCache:(id)args {
-    PSPDFLog(@"requesting clear cache... (spins of async)");
+    PSCLog(@"requesting clear cache... (spins of async)");
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [PSPDFCache.sharedCache clearCache];
@@ -246,7 +243,7 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
 }
 
 - (void)cacheDocument:(id)args {
-    PSPDFLog(@"Request to cache document at path %@", args);
+    PSCLog(@"Request to cache document at path %@", args);
 
     // be somewhat intelligent about path search
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
@@ -256,20 +253,20 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
 }
 
 - (void)removeCacheForDocument:(id)args {
-    PSPDFLog(@"Request to REMOVE cache for document at path %@", args);
+    PSCLog(@"Request to REMOVE cache for document at path %@", args);
 
     // be somewhat intelligent about path search
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
     for (PSPDFDocument *document in documents) {
         NSError *error = nil;
         if (![[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:&error]) {
-            PSPDFLogWarning(@"Failed to clear cache for %@: %@", document, error);
+            PSCLog(@"Failed to clear cache for %@: %@", document, error);
         }
     }
 }
 
 - (void)stopCachingDocument:(id)args {
-    PSPDFLog(@"Request to STOP cache document at path %@", args);
+    PSCLog(@"Request to STOP cache document at path %@", args);
 
     // be somewhat intelligent about path search
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
@@ -279,9 +276,9 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
 }
 
 - (id)imageForDocument:(id)args {
-    PSPDFLog(@"Request image: %@", args);
+    PSCLog(@"Request image: %@", args);
     if ([args count] < 2) {
-        PSPDFLogError(@"Invalid number of arguments: %@", args);
+        PSCLog(@"Invalid number of arguments: %@", args);
         return nil;
     }
     UIImage *image = nil;
@@ -312,7 +309,7 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
     ENSURE_UI_THREAD(setLanguageDictionary, dictionary);
 
     if (![dictionary isKindOfClass:NSDictionary.class]) {
-        PSPDFLogError(@"PSPDFKit Error. Argument error, need dictionary with languages.");
+        PSCLog(@"PSPDFKit Error. Argument error, need dictionary with languages.");
     }
 
     PSPDFSetLocalizationDictionary(dictionary);
@@ -322,7 +319,7 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
     ENSURE_UI_THREAD(setLogLevel, logLevel);
 
     PSPDFLogLevel = [PSPDFUtils intValue:logLevel];;
-    PSPDFLog(@"New Log level set to %d", PSPDFLogLevel);
+    PSCLog(@"New Log level set to %d", PSPDFLogLevel);
 }
 
 @end

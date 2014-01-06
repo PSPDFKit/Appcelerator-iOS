@@ -12,7 +12,6 @@
 
 #import "TiProxy.h"
 #import "TiModule.h"
-#import "PSPDFKit.h"
 
 @class TIPSPDFViewController, ComPspdfkitModule, ComPspdfkitViewProxy;
 

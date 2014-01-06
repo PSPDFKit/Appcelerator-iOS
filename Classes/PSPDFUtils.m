@@ -10,11 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKit.h"
 #import "PSPDFUtils.h"
 #import "TiUtils.h"
-#import "PSPDFKitGlobal+Private.h"
-#import "NSObject+PSPDFKitAdditions.h"
 
 @implementation PSPDFUtils
 
@@ -49,7 +46,7 @@
     // set options
     [options enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
         @try {
-            PSPDFLog(@"setting %@ to %@.", key, obj);
+            PSCLog(@"setting %@ to %@.", key, obj);
 
             // convert boolean to YES/NO
             if ([obj isEqual:@"YES"])    obj = @YES;
@@ -144,7 +141,7 @@
     
     // If this is a full path; don't try to replace any parts.
     if (filePath.isAbsolutePath) {
-        return PSPDFFixIncorrectPath(filePath);
+        return PSFixIncorrectPath(filePath);
     }
 
     NSString *pdfPath = filePath;
@@ -164,7 +161,7 @@
                 NSString *cacheFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
                 pdfPath = [cacheFolder stringByAppendingPathComponent:filePath];
                 if (![fileManager fileExistsAtPath:pdfPath]) {
-                    PSPDFLogError(@"PSPDFKit Error: pdf '%@' could not be found. Searched native path, application bundle and documents directory.", filePath);
+                    PSCLog(@"PSPDFKit Error: pdf '%@' could not be found. Searched native path, application bundle and documents directory.", filePath);
                 }
             }
         }
@@ -192,3 +189,44 @@
 }
 
 @end
+
+void ps_dispatch_sync_if(dispatch_queue_t queue, BOOL sync, dispatch_block_t block) {
+    sync ? dispatch_sync(queue, block) : block();
+}
+
+void ps_dispatch_async_if(dispatch_queue_t queue, BOOL async, dispatch_block_t block) {
+    async ? dispatch_async(queue, block) : block();
+}
+
+void ps_dispatch_main_sync(dispatch_block_t block) {
+    ps_dispatch_sync_if(dispatch_get_main_queue(), !NSThread.isMainThread, block);
+}
+
+void ps_dispatch_main_async(dispatch_block_t block) {
+    ps_dispatch_async_if(dispatch_get_main_queue(), !NSThread.isMainThread, block);
+}
+
+BOOL PSIsIncorrectPath(NSString *path) {
+    return [path hasPrefix:@"file://localhost"];
+}
+
+NSString *PSFixIncorrectPath(NSString *path) {
+    // If string is wrongly converted from an NSURL internally (via description and not path), fix this problem silently.
+    NSString *newPath = path;
+    if (PSIsIncorrectPath(path)) newPath = ((NSURL *)[NSURL URLWithString:path]).path;
+    return newPath;
+}
+
+UIView *PSViewInsideViewWithPrefix(UIView *view, NSString *classNamePrefix) {
+    if (!view || classNamePrefix.length == 0) return nil;
+
+    UIView *theView = nil;
+    for (UIView *subview in view.subviews) {
+        if ([NSStringFromClass(subview.class) hasPrefix:classNamePrefix] || [NSStringFromClass(subview.superclass) hasPrefix:classNamePrefix]) {
+            return subview;
+        }else {
+            if ((theView = PSViewInsideViewWithPrefix(subview, classNamePrefix))) break;
+        }
+    }
+    return theView;
+}

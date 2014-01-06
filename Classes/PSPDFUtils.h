@@ -18,7 +18,7 @@
 // Returns a integer from an argument array.
 + (NSInteger)intValue:(id)args;
 
-// Returns a integer from an argument array, on a specific position. Position starts at 0. Returns NSNotFound if invalid.
+// Returns a integer from an argument array, on a specific position. Position starts at 0. Returns `NSNotFound` if invalid.
 + (NSInteger)intValue:(id)args onPosition:(NSUInteger)position;
 
 // Uses KVO to set an option on an object.
@@ -27,10 +27,27 @@
 // Accept both NSString and NSArray.
 + (NSArray *)resolvePaths:(id)filePaths;
 
-// Returns PSPDFDocument's if the file could be resolved and exists.
+// Returns `PSPDFDocument's` if the file could be resolved and exists.
 + (NSArray *)documentsFromArgs:(id)args;
 
 // Returns color from the first argument.
 + (UIColor *)colorFromArg:(id)arg;
+
+@end
+
+// Helper
+id PSSafeCast(id object, Class targetClass);
+void ps_dispatch_main_sync(dispatch_block_t block);
+void ps_dispatch_main_async(dispatch_block_t block);
+extern NSString *PSFixIncorrectPath(NSString *path);
+UIView *PSViewInsideViewWithPrefix(UIView *view, NSString *classNamePrefix);
+
+
+// Private extensions inside PSPDFKit.
+@interface NSObject (PSPDFKitAdditions)
+
+// Register block to be called when `self` is deallocated.
+// If `owner` is not nil, block will be removed.
+- (NSString *)pspdf_addDeallocBlock:(dispatch_block_t)block owner:(id)owner;
 
 @end

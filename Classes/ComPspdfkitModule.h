@@ -14,7 +14,6 @@
 //
 
 #import "TiModule.h"
-#import "PSPDFKit.h"
 
 /// PSPDFKit Titanium Bridge.
 @interface ComPspdfkitModule : TiModule

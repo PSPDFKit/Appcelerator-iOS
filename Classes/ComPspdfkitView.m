@@ -12,7 +12,6 @@
 
 #import "ComPspdfkitView.h"
 #import "TIPSPDFViewController.h"
-#import "PSPDFKit.h"
 #import "PSPDFUtils.h"
 #import <libkern/OSAtomic.h>
 

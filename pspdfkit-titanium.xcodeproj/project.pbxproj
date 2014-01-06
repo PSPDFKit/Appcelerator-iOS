@@ -368,14 +368,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/ComPspdfkit.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/PSPDFKit.embeddedframework",
-					"$(PROJECT_DIR)/PSPDFKit-Demo/PSPDFKit.embeddedframework",
-					"/Users/steipete/Documents/Projects/PSPDFKit-Titanium/PSPDFKit-Demo/PSPDFKit.embeddedframework",
+					"$(PROJECT_DIR)/PSPDFKit-Demo/PSPDFKit.embeddedframework/**",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -384,7 +382,7 @@
 				GCC_PREFIX_HEADER = ComPspdfkit_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"../PSPDFKit/**",
+					"PSPDFKit-Demo/**",
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
 				);
@@ -395,6 +393,7 @@
 					/Developer/usr/lib/arc,
 				);
 				PRODUCT_NAME = ComPspdfkit;
+				USER_HEADER_SEARCH_PATHS = "PSPDFKit-Demo/**";
 			};
 			name = Debug;
 		};
@@ -465,20 +464,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				DSTROOT = /tmp/ComPspdfkit.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/PSPDFKit.embeddedframework",
-					"$(PROJECT_DIR)/PSPDFKit-Demo/PSPDFKit.embeddedframework",
-					"/Users/steipete/Documents/Projects/PSPDFKit-Titanium/PSPDFKit-Demo/PSPDFKit.embeddedframework",
+					"$(PROJECT_DIR)/PSPDFKit-Demo/PSPDFKit.embeddedframework/**",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ComPspdfkit_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"../PSPDFKit/**",
+					"PSPDFKit-Demo/**",
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
 				);
@@ -489,6 +486,7 @@
 					/Developer/usr/lib/arc,
 				);
 				PRODUCT_NAME = ComPspdfkit;
+				USER_HEADER_SEARCH_PATHS = "PSPDFKit-Demo/**";
 			};
 			name = Release;
 		};

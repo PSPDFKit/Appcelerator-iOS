@@ -402,6 +402,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PSPDFKit-Demo/PSPDFKit.embeddedframework/**",
+					"PSPDFKit/**",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -413,6 +414,7 @@
 					"PSPDFKit-Demo/**",
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
+					"PSPDFKit/**",
 				);
 				INSTALL_PATH = /usr/local/lib;
 				LIBRARY_SEARCH_PATHS = (
@@ -421,7 +423,7 @@
 					/Developer/usr/lib/arc,
 				);
 				PRODUCT_NAME = ComPspdfkit;
-				USER_HEADER_SEARCH_PATHS = "PSPDFKit-Demo/**";
+				USER_HEADER_SEARCH_PATHS = "PSPDFKit-Demo/** PSPDFKit/** ../PSPDFKit/PSPDFKit/**";
 			};
 			name = Debug;
 		};
@@ -445,11 +447,13 @@
 					"../PSPDFKit/**",
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
+					"PSPDFKit/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "PSPDFKit/**";
 			};
 			name = Debug;
 		};
@@ -486,11 +490,13 @@
 					"../PSPDFKit/**",
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
+					"PSPDFKit/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "PSPDFKit/**";
 			};
 			name = Release;
 		};
@@ -503,6 +509,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PSPDFKit-Demo/PSPDFKit.embeddedframework/**",
+					"PSPDFKit/**",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -512,6 +519,7 @@
 					"PSPDFKit-Demo/**",
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
+					"PSPDFKit/**",
 				);
 				INSTALL_PATH = /usr/local/lib;
 				LIBRARY_SEARCH_PATHS = (
@@ -520,7 +528,7 @@
 					/Developer/usr/lib/arc,
 				);
 				PRODUCT_NAME = ComPspdfkit;
-				USER_HEADER_SEARCH_PATHS = "PSPDFKit-Demo/**";
+				USER_HEADER_SEARCH_PATHS = "PSPDFKit-Demo/** PSPDFKit/** ../PSPDFKit/PSPDFKit/**";
 			};
 			name = Release;
 		};

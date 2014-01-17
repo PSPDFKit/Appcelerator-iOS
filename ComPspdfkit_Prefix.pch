@@ -6,6 +6,7 @@
 #import <Foundation/Foundation.h>
 
 #ifdef PSPDF_SOURCE
+#import "PSPDFKit.h"
 #else
 #import <PSPDFKit/PSPDFKit.h>
 #endif

@@ -12,6 +12,11 @@ PSPDFKit is a framework for displaying and annotating PDFs in your iOS apps.
 3. Call `./build.py` in the PSPDFKit-Titanium folder.
 4. Copy the zip into the Titanium folder: `cp com.pspdfkit.source-iphone-3.x.x.zip /Users/<user>/Library/Application\ Support/Titanium/`
 
+## Build with Source Code
+
+If you have the source code and want to use it to build the Titanium module, copy the PSPDFKit folder into this folder.
+Then, follow the above step-by-step guide, but call `./build-source.py` instead.
+
 ## License
 
 This project can be used for evaluation or if you have a valid PSPDFKit license.

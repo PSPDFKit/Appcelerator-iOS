@@ -163,10 +163,10 @@ def build_module(manifest,config):
 	ensure_dev_path()
 	
 	os.system("rm -rf build/")
-	rc = os.system("xcodebuild -project PSPDFKit-Titanium.xcodeproj -sdk iphoneos -configuration Release -target pspdfkit")
+	rc = os.system("xcodebuild -project PSPDFKit-Titanium-Source.xcodeproj -sdk iphoneos -configuration Release -target pspdfkit")
 	if rc != 0:
 		die("xcodebuild failed")
-	rc = os.system("xcodebuild -project PSPDFKit-Titanium.xcodeproj -sdk iphonesimulator -configuration Release -target pspdfkit")
+	rc = os.system("xcodebuild -project PSPDFKit-Titanium-Source.xcodeproj -sdk iphonesimulator -configuration Release -target pspdfkit")
 	if rc != 0:
 		die("xcodebuild failed")
     # build the merged library using lipo

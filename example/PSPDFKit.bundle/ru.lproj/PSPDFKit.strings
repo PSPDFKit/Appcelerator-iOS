@@ -32,10 +32,9 @@
 "Email" = "Email";
 "Send via Email" = "Отправить по Email";
 "Send" = "Отправить";
-"Open in..." = "Открыть в...";
+"Open in" = "Открыть в";
 "Open" = "Открыть";
 "Commit" = "Подтвердить";
-"Sending to %@..." = "Отправка %@...";
 "Sending to %@" = "Отправка %@"; // Context: Open document with an application
 "Pages" = "Страницы";
 "Print with annotations" = "Печать с комментариями";
@@ -52,15 +51,15 @@
 "Add Bookmark" = "Добавить закладку";
 "Remove Bookmark" = "Удалить закладку";
 "Brightness" = "Яркость";
-"Share..." = "Поделиться...";
-"Preparing..." = "Подготовка...";
-"Loading..." = "Загрузка…";
+"Share" = "Поделиться";
+"Preparing" = "Подготовка";
+"Loading" = "Загрузка";
 "Expand" = "Раскрыть";
 "Collapse" = "Свернуть";
 
 // thumbnails
-"Bookmarked" = "Добавлено в закладки";
-"Annotated" = "С комментариями";
+"Bookmarked" = "в закладкax";
+"Annotated" = "С коммент-ми";
 "All" = "Все";
 
 // password
@@ -80,16 +79,18 @@
 "No matches found" = "Совпадений не найдено";
 "One match found" = "Найдено одно совпадение";
 "%d matches found" = "%d совпадений найдено";
-"Searching Page %d of %d..." = "Поиск страницы %d из %d...";
+"Searching Page %d of %d" = "Поиск страницы %d из %d";
 "Search Completed" = "Поиск завершен";
 "Search Cancelled" = "Поиск отменен";
 "%d left" = "%d осталось"; // Context: there are 5 documents left
-"Searching..." = "Поиск…";
+"Searching" = "Поиск";
 "%d documents indexed." = "%d документов проиндексировано.\n";
 "Done" = "Готово";
+"Indexing Documents" = "Indexing Documents";
 
 // inline browser
 "Open in Safari" = "Открыть в Safari";
+"Open in Chrome" = "Открыть в Chrome";
 "Your %@ is not configured to send emails." = "Ваш %@ не настроен на отправку электронной почты.";
 "The link is requesting to open %@Would you like to continue?" = "Требуется открытие ссылки %@. Продолжить?";
 "an external application" = "внешнее приложение";
@@ -109,9 +110,7 @@
 "Edit" = "Правка";
 "Undo" = "Отменить";
 "Redo" = "Повторить";
-"Type..." = "Введите..."; // Context: kind of Annotation can be selected
-"Font..." = "Шрифт...";
-"Size..." = "Размер...";
+"Type" = "Введите"; // Context: kind of Annotation can be selected
 "Size" = "Размер";
 "Font" = "Шрифт";
 "Fonts" = "Шрифты";
@@ -123,18 +122,13 @@
 "Monochrome" = "Монохромный";
 "Vintage" = "Винтаж";
 "Color" = "Цвет";
-"Color..." = "Цвет...";
-"Border..." = "Рамка...";
+"Border" = "Рамка";
 "Fill Color" = "Цвет заливки";
-"Fill Color..." = "Цвет заливки…";
 "Opacity" = "Прозрачность";
-"Opacity..." = "Прозрачность";
 "%@ %%" = "%@ %%";
-"Custom..." = "Собственный…";
-"Thickness..." = "Толщина...";
+"Custom" = "Собственный";
 "Thickness" = "Толщина";
 "%@ pt" = "Очков: %@";
-"Note..." = "Заметка...";
 "Yellow" = "Желтый";
 "Green" = "Зеленый";
 "Red" = "Красный";
@@ -182,8 +176,8 @@
 "Medium Quality" = "Среднее качество";
 "High Quality" = "Высокое качество";
 "Clear All" = "Удалить все";
+"Clear" = "Clear";
 "Style" = "Стиль";
-"Style..." = "Стиль...";
 "Link" = "Ссылка";
 "Ink" = "Чернила";
 "FreeText" = "Текст";
@@ -192,12 +186,11 @@
 "Left" = "Слева";
 "Center" = "Выровнять по центру";
 "Right" = "Справа";
-"Alignment..." = "Выравнивание...";
 "Alignment" = "Выравнивание";
 "Preview File" = "Просмотреть файл";
 "Copy" = "Скопировать";
 "Paste" = "Вставить";
-"Inspector..." = "Инспектор...";
+"Inspector" = "Инспектор";
 "Group" = "Группа";
 "Ungroup" = "Разгруппировать";
 "Sample" = "Образец";
@@ -207,11 +200,31 @@
 "Sound" = "Звук";
 "Eraser" = "Стёрка";
 "SelectionTool" = "Инструмент выделения";
-"Saved Annotations" = "Сохранённые комментарии";
+"Saved Annotations" = "Сохранён. комментарии";
 "Add" = "Добавить"; // to add - infinitive
 "Date" = "Дата";
 "Time" = "Время";
 "No Pages" = "Нет страниц";
+
+// Stamps
+"Approved" = "Одобрено";
+"Not Approved" = "Неодобрено";
+"Draft" = "Черновик";
+"Final" = "Окончательный";
+"Completed" = "Завершено";
+"Confidential" = "Конфиденциально";
+"For Public Release" = "Публичный доступ";
+"Not For Public Release" = "Нет для публики";
+"For Comment" = "Для комментариев";
+"Void" = "Аннулировать";
+"Preliminary Results" = "Предварительно";
+"Information only" = "Только информация";
+"Accepted" = "Принято";
+"Rejected" = "Отклонено";
+"Initial Here" = "ФИО";
+"Sign Here" = "Место подписи";
+"Witness" = "Удостоверить";
+"Revised" = "Изменено";
 
 // PDF annotation name overrides
 "Square" = "Прямоугольник";
@@ -238,8 +251,8 @@
 "Reset" = "Сброс";
 
 // line annotations
-"Start..." = "Старт...";
-"End..." = "Конец...";
+"Start" = "Старт";
+"End" = "Конец";
 "Line.None" = "Нет";
 "Line.ClosedArrow" = "Закрытая стрелка";
 "Line.OpenArrow" = "Открыть стрелку";
@@ -255,7 +268,7 @@
 "%d Points" = "%d очки";
 
 // link annotation editing
-"Create Link..." = "Создать ссылку...";
+"Create Link" = "Создать ссылку";
 "Add Link" = "Добавить ссылку";
 "Edit Link" = "Редактировать ссылку";
 "Move Link" = "Переместить ссылку";

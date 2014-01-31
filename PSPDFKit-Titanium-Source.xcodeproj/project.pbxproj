@@ -38,7 +38,6 @@
 		7884211D148309BE00203926 /* TIPSPDFAnnotationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7884211B148309BE00203926 /* TIPSPDFAnnotationProxy.m */; };
 		7884211F14830B1600203926 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884211E14830B1500203926 /* UIKit.framework */; };
 		7884212114830B1B00203926 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884212014830B1B00203926 /* CoreMedia.framework */; };
-		7884212314830B2900203926 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884212214830B2900203926 /* libz.dylib */; };
 		7884212514830B2E00203926 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884212414830B2E00203926 /* AVFoundation.framework */; };
 		7884212714830B3100203926 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884212614830B3100203926 /* MediaPlayer.framework */; };
 		7884212914830B3A00203926 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884212814830B3A00203926 /* MessageUI.framework */; };
@@ -52,7 +51,6 @@
 		78DE630B18897E2A00DC6D84 /* libPSPDFKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DE630318897DFA00DC6D84 /* libPSPDFKit.a */; };
 		78ED7A57146F00FE002EE22C /* TIPSPDFViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78ED7A55146F00FE002EE22C /* TIPSPDFViewController.h */; };
 		78ED7A58146F00FE002EE22C /* TIPSPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ED7A56146F00FE002EE22C /* TIPSPDFViewController.m */; };
-		78FB05BA177304060006CE08 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FB05B9177304060006CE08 /* libxml2.dylib */; };
 		AA747D9F0F9514B9006C5449 /* ComPspdfkit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ComPspdfkit_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -106,7 +104,6 @@
 		7884211B148309BE00203926 /* TIPSPDFAnnotationProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TIPSPDFAnnotationProxy.m; path = Classes/TIPSPDFAnnotationProxy.m; sourceTree = "<group>"; };
 		7884211E14830B1500203926 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7884212014830B1B00203926 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		7884212214830B2900203926 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7884212414830B2E00203926 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7884212614830B3100203926 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		7884212814830B3A00203926 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -122,7 +119,6 @@
 		78DE62FF18897DF900DC6D84 /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = PSPDFKit.xcconfig; path = PSPDFKit/PSPDFKit.xcconfig; sourceTree = "<group>"; };
 		78ED7A55146F00FE002EE22C /* TIPSPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TIPSPDFViewController.h; path = Classes/TIPSPDFViewController.h; sourceTree = "<group>"; };
 		78ED7A56146F00FE002EE22C /* TIPSPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TIPSPDFViewController.m; path = Classes/TIPSPDFViewController.m; sourceTree = "<group>"; };
-		78FB05B9177304060006CE08 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		AA747D9E0F9514B9006C5449 /* ComPspdfkit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComPspdfkit_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libComPspdfkit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libComPspdfkit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,7 +130,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				78DE630B18897E2A00DC6D84 /* libPSPDFKit.a in Frameworks */,
-				78FB05BA177304060006CE08 /* libxml2.dylib in Frameworks */,
 				7884214014830B7600203926 /* SystemConfiguration.framework in Frameworks */,
 				7884213E14830B6E00203926 /* CFNetwork.framework in Frameworks */,
 				7884213C14830B6900203926 /* MobileCoreServices.framework in Frameworks */,
@@ -148,7 +143,6 @@
 				7884212114830B1B00203926 /* CoreMedia.framework in Frameworks */,
 				7884211F14830B1600203926 /* UIKit.framework in Frameworks */,
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
-				7884212314830B2900203926 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,8 +230,6 @@
 				7884212414830B2E00203926 /* AVFoundation.framework */,
 				7884212014830B1B00203926 /* CoreMedia.framework */,
 				7884211E14830B1500203926 /* UIKit.framework */,
-				78FB05B9177304060006CE08 /* libxml2.dylib */,
-				7884212214830B2900203926 /* libz.dylib */,
 			);
 			name = System;
 			sourceTree = "<group>";
@@ -432,7 +424,7 @@
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DEAD_CODE_STRIPPING = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -475,7 +467,7 @@
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DEAD_CODE_STRIPPING = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;

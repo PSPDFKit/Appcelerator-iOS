@@ -1,7 +1,7 @@
 PSPDFKit Appcelerator Titanium Module
 =====================================
 
-** PSPDFKit needs Xcode 5 to compile and works with iOS 6.0 upwards. ***
+** PSPDFKit needs Xcode 5.1 to compile and works with iOS 6.0 upwards. ***
 
 To compile the module, you need to set up titanium first in your shell.
 Open ~/.bash_profile and add this line; replace <LATEST VERSION> with the latest appcelerator version folder name.

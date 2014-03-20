@@ -15,6 +15,10 @@
 #import "ComPspdfkitModule.h"
 #import <objc/runtime.h>
 
+@interface PSPDFViewController (Internal)
+- (void)delegateDidShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated;
+@end
+
 @interface TIPSPDFViewControllerProxy (PSPDFInternal)
 @property(atomic, assign, readonly) UIInterfaceOrientation lockedInterfaceOrientationValue;
 @end

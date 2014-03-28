@@ -28,6 +28,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
+- (void)commonInitWithDocument:(PSPDFDocument *)document {
+    [super commonInitWithDocument:document];
+    // Fall back to old variant, new one doesn't work well with Titanium.
+    self.annotationButtonItem.annotationToolbarType = PSPDFAnnotationToolbarTypeSystem;
+}
+
 - (void)dealloc {
     self.proxy = nil; // forget proxy
 }

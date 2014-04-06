@@ -14,11 +14,8 @@
 #import "TiUiViewProxy.h"
 
 @interface ComPspdfkitView : TiUIView 
-
 @property(nonatomic, retain) TIPSPDFViewControllerProxy *controllerProxy;
-
 @end
-
 
 @interface ComPspdfkitSourceView : ComPspdfkitView
 @end

@@ -95,6 +95,7 @@
     // be sure our view is attached
     if (!self.controllerProxy.controller.view.window) {
         // creates controller lazy
+
         [self addSubview:_navController.view];
         [TiUtils setView:_navController.view positionRect:bounds];
 

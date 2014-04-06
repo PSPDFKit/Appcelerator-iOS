@@ -30,6 +30,7 @@
 		782DDA171483CAB600E7EEFD /* ComPspdfkitViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 782DDA151483CAB400E7EEFD /* ComPspdfkitViewProxy.m */; };
 		782DDA1D1483CB6100E7EEFD /* ComPspdfkitView.h in Headers */ = {isa = PBXBuildFile; fileRef = 782DDA1B1483CB6100E7EEFD /* ComPspdfkitView.h */; };
 		782DDA1E1483CB6100E7EEFD /* ComPspdfkitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 782DDA1C1483CB6100E7EEFD /* ComPspdfkitView.m */; };
+		784D662618F16CA600E42CEF /* libPSPDFKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DE630318897DFA00DC6D84 /* libPSPDFKit.a */; };
 		787023CC1481A0F5005A7792 /* TIPSPDFViewControllerProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 787023CA1481A0F5005A7792 /* TIPSPDFViewControllerProxy.h */; };
 		787023CD1481A0F5005A7792 /* TIPSPDFViewControllerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 787023CB1481A0F5005A7792 /* TIPSPDFViewControllerProxy.m */; };
 		7870240C1481BDE8005A7792 /* PSPDFUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870240A1481BDE8005A7792 /* PSPDFUtils.h */; };
@@ -48,7 +49,6 @@
 		7884213C14830B6900203926 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884213B14830B6900203926 /* MobileCoreServices.framework */; };
 		7884213E14830B6E00203926 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884213D14830B6E00203926 /* CFNetwork.framework */; };
 		7884214014830B7600203926 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884213F14830B7600203926 /* SystemConfiguration.framework */; };
-		78DE630B18897E2A00DC6D84 /* libPSPDFKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DE630318897DFA00DC6D84 /* libPSPDFKit.a */; };
 		78ED7A57146F00FE002EE22C /* TIPSPDFViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78ED7A55146F00FE002EE22C /* TIPSPDFViewController.h */; };
 		78ED7A58146F00FE002EE22C /* TIPSPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ED7A56146F00FE002EE22C /* TIPSPDFViewController.m */; };
 		AA747D9F0F9514B9006C5449 /* ComPspdfkit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ComPspdfkit_Prefix.pch */; };
@@ -63,6 +63,13 @@
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = pspdfkit;
 		};
+		784D662418F16CA200E42CEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78DE62FB18897DF900DC6D84 /* PSPDFKit-lib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 780B4168146E7DAB00DF07F1;
+			remoteInfo = PSPDFKit;
+		};
 		78DE630218897DFA00DC6D84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78DE62FB18897DF900DC6D84 /* PSPDFKit-lib.xcodeproj */;
@@ -76,13 +83,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 78AF7540184E66C70012DF90;
 			remoteInfo = "PSPDFKit-no-OpenSSL";
-		};
-		78DE630718897E2600DC6D84 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78DE62FB18897DF900DC6D84 /* PSPDFKit-lib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 780B4168146E7DAB00DF07F1;
-			remoteInfo = PSPDFKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -129,7 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78DE630B18897E2A00DC6D84 /* libPSPDFKit.a in Frameworks */,
+				784D662618F16CA600E42CEF /* libPSPDFKit.a in Frameworks */,
 				7884214014830B7600203926 /* SystemConfiguration.framework in Frameworks */,
 				7884213E14830B6E00203926 /* CFNetwork.framework in Frameworks */,
 				7884213C14830B6900203926 /* MobileCoreServices.framework in Frameworks */,
@@ -276,7 +276,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				78DE630818897E2600DC6D84 /* PBXTargetDependency */,
+				784D662518F16CA200E42CEF /* PBXTargetDependency */,
 			);
 			name = pspdfkit;
 			productName = pspdfkit;
@@ -376,10 +376,10 @@
 			target = D2AAC07D0554694100DB518D /* pspdfkit */;
 			targetProxy = 24416B8411C4CA280047AFDD /* PBXContainerItemProxy */;
 		};
-		78DE630818897E2600DC6D84 /* PBXTargetDependency */ = {
+		784D662518F16CA200E42CEF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PSPDFKit;
-			targetProxy = 78DE630718897E2600DC6D84 /* PBXContainerItemProxy */;
+			targetProxy = 784D662418F16CA200E42CEF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -110,11 +110,11 @@
                 obj = [NSValue valueWithCGSize:CGSizeMake([[obj objectAtIndex:0] floatValue], [[obj objectAtIndex:1] floatValue])];
             }
 
-            NSLog(@"Set %@ to %@", key, obj);
+            PSCLog(@"Set %@ to %@", key, obj);
             [object setValue:obj forKeyPath:key];
         }
         @catch (NSException *exception) {
-            NSLog(@"Recovered from error while parsing options: %@", exception);
+            PSCLog(@"Recovered from error while parsing options: %@", exception);
         }
     }];
 }

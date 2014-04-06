@@ -318,7 +318,7 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
 - (void)setLogLevel:(id)logLevel {
     ENSURE_UI_THREAD(setLogLevel, logLevel);
 
-    PSPDFLogLevel = [PSPDFUtils intValue:logLevel];;
+    PSPDFLogLevel = [PSPDFUtils intValue:logLevel];
     PSCLog(@"New Log level set to %d", PSPDFLogLevel);
 }
 

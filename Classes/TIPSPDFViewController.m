@@ -20,19 +20,13 @@
 @end
 
 @interface TIPSPDFViewControllerProxy (PSPDFInternal)
-@property(atomic, assign, readonly) UIInterfaceOrientation lockedInterfaceOrientationValue;
+@property (atomic, assign, readonly) UIInterfaceOrientation lockedInterfaceOrientationValue;
 @end
 
 @implementation TIPSPDFViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
-
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
-    // Fall back to old variant, new one doesn't work well with Titanium.
-    self.annotationButtonItem.annotationToolbarType = PSPDFAnnotationToolbarTypeSystem;
-}
 
 - (void)dealloc {
     self.proxy = nil; // forget proxy
@@ -85,7 +79,7 @@
     }
 }
 
-// translate shouldAutorotateToInterfaceOrientation to iOS6.
+// Translate shouldAutorotateToInterfaceOrientation to iOS6.
 - (NSUInteger)supportedInterfaceOrientations {
     UIInterfaceOrientation lockedInterfaceOrientation = self.proxy.lockedInterfaceOrientationValue;
     if (self.rotationLockEnabled || (int)lockedInterfaceOrientation == -1) {
@@ -95,7 +89,7 @@
     }
 }
 
-// iOS6. TODO: needed?
+// iOS 6
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     UIInterfaceOrientation lockedInterfaceOrientation = self.proxy.lockedInterfaceOrientationValue;
     if ((int)lockedInterfaceOrientation != -1) {

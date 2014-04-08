@@ -92,6 +92,7 @@
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
 		24DE9E0F11C5FE74003F90F6 /* ComPspdfkitModuleAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComPspdfkitModuleAssets.h; path = Classes/ComPspdfkitModuleAssets.h; sourceTree = "<group>"; };
 		24DE9E1011C5FE74003F90F6 /* ComPspdfkitModuleAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComPspdfkitModuleAssets.m; path = Classes/ComPspdfkitModuleAssets.m; sourceTree = "<group>"; };
+		7823534418F3F2C5006AFF14 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit/PSPDFKit/PSPDFKit.bundle; sourceTree = "<group>"; };
 		782DDA141483CAB400E7EEFD /* ComPspdfkitViewProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComPspdfkitViewProxy.h; path = Classes/ComPspdfkitViewProxy.h; sourceTree = "<group>"; };
 		782DDA151483CAB400E7EEFD /* ComPspdfkitViewProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComPspdfkitViewProxy.m; path = Classes/ComPspdfkitViewProxy.m; sourceTree = "<group>"; };
 		782DDA1B1483CB6100E7EEFD /* ComPspdfkitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComPspdfkitView.h; path = Classes/ComPspdfkitView.h; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		7884213D14830B6E00203926 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7884213F14830B7600203926 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		78DE62FB18897DF900DC6D84 /* PSPDFKit-lib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PSPDFKit-lib.xcodeproj"; path = "PSPDFKit/PSPDFKit-lib.xcodeproj"; sourceTree = "<group>"; };
-		78DE62FE18897DF900DC6D84 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = PSPDFKit/PSPDFKit.bundle; sourceTree = "<group>"; };
 		78DE62FF18897DF900DC6D84 /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = PSPDFKit.xcconfig; path = PSPDFKit/PSPDFKit.xcconfig; sourceTree = "<group>"; };
 		78ED7A55146F00FE002EE22C /* TIPSPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TIPSPDFViewController.h; path = Classes/TIPSPDFViewController.h; sourceTree = "<group>"; };
 		78ED7A56146F00FE002EE22C /* TIPSPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TIPSPDFViewController.m; path = Classes/TIPSPDFViewController.m; sourceTree = "<group>"; };
@@ -174,8 +174,8 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7823534418F3F2C5006AFF14 /* PSPDFKit.bundle */,
 				78DE62FB18897DF900DC6D84 /* PSPDFKit-lib.xcodeproj */,
-				78DE62FE18897DF900DC6D84 /* PSPDFKit.bundle */,
 				78DE62FF18897DF900DC6D84 /* PSPDFKit.xcconfig */,
 				7884215214830D3700203926 /* System */,
 			);
@@ -423,7 +423,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = (
+					armv7,
+					i386,
+				);
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -466,7 +469,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = (
+					armv7,
+					i386,
+				);
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DEAD_CODE_STRIPPING = YES;

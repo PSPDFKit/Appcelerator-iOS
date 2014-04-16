@@ -12,6 +12,13 @@
 
 @class PSPDFDocument;
 
+// Compiler-checked selectors and performance optimized at runtime.
+#if DEBUG
+#define PROPERTY(property) NSStringFromSelector(@selector(property))
+#else
+#define PROPERTY(property) @#property
+#endif
+
 // Helper class for argument parsing.
 @interface PSPDFUtils : NSObject
 

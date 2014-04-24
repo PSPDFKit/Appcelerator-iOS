@@ -9,6 +9,8 @@ PSPDFKit-Demo/PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A/Resurces/
 INSTALL YOUR MODULE
 --------------------
 
+Make sure submodules are up to date. Call `git submodule init && git submodule update`.
+
 (replace X with the real version number)
 
 ./build.py

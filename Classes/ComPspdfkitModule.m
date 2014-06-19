@@ -248,7 +248,7 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
     // be somewhat intelligent about path search
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
     for (PSPDFDocument *document in documents) {
-        [PSPDFCache.sharedCache cacheDocument:document startAtPage:0 sizes:@[[NSValue valueWithCGSize:PSPDFCache.sharedCache.thumbnailSize], [NSValue valueWithCGSize:UIScreen.mainScreen.bounds.size]] diskCacheStrategy:PSPDFDiskCacheStrategyEverything];
+        [PSPDFCache.sharedCache cacheDocument:document startAtPage:0 sizes:@[[NSValue valueWithCGSize:CGSizeMake(170.f, 220.f)], [NSValue valueWithCGSize:UIScreen.mainScreen.bounds.size]] diskCacheStrategy:PSPDFDiskCacheStrategyEverything];
     }
 }
 
@@ -286,12 +286,13 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
     PSPDFDocument *document = [PSPDFUtils documentsFromArgs:args].firstObject;
     NSUInteger page = [args[1] unsignedIntegerValue];
     BOOL full = [args count] < 3 || [args[2] unsignedIntegerValue] == 0;
+    CGSize thumbnailSize = CGSizeMake(170.f, 220.f);
 
     // be somewhat intelligent about path search
     if (document && page < [document pageCount]) {
-        image = [PSPDFCache.sharedCache imageFromDocument:document page:page size:full ? UIScreen.mainScreen.bounds.size : PSPDFCache.sharedCache.thumbnailSize options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync];
+        image = [PSPDFCache.sharedCache imageFromDocument:document page:page size:full ? UIScreen.mainScreen.bounds.size : thumbnailSize options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync];
         if (!image) {
-            CGSize size = full ? [[UIScreen mainScreen] bounds].size : [PSPDFCache sharedCache].thumbnailSize;
+            CGSize size = full ? [[UIScreen mainScreen] bounds].size : thumbnailSize;
             image = [document imageForPage:page size:size clippedToRect:CGRectZero annotations:nil options:nil receipt:NULL error:NULL];
         }
     }

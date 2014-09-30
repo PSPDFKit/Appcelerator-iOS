@@ -165,20 +165,24 @@
 - (void)setAllowedMenuActions:(id)arg {
     ENSURE_UI_THREAD(setAllowedMenuActions, arg);
 
-    NSMutableOrderedSet *menuActions = [NSMutableOrderedSet orderedSetWithCapacity:3];
+    NSUInteger menuActions = 0;
     if ([arg isKindOfClass:NSArray.class]) {
         for (__strong NSString *filter in arg) {
             filter = [PSSafeCast(filter, NSString.class) lowercaseString];
             if ([filter isEqual:@"search"]) {
-                [menuActions addObject:@(PSPDFTextSelectionMenuActionSearch)];
+                menuActions |= PSPDFTextSelectionMenuActionSearch;
             }else if ([filter isEqual:@"define"]) {
-                [menuActions addObject:@(PSPDFTextSelectionMenuActionDefine)];
+                menuActions |= PSPDFTextSelectionMenuActionDefine;
             }else if ([filter isEqual:@"wikipedia"]) {
-                [menuActions addObject:@(PSPDFTextSelectionMenuActionWikipedia)];
+                menuActions |= PSPDFTextSelectionMenuActionWikipedia;
             }
         }
     }
-    _controller.allowedMenuActions = menuActions;
+    if (menuActions > 0) {
+        [_controller.configuration configurationUpdatedWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+            builder.allowedMenuActions = (PSPDFTextSelectionMenuAction) menuActions;
+        }];
+    }
 }
 
 - (void)setScrollingEnabled:(id)args {
@@ -219,7 +223,7 @@
     PSCLog(@"searchForString: %@", args);
     NSString *searchString = args[0];
     BOOL animated = [PSPDFUtils intValue:args onPosition:1] > 0;
-    [_controller searchForString:searchString options:nil animated:animated];
+    [_controller searchForString:searchString options:nil sender:nil animated:animated];
 }
 
 - (void)close:(id)args {
@@ -270,7 +274,7 @@
 
     NSError *error = nil;
     BOOL success = [_controller.document saveAnnotationsWithError:&error];
-    if (!success && [PSPDFTextSelectionView isTextSelectionFeatureAvailable]) {
+    if (!success && _controller.configuration.isTextSelectionEnabled)  {
         PSCLog(@"Saving annotations failed: %@", [error localizedDescription]);
     }
     [[self eventProxy] fireEvent:@"didSaveAnnotations" withObject:@{@"success" : @(success)}];

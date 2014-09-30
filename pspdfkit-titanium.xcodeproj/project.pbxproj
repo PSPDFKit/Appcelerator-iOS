@@ -300,7 +300,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Peter Steinberger";
 			};
-			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "PSPDFKit-Titanium" */;
+			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "pspdfkit-titanium" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -415,7 +415,7 @@
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -453,7 +453,7 @@
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -515,7 +515,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "PSPDFKit-Titanium" */ = {
+		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "pspdfkit-titanium" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB922308733DC00010E9CD /* Debug */,

@@ -75,7 +75,7 @@ BOOL PSPDFShouldRelayBarButtonSetter(id _self) {
         UIView *comPspdfkitView = nil;
         if ((comPspdfkitView = PSViewInsideViewWithPrefix(view, NSStringFromClass(ComPspdfkitView.class)))) {
             PSPDFViewController *pdfController = [[(ComPspdfkitView *)comPspdfkitView controllerProxy] controller];
-            shouldRelay = !pdfController.useParentNavigationBar;
+            shouldRelay = !pdfController.configuration.useParentNavigationBar;
         }
     }
     @catch (NSException *exception) {
@@ -191,7 +191,7 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
 #pragma mark - Public
 
 - (id)PSPDFKitVersion {
-    return PSPDFVersionString();
+    return PSPDFKit.sharedInstance.version;
 }
 
 - (void)setLicenseKey:(id)license {
@@ -248,7 +248,10 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
     // be somewhat intelligent about path search
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
     for (PSPDFDocument *document in documents) {
-        [PSPDFCache.sharedCache cacheDocument:document startAtPage:0 sizes:@[[NSValue valueWithCGSize:CGSizeMake(170.f, 220.f)], [NSValue valueWithCGSize:UIScreen.mainScreen.bounds.size]] diskCacheStrategy:PSPDFDiskCacheStrategyEverything];
+        [PSPDFCache.sharedCache cacheDocument:document
+                                    pageSizes:@[[NSValue valueWithCGSize:CGSizeMake(170.f, 220.f)], [NSValue valueWithCGSize:UIScreen.mainScreen.bounds.size]]
+                        withDiskCacheStrategy:PSPDFDiskCacheStrategyEverything
+                                   aroundPage:0];
     }
 }
 

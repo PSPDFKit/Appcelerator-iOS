@@ -32,9 +32,6 @@
         PSPDFDocument *pdfDocument = [[PSPDFDocument alloc] initWithBaseURL:nil files:pdfPaths];
         TIPSPDFViewController *pdfController = [[TIPSPDFViewController alloc] initWithDocument:pdfDocument];
         
-        // Don't change status bar by default.
-        pdfController.statusBarStyleSetting = PSPDFStatusBarStyleInherit;
-        
         [PSPDFUtils applyOptions:[self.proxy valueForKey:@"options"] onObject:pdfController];
         [PSPDFUtils applyOptions:[self.proxy valueForKey:@"documentOptions"] onObject:pdfDocument];
 
@@ -46,9 +43,8 @@
         // Encapsulate controller into proxy.
         _controllerProxy = [[TIPSPDFViewControllerProxy alloc] initWithPDFController:pdfController context:self.proxy.pageContext parentProxy:self.proxy];
 
-        if (!pdfController.useParentNavigationBar) {
+        if (!pdfController.configuration.useParentNavigationBar) {
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pdfController];
-            navController.navigationBarHidden = !pdfController.toolbarEnabled;
             _navController = navController;
         }else {
             _navController = pdfController;

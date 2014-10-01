@@ -1,7 +1,7 @@
 PSPDFKit Appcelerator Titanium Module
 =====================================
 
-** PSPDFKit needs Xcode 5.1 to compile and works with iOS 6.0 upwards. ***
+** PSPDFKit needs Xcode 6.0.1 to compile and works with iOS 7.0 upwards. ***
 
 IMPORTANT: PSPDFKit needs the "PSPDFKit.bundle" in the app directory. You find this bundle in:
 PSPDFKit-Demo/PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A/Resurces/PSPDFKit.bundle
@@ -14,7 +14,7 @@ Make sure submodules are up to date. Call `git submodule init && git submodule u
 (replace X with the real version number)
 
 ./build.py
-cp com.pspdfkit-iphone-3.X.X.zip /Library/Application\ Support/Titanium/
+cp com.pspdfkit-iphone-4.X.X.zip /Library/Application\ Support/Titanium/
 
 
 REGISTER YOUR MODULE
@@ -24,7 +24,7 @@ Register your module with your application by editing `tiapp.xml` and adding you
 Example:
 
 <modules>
-	<module version="3.X">com.pspdfkit</module>
+	<module version="4.X">com.pspdfkit</module>
 </modules>
 
 When you run your project, the compiler will know automatically compile in your module
@@ -33,7 +33,7 @@ dependencies and copy appropriate image assets into the application.
 You also need to change the minimum deployment target. Add this to `tiapp.xml` by editing it in text.
 
     <ios>
-        <min-ios-ver>5.0</min-ios-ver>
+        <min-ios-ver>7.0</min-ios-ver>
     </ios>
 
 

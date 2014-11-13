@@ -238,7 +238,7 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
     PSCLog(@"requesting clear cache... (spins of async)");
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [PSPDFCache.sharedCache clearCache];
+        [[PSPDFKit sharedInstance].cache clearCache];
     });
 }
 
@@ -248,10 +248,10 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
     // be somewhat intelligent about path search
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
     for (PSPDFDocument *document in documents) {
-        [PSPDFCache.sharedCache cacheDocument:document
-                                    pageSizes:@[[NSValue valueWithCGSize:CGSizeMake(170.f, 220.f)], [NSValue valueWithCGSize:UIScreen.mainScreen.bounds.size]]
-                        withDiskCacheStrategy:PSPDFDiskCacheStrategyEverything
-                                   aroundPage:0];
+        [[PSPDFKit sharedInstance].cache cacheDocument:document
+                                             pageSizes:@[[NSValue valueWithCGSize:CGSizeMake(170.f, 220.f)], [NSValue valueWithCGSize:UIScreen.mainScreen.bounds.size]]
+                                 withDiskCacheStrategy:PSPDFDiskCacheStrategyEverything
+                                            aroundPage:0];
     }
 }
 
@@ -262,7 +262,7 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
     for (PSPDFDocument *document in documents) {
         NSError *error = nil;
-        if (![[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:&error]) {
+        if (![[PSPDFKit sharedInstance].cache removeCacheForDocument:document deleteDocument:NO error:&error]) {
             PSCLog(@"Failed to clear cache for %@: %@", document, error);
         }
     }
@@ -274,7 +274,7 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
     // be somewhat intelligent about path search
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
     for (PSPDFDocument *document in documents) {
-        [PSPDFCache.sharedCache stopCachingDocument:document];
+        [[PSPDFKit sharedInstance].cache stopCachingDocument:document];
     }
 }
 
@@ -293,7 +293,7 @@ __attribute__((constructor)) void PSPDFFixRotation(void) {
 
     // be somewhat intelligent about path search
     if (document && page < [document pageCount]) {
-        image = [PSPDFCache.sharedCache imageFromDocument:document page:page size:full ? UIScreen.mainScreen.bounds.size : thumbnailSize options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync];
+        image = [[PSPDFKit sharedInstance].cache imageFromDocument:document page:page size:full ? UIScreen.mainScreen.bounds.size : thumbnailSize options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync];
         if (!image) {
             CGSize size = full ? [[UIScreen mainScreen] bounds].size : thumbnailSize;
             image = [document imageForPage:page size:size clippedToRect:CGRectZero annotations:nil options:nil receipt:NULL error:NULL];

@@ -179,7 +179,7 @@
         }
     }
     if (menuActions > 0) {
-        [_controller.configuration configurationUpdatedWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        [_controller updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
             builder.allowedMenuActions = (PSPDFTextSelectionMenuAction) menuActions;
         }];
     }

@@ -111,7 +111,20 @@
             }
 
             PSCLog(@"Set %@ to %@", key, obj);
-            [object setValue:obj forKeyPath:key];
+
+            if ([object respondsToSelector:NSSelectorFromString(key)]) {
+                [object setValue:obj forKeyPath:key];
+            } else {
+                if ([object isKindOfClass:PSPDFViewController.class]) {
+                    PSPDFViewController *ctrl = object;
+                    if ([ctrl.configuration respondsToSelector:NSSelectorFromString(key)]) {
+                        // set value via PSPDFConfiguration
+                        [ctrl updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+                            [builder setValue:obj forKey:key];
+                        }];
+                    }
+                }
+            }
         }
         @catch (NSException *exception) {
             PSCLog(@"Recovered from error while parsing options: %@", exception);

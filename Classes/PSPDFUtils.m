@@ -117,12 +117,10 @@
             } else {
                 if ([object isKindOfClass:PSPDFViewController.class]) {
                     PSPDFViewController *ctrl = object;
-                    if ([ctrl.configuration respondsToSelector:NSSelectorFromString(key)]) {
-                        // set value via PSPDFConfiguration
-                        [ctrl updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-                            [builder setValue:obj forKey:key];
-                        }];
-                    }
+                    // set value via PSPDFConfiguration
+                    [ctrl updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+                        [builder setValue:obj forKey:key];
+                    }];
                 }
             }
         }

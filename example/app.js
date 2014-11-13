@@ -228,6 +228,7 @@ var pdfView = pspdfkit.createView({
     filename : 'PSPDFKit.pdf',
     options : {
         pageMode : 0,
+        toolbarEnabled : true,
         // close button is automatically hidden here
         leftBarButtonItems : [appceleratorTestButton]
     },
@@ -303,6 +304,7 @@ button3.addEventListener("click", function(e) {
         filename : 'protected.pdf',
         options : {
             pageMode : 0,
+            toolbarEnabled : true,
             useParentNavigationBar : true,
         },
         documentOptions : {
@@ -380,6 +382,7 @@ button4.addEventListener("click", function(e) {
         filename : 'PSPDFKit.pdf',
         options : {
             pageMode : 0,
+            toolbarEnabled : false,
             useParentNavigationBar : false,
         }
     });

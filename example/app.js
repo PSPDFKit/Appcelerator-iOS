@@ -228,7 +228,6 @@ var pdfView = pspdfkit.createView({
     filename : 'PSPDFKit.pdf',
     options : {
         pageMode : 0,
-        toolbarEnabled : true,
         // close button is automatically hidden here
         leftBarButtonItems : [appceleratorTestButton]
     },
@@ -304,7 +303,6 @@ button3.addEventListener("click", function(e) {
         filename : 'protected.pdf',
         options : {
             pageMode : 0,
-            toolbarEnabled : true,
             useParentNavigationBar : true,
         },
         documentOptions : {
@@ -314,7 +312,7 @@ button3.addEventListener("click", function(e) {
 
     // add PSPDFKit view to second window and push second window to nav group
     pushedWindow.add(pdfView);
-    navigationWindow.open(pushedWindow);
+    navigationWindow.openWindow(pushedWindow, {animated:true});
 });
 
 
@@ -340,7 +338,7 @@ button4.addEventListener("click", function(e) {
         left:5,
         right:5,
         height:30,
-        backgroundColor:"transparent",
+        backgroundColor:"white",
         opacity:0.8
     });
     
@@ -382,10 +380,10 @@ button4.addEventListener("click", function(e) {
         filename : 'PSPDFKit.pdf',
         options : {
             pageMode : 0,
-            toolbarEnabled : false,
-            useParentNavigationBar : false,
-        }
-    });
+            useParentNavigationBar : true,
+        }, documentOptions : {
+            title : ""
+    }});
     
     pdfView.addEventListener('willShowHUD', function(dict) {
         customToolbarView.animate({opacity:0.8, duration:350});

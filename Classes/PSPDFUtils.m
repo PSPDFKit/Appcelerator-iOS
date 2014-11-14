@@ -43,6 +43,7 @@
 + (void)applyOptions:(NSDictionary *)options onObject:(id)object {
     if (!options || !object) return;
 
+    __block BOOL isControllerNeedsReload = NO;
     // set options
     [options enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
         @try {
@@ -118,9 +119,10 @@
                 if ([object isKindOfClass:PSPDFViewController.class]) {
                     PSPDFViewController *ctrl = object;
                     // set value via PSPDFConfiguration
-                    [ctrl updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+                    [ctrl updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
                         [builder setValue:obj forKey:key];
                     }];
+                    isControllerNeedsReload = YES;
                 }
             }
         }
@@ -128,6 +130,10 @@
             PSCLog(@"Recovered from error while parsing options: %@", exception);
         }
     }];
+    if (isControllerNeedsReload && [object isKindOfClass:PSPDFViewController.class]) {
+        PSPDFViewController *ctrl = object;
+        [ctrl reloadData];
+    }
 }
 
 // be smart about path search

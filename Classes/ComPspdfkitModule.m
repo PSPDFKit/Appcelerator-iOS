@@ -26,8 +26,33 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 
-// Declare internal helper.
-extern BOOL PSPDFReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block);
+static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block) {
+    NSCParameterAssert(c);
+    NSCParameterAssert(origSEL);
+    NSCParameterAssert(newSEL);
+    NSCParameterAssert(block);
+
+    if ([c instancesRespondToSelector:newSEL]) return YES; // Selector already implemented, skip silently.
+
+    Method origMethod = class_getInstanceMethod(c, origSEL);
+
+    // Add the new method.
+    IMP impl = imp_implementationWithBlock(block);
+    if (!class_addMethod(c, newSEL, impl, method_getTypeEncoding(origMethod))) {
+        NSLog(@"Failed to add method: %@ on %@", NSStringFromSelector(newSEL), c);
+        return NO;
+    } else {
+        Method newMethod = class_getInstanceMethod(c, newSEL);
+
+        // If original doesn't implement the method we want to swizzle, create it.
+        if (class_addMethod(c, origSEL, method_getImplementation(newMethod), method_getTypeEncoding(origMethod))) {
+            class_replaceMethod(c, newSEL, method_getImplementation(origMethod), method_getTypeEncoding(newMethod));
+        } else {
+            method_exchangeImplementations(origMethod, newMethod);
+        }
+    }
+    return YES;
+}
 
 @interface TIPSPDFViewControllerProxy (PSPDFInternal)
 @property(atomic, assign) UIInterfaceOrientation lockedInterfaceOrientationValue;
@@ -88,7 +113,7 @@ BOOL PSPDFShouldRelayBarButtonSetter(id _self) {
 __attribute__((constructor)) void PSPDFFixBarButtonItemOverridesInAppcelerator(void) {
     @autoreleasepool {
         SEL setRightNavButtonSEL = @selector(pspdf_setRightNavButton:withObject:);
-        PSPDFReplaceMethodWithBlock(NSClassFromString(@"TiUIWindowProxy"), @selector(setRightNavButton:withObject:), setRightNavButtonSEL, ^(id _self, id proxy, id properties) {
+        PSTReplaceMethodWithBlock(NSClassFromString(@"TiUIWindowProxy"), @selector(setRightNavButton:withObject:), setRightNavButtonSEL, ^(id _self, id proxy, id properties) {
             if (PSPDFShouldRelayBarButtonSetter(_self)) {
                 objc_msgSend(_self, setRightNavButtonSEL, proxy, properties);
             }
@@ -97,7 +122,7 @@ __attribute__((constructor)) void PSPDFFixBarButtonItemOverridesInAppcelerator(v
 
     @autoreleasepool {
         SEL setLeftNavButtonSEL = @selector(pspdf_setLeftNavButton:withObject:);
-        PSPDFReplaceMethodWithBlock(NSClassFromString(@"TiUIWindowProxy"), @selector(setLeftNavButton:withObject:), setLeftNavButtonSEL, ^(id _self, id proxy, id properties) {
+        PSTReplaceMethodWithBlock(NSClassFromString(@"TiUIWindowProxy"), @selector(setLeftNavButton:withObject:), setLeftNavButtonSEL, ^(id _self, id proxy, id properties) {
             if (PSPDFShouldRelayBarButtonSetter(_self)) {
                 objc_msgSend(_self, setLeftNavButtonSEL, proxy, properties);
             }
@@ -109,7 +134,7 @@ __attribute__((constructor)) void PSPDFFixBarButtonItemOverridesInAppcelerator(v
 __attribute__((constructor)) void PSPDFFixRotation(void) {
     @autoreleasepool {
         SEL customRefreshSEL = @selector(pspdf_refreshOrientationWithDuration:);
-        PSPDFReplaceMethodWithBlock(NSClassFromString(@"TiRootViewController"), @selector(refreshOrientationWithDuration:), customRefreshSEL, ^(id _self, NSTimeInterval timeInterval) {
+        PSTReplaceMethodWithBlock(NSClassFromString(@"TiRootViewController"), @selector(refreshOrientationWithDuration:), customRefreshSEL, ^(id _self, NSTimeInterval timeInterval) {
             BOOL isShowingPSPDFController = NO;
             if ([[_self modalViewController] isKindOfClass:[UINavigationController class]]) {
                 UINavigationController *navController = (UINavigationController *)[_self modalViewController];

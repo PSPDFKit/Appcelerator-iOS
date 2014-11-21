@@ -4,7 +4,8 @@ PSPDFKit Appcelerator Titanium Module
 ** PSPDFKit needs Xcode 6.1+ to compile and works with iOS 7.0 upwards. ***
 
 IMPORTANT: PSPDFKit needs the "PSPDFKit.bundle" in the app directory. You find this bundle in:
-PSPDFKit-Demo/PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A/Resurces/PSPDFKit.bundle
+PSPDFKit-Demo/PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A/Resurces/PSPDFKit.bundle.
+Copy it to assets/iphone to be included.
 
 INSTALL YOUR MODULE
 --------------------

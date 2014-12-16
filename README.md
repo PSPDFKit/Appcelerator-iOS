@@ -15,15 +15,12 @@ PSPDFKit is a framework for displaying and annotating PDFs in your iOS apps.
 
 ## Important
 
-Currently there's an issue where Titanium uses the symbols `WTFReportBacktrace` and `WTFReportFatalError`, which are in Apple's private namespace. Since PSPDFKit uses Apple's JavaScriptCore, these functions will trigger a validation error when you submit to the App Store. We are currently working with Appcelerator on helping them to resolve this issue, and also have a custom build available that can be used for App Store submissions. We hope this will be resolved soon, in the mean time you can contact us for a special build that can be used for the App Store.
-
-See https://jira.appcelerator.org/browse/TC-5113 for details.
-
+Currently there's an issue where Titanium uses the symbols `WTFReportBacktrace` and `WTFReportFatalError`, which are in Apple's private namespace. Please contact us if you need a custom binary that can be used for App Store submissions. We're working with Appcelerator to help them resolve this naming clash. See https://jira.appcelerator.org/browse/TC-5113 for details.
 
 ## License
 
 This project can be used for evaluation or if you have a valid PSPDFKit license.
-All items and source code Copyright © 2010-2014 PSPDFKit GmbH.
+All items and source code Copyright © 2010-2015 PSPDFKit GmbH.
 
 Please read the full license in the corresponding License.pdf file downloadable at
 http://pspdfkit.com/license.html

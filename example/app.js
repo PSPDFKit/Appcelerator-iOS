@@ -79,7 +79,7 @@ var navButton = Ti.UI.createButton({
     title : 'Custom',
     backgroundColor : '#ae4041',
     color : '#ffffff',
-    style : Titanium.UI.iPhone.SystemButtonStyle.BAR,
+    style : Titanium.UI.iPhone.SystemButtonStyle.BORDERED,
     height : 24
 });
 
@@ -212,7 +212,7 @@ var appceleratorTestButton = Ti.UI.createButton({
     title : 'Appcelerator',
     backgroundColor : '#cccccc',
     color : '#ffffff',
-    style : Titanium.UI.iPhone.SystemButtonStyle.BAR,
+    style : Titanium.UI.iPhone.SystemButtonStyle.BORDERED,
     width : 100
 });
 appceleratorTestButton.addEventListener('click', function(e) {
@@ -412,7 +412,7 @@ window.add(button4);
 // example how to download a PDF.
 var webDownloadTestButton = Ti.UI.createButton({
     title : 'Download PDF',
-    style : Titanium.UI.iPhone.SystemButtonStyle.BAR,
+    style : Titanium.UI.iPhone.SystemButtonStyle.BORDERED,
 });
 window.setRightNavButton(webDownloadTestButton);
 

@@ -127,16 +127,16 @@
 - (void)setThumbnailFilterOptions:(id)arg {
     ENSURE_UI_THREAD(setThumbnailFilterOptions, arg);
 
-    NSMutableOrderedSet *filterOptions = [NSMutableOrderedSet orderedSetWithCapacity:3];
+    NSMutableArray *filterOptions = [NSMutableArray array];
     if ([arg isKindOfClass:NSArray.class]) {
         for (__strong NSString *filter in arg) {
             filter = [PSSafeCast(filter, NSString.class) lowercaseString];
             if ([filter isEqual:@"all"]) {
-                [filterOptions addObject:@(PSPDFThumbnailViewFilterShowAll)];
+                [filterOptions addObject:PSPDFThumbnailViewFilterShowAll];
             }else if ([filter isEqual:@"bookmarks"]) {
-                [filterOptions addObject:@(PSPDFThumbnailViewFilterBookmarks)];
+                [filterOptions addObject:PSPDFThumbnailViewFilterBookmarks];
             }else if ([filter isEqual:@"annotations"]) {
-                [filterOptions addObject:@(PSPDFThumbnailViewFilterAnnotations)];
+                [filterOptions addObject:PSPDFThumbnailViewFilterAnnotations];
             }
         }
     }
@@ -159,7 +159,7 @@
             }
         }
     }
-    _controller.outlineButtonItem.availableControllerOptions = filterOptions;
+    _controller.documentInfoCoordinator.availableControllerOptions = filterOptions;
 }
 
 - (void)setAllowedMenuActions:(id)arg {
@@ -292,29 +292,34 @@
     ENSURE_SINGLE_ARG(arg, NSNumber);
     ENSURE_UI_THREAD(setPrintOptions, arg);
 
-    _controller.printButtonItem.printOptions = [arg integerValue];
+    [_controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.printSharingOptions = [arg integerValue];
+    }];
 }
 
 - (void)setSendOptions:(id)arg {
     ENSURE_SINGLE_ARG(arg, NSNumber);
     ENSURE_UI_THREAD(setSendOptions, arg);
 
-    _controller.emailButtonItem.sendOptions = [arg integerValue];
+    [_controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.mailSharingOptions = [arg integerValue];
+    }];
 }
 
 - (void)setOpenInOptions:(id)arg {
     ENSURE_SINGLE_ARG(arg, NSNumber);
     ENSURE_UI_THREAD(setOpenInOptions, arg);
 
-    _controller.openInButtonItem.openOptions = [arg integerValue];
+    [_controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.openInSharingOptions = [arg integerValue];
+    }];
 }
 
 - (void)hidePopover:(id)args {
     ENSURE_UI_THREAD(hidePopover, args);
 
     BOOL animated = [args count] == 1 && [args[0] boolValue];
-    [PSPDFBarButtonItem dismissPopoverAnimated:animated completion:NULL];
-    [self.controller.popoverController dismissPopoverAnimated:animated];
+    [self.controller dismissPopoverAnimated:animated class:nil completion:NULL];
 }
 
 - (void)showBarButton:(SEL)barButtonSEL action:(id)action {
@@ -360,7 +365,9 @@
 
 - (void)bookmarkPage:(id)arg {
     ENSURE_UI_THREAD(bookmarkPage, arg);
-    [self.controller.bookmarkButtonItem action:self];
+
+    UIBarButtonItem *bookmarkButtonItem = self.controller.bookmarkButtonItem;
+    pst_targetActionBlock(bookmarkButtonItem.target, bookmarkButtonItem.action)(bookmarkButtonItem);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

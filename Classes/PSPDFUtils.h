@@ -19,6 +19,8 @@
 #define PROPERTY(property) @#property
 #endif
 
+FOUNDATION_EXPORT void (^pst_targetActionBlock(id target, SEL action))(id);
+
 // Helper class for argument parsing.
 @interface PSPDFUtils : NSObject
 

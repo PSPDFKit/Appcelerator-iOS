@@ -10,9 +10,8 @@ Copy it to assets/iphone to be included.
 INSTALL YOUR MODULE
 --------------------
 
-Make sure submodules are up to date. Call `git submodule init && git submodule update`.
-
-(replace X with the real version number)
+Copy the PSPDFKit.embeddedframework into the root folder.
+You can download this framework from www.pspdfkit.com
 
 ./build.py
 cp com.pspdfkit-iphone-4.X.X.zip /Library/Application\ Support/Titanium/

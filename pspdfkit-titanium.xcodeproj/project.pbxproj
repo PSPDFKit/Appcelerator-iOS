@@ -31,6 +31,7 @@
 		782DDA1D1483CB6100E7EEFD /* ComPspdfkitView.h in Headers */ = {isa = PBXBuildFile; fileRef = 782DDA1B1483CB6100E7EEFD /* ComPspdfkitView.h */; };
 		782DDA1E1483CB6100E7EEFD /* ComPspdfkitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 782DDA1C1483CB6100E7EEFD /* ComPspdfkitView.m */; };
 		7853C2E31A851E0E000AA2BD /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7853C2DB1A851E0E000AA2BD /* PSPDFKit.framework */; };
+		7853C2EA1A852074000AA2BD /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 7853C2E91A852074000AA2BD /* PSPDFKit */; };
 		787023CC1481A0F5005A7792 /* TIPSPDFViewControllerProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 787023CA1481A0F5005A7792 /* TIPSPDFViewControllerProxy.h */; };
 		787023CD1481A0F5005A7792 /* TIPSPDFViewControllerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 787023CB1481A0F5005A7792 /* TIPSPDFViewControllerProxy.m */; };
 		7870240C1481BDE8005A7792 /* PSPDFUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870240A1481BDE8005A7792 /* PSPDFUtils.h */; };
@@ -84,6 +85,7 @@
 		7853C2E01A851E0E000AA2BD /* PSPDFKit-Version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PSPDFKit-Version"; sourceTree = "<group>"; };
 		7853C2E11A851E0E000AA2BD /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PSPDFKit.bundle; sourceTree = "<group>"; };
 		7853C2E21A851E0E000AA2BD /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PSPDFKit.xcconfig; sourceTree = "<group>"; };
+		7853C2E91A852074000AA2BD /* PSPDFKit */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = PSPDFKit; path = PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A/PSPDFKit; sourceTree = "<group>"; };
 		787023CA1481A0F5005A7792 /* TIPSPDFViewControllerProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TIPSPDFViewControllerProxy.h; path = Classes/TIPSPDFViewControllerProxy.h; sourceTree = "<group>"; };
 		787023CB1481A0F5005A7792 /* TIPSPDFViewControllerProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TIPSPDFViewControllerProxy.m; path = Classes/TIPSPDFViewControllerProxy.m; sourceTree = "<group>"; };
 		7870240A1481BDE8005A7792 /* PSPDFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSPDFUtils.h; path = Classes/PSPDFUtils.h; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				7884212114830B1B00203926 /* CoreMedia.framework in Frameworks */,
 				7884211F14830B1600203926 /* UIKit.framework in Frameworks */,
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+				7853C2EA1A852074000AA2BD /* PSPDFKit in Frameworks */,
 				7884212314830B2900203926 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,6 +191,7 @@
 				7884211B148309BE00203926 /* TIPSPDFAnnotationProxy.m */,
 				7870240A1481BDE8005A7792 /* PSPDFUtils.h */,
 				7870240B1481BDE8005A7792 /* PSPDFUtils.m */,
+				7853C2E91A852074000AA2BD /* PSPDFKit */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -383,6 +387,7 @@
 					"$(inherited)",
 					/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc,
 					/Developer/usr/lib/arc,
+					"$(PROJECT_DIR)/PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A",
 				);
 				PRODUCT_NAME = ComPspdfkit;
 				USER_HEADER_SEARCH_PATHS = "PSPDFKit-Demo/**";
@@ -473,6 +478,7 @@
 					"$(inherited)",
 					/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc,
 					/Developer/usr/lib/arc,
+					"$(PROJECT_DIR)/PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A",
 				);
 				PRODUCT_NAME = ComPspdfkit;
 				USER_HEADER_SEARCH_PATHS = "PSPDFKit-Demo/**";

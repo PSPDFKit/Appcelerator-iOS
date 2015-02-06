@@ -70,6 +70,20 @@
 			remoteGlobalIDString = 780B4168146E7DAB00DF07F1;
 			remoteInfo = PSPDFKit;
 		};
+		78BA30FC1A1FC72200768B70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78DE62FB18897DF900DC6D84 /* PSPDFKit-lib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78A2FFB41A0FCC360065A669;
+			remoteInfo = "PSPDFKit-extension";
+		};
+		78BA30FE1A1FC72200768B70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78DE62FB18897DF900DC6D84 /* PSPDFKit-lib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B81D1AA619A79F6C00BFA32E;
+			remoteInfo = PSPDFKit.framework;
+		};
 		78DE630218897DFA00DC6D84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78DE62FB18897DF900DC6D84 /* PSPDFKit-lib.xcodeproj */;
@@ -239,6 +253,8 @@
 			children = (
 				78DE630318897DFA00DC6D84 /* libPSPDFKit.a */,
 				78DE630518897DFA00DC6D84 /* libPSPDFKit.a */,
+				78BA30FD1A1FC72200768B70 /* libPSPDFKit.a */,
+				78BA30FF1A1FC72200768B70 /* PSPDFKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -320,6 +336,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		78BA30FD1A1FC72200768B70 /* libPSPDFKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPSPDFKit.a;
+			remoteRef = 78BA30FC1A1FC72200768B70 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		78BA30FF1A1FC72200768B70 /* PSPDFKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PSPDFKit.framework;
+			remoteRef = 78BA30FE1A1FC72200768B70 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		78DE630318897DFA00DC6D84 /* libPSPDFKit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

@@ -23,3 +23,5 @@ Pods
 build
 com.pspdfkit*
 PSPDFKit
+
+PSPDFKit.embeddedframework

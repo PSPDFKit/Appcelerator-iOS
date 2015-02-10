@@ -84,6 +84,13 @@
 			remoteGlobalIDString = B81D1AA619A79F6C00BFA32E;
 			remoteInfo = PSPDFKit.framework;
 		};
+		78C16FCE1A8AAB15008D8F51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78DE62FB18897DF900DC6D84 /* PSPDFKit-lib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 788D176F1A828E4D002E5D33;
+			remoteInfo = "PSPDFKit-Demo";
+		};
 		78DE630218897DFA00DC6D84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78DE62FB18897DF900DC6D84 /* PSPDFKit-lib.xcodeproj */;
@@ -253,6 +260,7 @@
 			children = (
 				78DE630318897DFA00DC6D84 /* libPSPDFKit.a */,
 				78DE630518897DFA00DC6D84 /* libPSPDFKit.a */,
+				78C16FCF1A8AAB15008D8F51 /* libPSPDFKit.a */,
 				78BA30FD1A1FC72200768B70 /* libPSPDFKit.a */,
 				78BA30FF1A1FC72200768B70 /* PSPDFKit.framework */,
 			);
@@ -348,6 +356,13 @@
 			fileType = wrapper.framework;
 			path = PSPDFKit.framework;
 			remoteRef = 78BA30FE1A1FC72200768B70 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		78C16FCF1A8AAB15008D8F51 /* libPSPDFKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPSPDFKit.a;
+			remoteRef = 78C16FCE1A8AAB15008D8F51 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		78DE630318897DFA00DC6D84 /* libPSPDFKit.a */ = {
@@ -456,7 +471,7 @@
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DEAD_CODE_STRIPPING = YES;
-				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TITANIUM,
@@ -499,7 +514,7 @@
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DEAD_CODE_STRIPPING = YES;
-				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TITANIUM,

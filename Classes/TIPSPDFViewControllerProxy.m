@@ -146,16 +146,18 @@
 - (void)setOutlineControllerFilterOptions:(id)arg {
     ENSURE_UI_THREAD(setOutlineControllerFilterOptions, arg);
 
-    NSMutableOrderedSet *filterOptions = [NSMutableOrderedSet orderedSetWithCapacity:3];
+    NSMutableArray *filterOptions = [NSMutableArray array];
     if ([arg isKindOfClass:NSArray.class]) {
         for (__strong NSString *filter in arg) {
             filter = [PSSafeCast(filter, NSString.class) lowercaseString];
             if ([filter isEqual:@"outline"]) {
-                [filterOptions addObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
-            }else if ([filter isEqual:@"bookmarks"]) {
-                [filterOptions addObject:@(PSPDFOutlineBarButtonItemOptionBookmarks)];
-            }else if ([filter isEqual:@"annotations"]) {
-                [filterOptions addObject:@(PSPDFOutlineBarButtonItemOptionAnnotations)];
+                [filterOptions addObject:PSPDFDocumentInfoOptionOutline];
+            } else if ([filter isEqual:@"bookmarks"]) {
+                [filterOptions addObject:PSPDFDocumentInfoOptionBookmarks];
+            } else if ([filter isEqual:@"annotations"]) {
+                [filterOptions addObject:PSPDFDocumentInfoOptionAnnotations];
+            } else if ([filter isEqual:@"files"]) {
+                [filterOptions addObject:PSPDFDocumentInfoOptionEmbeddedFiles];
             }
         }
     }

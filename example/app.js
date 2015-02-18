@@ -142,8 +142,8 @@ modalButton.addEventListener('click', function(e) {
     // Changes the link annotation colors to a light red (first hex pair is optional alpha) (or use "clear" to hide)
     pdfController.linkAnnotationBorderColor = "#33FF0000";    // Border Color
     pdfController.linkAnnotationHighlightColor = "99FF0000";  // Highlight Color
-    pdfController.thumbnailFilterOptions = ["All", "Bookmarks"] // "Annotations" is the third possibility. If <= 1 option, the filter will not be displayed.
-    pdfController.outlineControllerFilterOptions = ["Outline"] // "Outline", "Bookmarks" and "Annotations" are supported.
+    pdfController.thumbnailFilterOptions = ["All", "Bookmarks"]; // "Annotations" is the third possibility. If <= 1 option, the filter will not be displayed.
+    pdfController.outlineControllerFilterOptions = ["Outline"]; // "Outline", "Bookmarks" and "Annotations" are supported.
 
     // example how to hide the top left close button
     //pdfView.showCloseButton = false;

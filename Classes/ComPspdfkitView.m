@@ -2,7 +2,7 @@
 //  ComPspdfkitView.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2015 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -15,9 +15,8 @@
 #import "PSPDFUtils.h"
 #import <libkern/OSAtomic.h>
 
-@interface ComPspdfkitView() {
-    UIViewController *_navController; // UINavigationController or PSPDFViewController
-}
+@interface ComPspdfkitView ()
+@property (nonatomic) UIViewController *navController; // UINavigationController or PSPDFViewController
 @end
 
 @implementation ComPspdfkitView
@@ -27,7 +26,8 @@
 
 - (void)createControllerProxy {
     PSTiLog(@"createControllerProxy");
-    if (!_controllerProxy) {
+    
+    if (!_controllerProxy) { // self triggers creation
         NSArray *pdfPaths = [PSPDFUtils resolvePaths:[self.proxy valueForKey:@"filename"]];
         PSPDFDocument *pdfDocument = [[PSPDFDocument alloc] initWithBaseURL:nil files:pdfPaths];
         TIPSPDFViewController *pdfController = [[TIPSPDFViewController alloc] initWithDocument:pdfDocument];
@@ -41,13 +41,13 @@
         }
 
         // Encapsulate controller into proxy.
-        _controllerProxy = [[TIPSPDFViewControllerProxy alloc] initWithPDFController:pdfController context:self.proxy.pageContext parentProxy:self.proxy];
+        self.controllerProxy = [[TIPSPDFViewControllerProxy alloc] initWithPDFController:pdfController context:self.proxy.pageContext parentProxy:self.proxy];
 
         if (!pdfController.configuration.useParentNavigationBar) {
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pdfController];
-            _navController = navController;
+            self.navController = navController;
         }else {
-            _navController = pdfController;
+            self.navController = pdfController;
         }
     }
 }

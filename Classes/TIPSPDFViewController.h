@@ -2,7 +2,7 @@
 //  TIPSPDFViewController.h
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2015 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -22,6 +22,6 @@
 /// Close controller, optionally animated.
 - (void)closeControllerAnimated:(BOOL)animated;
 
-@property (nonatomic, strong) TIPSPDFViewControllerProxy *proxy;
+@property (nonatomic) TIPSPDFViewControllerProxy *proxy;
 
 @end

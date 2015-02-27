@@ -2,7 +2,7 @@
 //  PSPDFUtils.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2015 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -66,7 +66,7 @@
                         if ([object respondsToSelector:NSSelectorFromString(arrayItem)]) {
                             [newArray addObject:[object valueForKey:arrayItem]];
                         }
-                    }else {
+                    } else {
                         id newArrayItem = arrayItem;
                         if (![arrayItem isKindOfClass:UIBarButtonItem.class] && [arrayItem respondsToSelector:@selector(barButtonItem)]) {
                             newArrayItem = [arrayItem performSelector:@selector(barButtonItem)];

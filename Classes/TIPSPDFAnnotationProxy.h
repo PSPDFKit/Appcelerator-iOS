@@ -2,7 +2,7 @@
 //  TIPSPDFAnnotationProxy.h
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2015 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -14,10 +14,10 @@
 
 @interface TIPSPDFAnnotationProxy : TiProxy 
 
-// Initializes annotation proxy.
-- (id)initWithAnnotation:(PSPDFAnnotation *)annotation;
+/// Initializes annotation proxy.
+- (instancetype)initWithAnnotation:(PSPDFAnnotation *)annotation;
 
-// Link if target is a website.
-@property(nonatomic, retain, readonly) NSString *siteLinkTarget;
+/// Link if target is a website.
+@property (nonatomic, readonly) NSString *siteLinkTarget;
 
 @end

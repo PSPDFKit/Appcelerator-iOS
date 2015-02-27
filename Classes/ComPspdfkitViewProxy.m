@@ -2,7 +2,7 @@
 //  ComPspdfkitViewProxy.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2015 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -24,8 +24,17 @@ ENSURE_UI_THREAD_0_ARGS \
 _Pragma("clang diagnostic pop") \
 } while (0);
 
-@implementation ComPspdfkitViewProxy {
-    TIPSPDFViewControllerProxy *_controllerProxy;
+@interface ComPspdfkitViewProxy ()
+@property (nonatomic) TIPSPDFViewControllerProxy *controllerProxy;
+@end
+
+@implementation ComPspdfkitViewProxy
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Lifecycle
+
+- (void)dealloc {
+    PSTiLog(@"dealloc: %@", self)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,12 +50,12 @@ _Pragma("clang diagnostic pop") \
 - (void)viewDidAttach {
     PSPDF_ENSURE_UI_THREAD_0_ARGS
     PSTiLog(@"viewDidAttach: %@ %@", [self pdfView], [[self pdfView] controllerProxy]);
-
-    _controllerProxy = [[self pdfView] controllerProxy];
-    _controllerProxy.viewProxy = self; // register viewProxy
-
-    [[_controllerProxy controller] viewWillAppear:NO];
-    [[_controllerProxy controller] viewDidAppear:NO];
+    
+    self.controllerProxy = [[self pdfView] controllerProxy];
+    self.controllerProxy.viewProxy = self; // register viewProxy
+    
+    [[self.controllerProxy controller] viewWillAppear:NO];
+    [[self.controllerProxy controller] viewDidAppear:NO];
 }
 
 - (void)viewDidDetach {
@@ -54,11 +63,11 @@ _Pragma("clang diagnostic pop") \
     PSTiLog(@"viewDidDetach");
 
     // don't access pdfView - is already nil here!
-    _controllerProxy.viewProxy = nil; // deregister viewProxy
-
-    [[_controllerProxy controller] viewWillDisappear:NO];
-    [[_controllerProxy controller] viewDidDisappear:NO];
-    _controllerProxy = nil;
+    self.controllerProxy.viewProxy = nil; // deregister viewProxy
+    
+    [[self.controllerProxy controller] viewWillDisappear:NO];
+    [[self.controllerProxy controller] viewDidDisappear:NO];
+    self.controllerProxy = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

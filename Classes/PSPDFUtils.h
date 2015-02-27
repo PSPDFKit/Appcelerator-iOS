@@ -2,7 +2,7 @@
 //  PSPDFUtils.h
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2015 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -19,7 +19,7 @@
 #define PROPERTY(property) @#property
 #endif
 
-FOUNDATION_EXPORT void (^pst_targetActionBlock(id target, SEL action))(id);
+FOUNDATION_EXTERN void (^pst_targetActionBlock(id target, SEL action))(id);
 
 // Helper class for argument parsing.
 @interface PSPDFUtils : NSObject
@@ -45,11 +45,11 @@ FOUNDATION_EXPORT void (^pst_targetActionBlock(id target, SEL action))(id);
 @end
 
 // Helper
-id PSSafeCast(id object, Class targetClass);
-void ps_dispatch_main_sync(dispatch_block_t block);
-void ps_dispatch_main_async(dispatch_block_t block);
-extern NSString *PSFixIncorrectPath(NSString *path);
-UIView *PSViewInsideViewWithPrefix(UIView *view, NSString *classNamePrefix);
+FOUNDATION_EXTERN id PSSafeCast(id object, Class targetClass);
+FOUNDATION_EXTERN void ps_dispatch_main_sync(dispatch_block_t block);
+FOUNDATION_EXTERN void ps_dispatch_main_async(dispatch_block_t block);
+FOUNDATION_EXTERN NSString *PSFixIncorrectPath(NSString *path);
+FOUNDATION_EXTERN UIView *PSViewInsideViewWithPrefix(UIView *view, NSString *classNamePrefix);
 
 
 // Private extensions inside PSPDFKit.

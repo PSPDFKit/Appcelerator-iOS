@@ -2,7 +2,7 @@
 //  TIPSPDFViewControllerProxy.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2015 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -20,30 +20,30 @@
 #import "ComPspdfkitViewProxy.h"
 #import <objc/runtime.h>
 
-@interface TIPSPDFViewControllerProxy() {
-    KrollCallback *_didTapOnAnnotationCallback;
-    __weak TiProxy *_parentProxy;
-}
-@property(atomic, assign) UIInterfaceOrientation lockedInterfaceOrientationValue;
-@property(atomic, strong) UIColor *linkAnnotationBorderBackedColor;
-@property(atomic, strong) UIColor *linkAnnotationHighlightBackedColor;
+@interface TIPSPDFViewControllerProxy ()
+
+@property (nonatomic) KrollCallback  *didTapOnAnnotationCallback;
+@property (nonatomic, weak) TiProxy *parentProxy;
+@property (atomic, assign) UIInterfaceOrientation lockedInterfaceOrientationValue;
+@property (atomic) UIColor *linkAnnotationBorderBackedColor;
+@property (atomic) UIColor *linkAnnotationHighlightBackedColor;
+
 @end
 
 @implementation TIPSPDFViewControllerProxy
 
-@synthesize controller = _controller;
 @synthesize lockedInterfaceOrientationValue = _lockedInterfaceOrientationValue;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NSObject
+#pragma mark - Lifecycle
 
 - (id)initWithPDFController:(TIPSPDFViewController *)pdfController context:(id<TiEvaluator>)context parentProxy:(TiProxy *)parentProxy {
     if ((self = [super _initWithPageContext:context])) {
         PSTiLog(@"init TIPSPDFViewControllerProxy");
-        _parentProxy = parentProxy;
-        _lockedInterfaceOrientationValue = -1;
-        _controller = pdfController;
-        _controller.delegate = self;
+        self.parentProxy = parentProxy;
+        self.lockedInterfaceOrientationValue = -1;
+        self.controller = pdfController;
+        self.controller.delegate = self;
         // As long as pdfController exists, we're not getting released.
         pdfController.proxy = self;
         self.modelDelegate = self;
@@ -56,7 +56,7 @@
 }
 
 - (TiProxy *)parentForBubbling {
-    return _parentProxy;
+    return self.parentProxy;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@
             page = [[self page] unsignedIntegerValue];
         });
     }else {
-        page = _controller.page;
+        page = self.controller.page;
     }
 
     return @(page);
@@ -89,7 +89,7 @@
 }
 
 - (id)documentPath {
-    return [[_controller.document fileURL] path];
+    return [[self.controller.document fileURL] path];
 }
 
 - (void)setLinkAnnotationBorderColor:(id)arg {
@@ -140,7 +140,7 @@
             }
         }
     }
-    _controller.thumbnailController.filterOptions = filterOptions;
+    self.controller.thumbnailController.filterOptions = filterOptions;
 }
 
 - (void)setOutlineControllerFilterOptions:(id)arg {
@@ -161,7 +161,7 @@
             }
         }
     }
-    _controller.documentInfoCoordinator.availableControllerOptions = filterOptions;
+    self.controller.documentInfoCoordinator.availableControllerOptions = filterOptions;
 }
 
 - (void)setAllowedMenuActions:(id)arg {
@@ -181,7 +181,7 @@
         }
     }
     if (menuActions > 0) {
-        [_controller updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        [self.controller updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
             builder.allowedMenuActions = (PSPDFTextSelectionMenuAction) menuActions;
         }];
     }
@@ -201,7 +201,7 @@
     NSUInteger pageValue = [PSPDFUtils intValue:args onPosition:0];
     NSUInteger animationValue = [PSPDFUtils intValue:args onPosition:1];
     BOOL animated = animationValue == NSNotFound || animationValue == 1;
-    [_controller setPage:pageValue animated:animated];
+    [self.controller setPage:pageValue animated:animated];
 }
 
 - (void)setViewMode:(id)args {
@@ -211,7 +211,7 @@
     NSUInteger viewModeValue = [PSPDFUtils intValue:args onPosition:0];
     NSUInteger animationValue = [PSPDFUtils intValue:args onPosition:1];
     BOOL animated = animationValue == NSNotFound || animationValue == 1;
-    [_controller setViewMode:viewModeValue animated:animated];
+    [self.controller setViewMode:viewModeValue animated:animated];
 }
 
 - (void)searchForString:(id)args {
@@ -225,7 +225,7 @@
     PSCLog(@"searchForString: %@", args);
     NSString *searchString = args[0];
     BOOL animated = [PSPDFUtils intValue:args onPosition:1] > 0;
-    [_controller searchForString:searchString options:nil sender:nil animated:animated];
+    [self.controller searchForString:searchString options:nil sender:nil animated:animated];
 }
 
 - (void)close:(id)args {
@@ -235,15 +235,17 @@
     NSUInteger animationValue = [PSPDFUtils intValue:args onPosition:1];
     BOOL animated = animationValue == NSNotFound || animationValue == 1;
 
-    [_controller closeControllerAnimated:animated];
+    [self.controller closeControllerAnimated:animated];
 }
 
-- (void)setDidTapOnAnnotationCallback:(id)callback {
-    ENSURE_SINGLE_ARG(callback, KrollCallback);
+- (void)setDidTapOnAnnotationCallback:(KrollCallback *)callback {
+    if (![callback isKindOfClass:[KrollCallback class]]) {
+        [self throwException:TiExceptionInvalidType subreason:[NSString stringWithFormat:@"expected: %@, was: %@",CLASS2JS([KrollCallback class]),OBJTYPE2JS(callback)] location:CODELOCATION];
+    }
 
     PSCLog(@"registering annotation callback: %@", callback);
-    if (_didTapOnAnnotationCallback != callback) {
-        _didTapOnAnnotationCallback = callback;
+    if (self.didTapOnAnnotationCallback != callback) {
+        self.didTapOnAnnotationCallback = callback;
     }
 }
 
@@ -264,7 +266,7 @@
     ENSURE_UI_THREAD(setLockedInterfaceOrientation, arg);
 
     UIInterfaceOrientation interfaceOrientation = [arg integerValue];
-    if(UIDeviceOrientationIsValidInterfaceOrientation(interfaceOrientation) || (int)interfaceOrientation == -1) {
+    if (UIDeviceOrientationIsValidInterfaceOrientation(interfaceOrientation) || (int)interfaceOrientation == -1) {
         self.lockedInterfaceOrientationValue = interfaceOrientation;
     }
 
@@ -275,8 +277,8 @@
     ENSURE_UI_THREAD(saveAnnotations, args);
 
     NSError *error = nil;
-    BOOL success = [_controller.document saveAnnotationsWithError:&error];
-    if (!success && _controller.configuration.isTextSelectionEnabled)  {
+    BOOL success = [self.controller.document saveAnnotationsWithError:&error];
+    if (!success && self.controller.configuration.isTextSelectionEnabled)  {
         PSCLog(@"Saving annotations failed: %@", [error localizedDescription]);
     }
     [[self eventProxy] fireEvent:@"didSaveAnnotations" withObject:@{@"success" : @(success)}];
@@ -287,14 +289,14 @@
     ENSURE_UI_THREAD(setAnnotationSaveMode, arg);
 
     PSPDFAnnotationSaveMode annotationSaveMode = [arg integerValue];
-    _controller.document.annotationSaveMode = annotationSaveMode;
+    self.controller.document.annotationSaveMode = annotationSaveMode;
 }
 
 - (void)setPrintOptions:(id)arg {
     ENSURE_SINGLE_ARG(arg, NSNumber);
     ENSURE_UI_THREAD(setPrintOptions, arg);
 
-    [_controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+    [self.controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         builder.printSharingOptions = [arg integerValue];
     }];
 }
@@ -303,7 +305,7 @@
     ENSURE_SINGLE_ARG(arg, NSNumber);
     ENSURE_UI_THREAD(setSendOptions, arg);
 
-    [_controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+    [self.controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         builder.mailSharingOptions = [arg integerValue];
     }];
 }
@@ -312,7 +314,7 @@
     ENSURE_SINGLE_ARG(arg, NSNumber);
     ENSURE_UI_THREAD(setOpenInOptions, arg);
 
-    [_controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+    [self.controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         builder.openInSharingOptions = [arg integerValue];
     }];
 }
@@ -380,7 +382,7 @@
 
     // PSPDFViewController is *not* thread safe. only set on main thread.
     ps_dispatch_main_async(^{
-        [PSPDFUtils applyOptions:@{key: newValue} onObject:_controller];
+        [PSPDFUtils applyOptions:@{key: newValue} onObject:self.controller];
     });
 }
 
@@ -429,8 +431,8 @@
     }
 
     BOOL processed = NO;
-    if(_didTapOnAnnotationCallback) {
-        id retVal = [_didTapOnAnnotationCallback call:@[eventDict] thisObject:nil];
+    if(self.didTapOnAnnotationCallback) {
+        id retVal = [self.didTapOnAnnotationCallback call:@[eventDict] thisObject:nil];
         processed = [retVal boolValue];
         PSCLog(@"retVal: %d", processed);
     }
@@ -472,10 +474,6 @@
         if (self.linkAnnotationBorderBackedColor) {
             linkAnnotation.borderColor = self.linkAnnotationBorderBackedColor;
         }
-        // TODO
-        //if (self.linkAnnotationHighlightBackedColor) {
-        //    linkAnnotation.highlightBackgroundColor = self.linkAnnotationHighlightBackedColor;
-        //}
     }
     return annotationView;
 }

@@ -164,7 +164,13 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
 - (void)setLicenseKey:(id)license {
     NSString *licenseString = [license isKindOfClass:NSArray.class] ? [license firstObject] : license;
     if ([licenseString isKindOfClass:NSString.class] && licenseString.length > 0) {
-        PSPDFSetLicenseKey(licenseString.UTF8String);
+        if (![NSThread isMainThread]) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                PSPDFSetLicenseKey(licenseString.UTF8String);
+            });
+        } else {
+            PSPDFSetLicenseKey(licenseString.UTF8String);
+        }
     }
 }
 

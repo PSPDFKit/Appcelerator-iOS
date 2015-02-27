@@ -29,6 +29,7 @@
 #pragma mark - NSObject
 
 - (void)dealloc {
+    PSTiLog(@"TIPSPDFViewController dealloc")
     self.proxy = nil; // forget proxy
 }
 

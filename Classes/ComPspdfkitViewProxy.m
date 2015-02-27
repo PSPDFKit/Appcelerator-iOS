@@ -22,7 +22,7 @@ _Pragma("clang diagnostic push") \
 _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
 ENSURE_UI_THREAD_0_ARGS \
 _Pragma("clang diagnostic pop") \
-} while (0)
+} while (0);
 
 @implementation ComPspdfkitViewProxy {
     TIPSPDFViewControllerProxy *_controllerProxy;

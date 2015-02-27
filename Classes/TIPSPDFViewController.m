@@ -100,6 +100,11 @@
     }
 }
 
+// If we return YES here, UIWindow leaks our controller in the Titanium configuration.
+- (BOOL)canBecomeFirstResponder {
+    return NO;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 

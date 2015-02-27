@@ -52,6 +52,15 @@
     }
 }
 
+- (UIViewController *)pspdf_closestViewController {
+    UIResponder *responder = self;
+    while ((responder = [responder nextResponder])) {
+        if ([responder isKindOfClass:UIViewController.class]) break;
+    }
+    return (UIViewController *)responder;
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
@@ -64,6 +73,28 @@
 
 - (void)dealloc {
     PSTiLog(@"ComPspdfkitView dealloc");
+    [self destroyViewControllerRelationship];
+}
+
+- (void)didMoveToWindow {
+    [super didMoveToWindow];
+    
+    UIViewController *controller = [self pspdf_closestViewController];
+    if (controller) {
+        if (self.window) {
+            [controller addChildViewController:self.navController];
+            [self.navController didMoveToParentViewController:controller];
+        } else {
+            [self destroyViewControllerRelationship];
+        }
+    }
+}
+
+- (void)destroyViewControllerRelationship {
+    if (self.navController.parentViewController) {
+        [self.navController willMoveToParentViewController:nil];
+        [self.navController removeFromParentViewController];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,13 +125,6 @@
 
         [self addSubview:_navController.view];
         [TiUtils setView:_navController.view positionRect:bounds];
-
-        // Wait a runloop until we're properly connected with the navigationController
-        // This is mainly important to fix a bug where pushing the controller initially doesn't show the bar button items because we try to set them too early.
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_navController viewWillAppear:NO];
-            [_navController viewDidAppear:NO];
-        });
     }else {
         // force controller reloading to adapt to new position
         [TiUtils setView:_navController.view positionRect:bounds];

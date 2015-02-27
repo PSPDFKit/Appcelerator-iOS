@@ -53,9 +53,6 @@ _Pragma("clang diagnostic pop") \
     
     self.controllerProxy = [[self pdfView] controllerProxy];
     self.controllerProxy.viewProxy = self; // register viewProxy
-    
-    [[self.controllerProxy controller] viewWillAppear:NO];
-    [[self.controllerProxy controller] viewDidAppear:NO];
 }
 
 - (void)viewDidDetach {
@@ -64,9 +61,6 @@ _Pragma("clang diagnostic pop") \
 
     // don't access pdfView - is already nil here!
     self.controllerProxy.viewProxy = nil; // deregister viewProxy
-    
-    [[self.controllerProxy controller] viewWillDisappear:NO];
-    [[self.controllerProxy controller] viewDidDisappear:NO];
     self.controllerProxy = nil;
 }
 

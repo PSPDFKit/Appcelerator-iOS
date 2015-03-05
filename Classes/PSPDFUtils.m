@@ -91,17 +91,6 @@
                 obj = [NSMutableOrderedSet orderedSetWithArray:obj];
             }
 
-            // Custom keys for bar button items
-            else if ([key isEqual:PROPERTY(sendOptions)]) {
-                key = @"emailButtonItem.sendOptions";
-            }
-            else if ([key isEqual:PROPERTY(openInOptions)]) {
-                key = @"openInButtonItem.openOptions";
-            }
-            else if ([key isEqual:PROPERTY(printOptions)]) {
-                key = @"printButtonItem.printOptions";
-            }
-
             // processed later
             else if ([key isEqual:@"lockedInterfaceOrientation"]) {
                 return; // continue in a block
@@ -120,7 +109,12 @@
                     PSPDFViewController *ctrl = object;
                     // set value via PSPDFConfiguration
                     [ctrl updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-                        [builder setValue:obj forKey:key];
+                        @try {
+                            [builder setValue:obj forKey:key];
+                        }
+                        @catch (NSException *exception) {
+                            PSCLog(@"Warning! Unable to set %@ for %@.", obj, key);
+                        }
                     }];
                     isControllerNeedsReload = YES;
                 }

@@ -412,7 +412,7 @@
 					"$(TITANIUM_BASE_SDK2)/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-fobjc-arc-exceptions";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -449,7 +449,7 @@
 					"$(TITANIUM_BASE_SDK2)/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-fobjc-arc-exceptions";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

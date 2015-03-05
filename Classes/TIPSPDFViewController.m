@@ -2,7 +2,7 @@
 //  TIPSPDFViewController.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2015 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -26,9 +26,10 @@
 @implementation TIPSPDFViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NSObject
+#pragma mark - Lifecycle
 
 - (void)dealloc {
+    PSTiLog(@"dealloc: %@", self)
     self.proxy = nil; // forget proxy
 }
 
@@ -97,6 +98,11 @@
     }else {
         return [UIApplication sharedApplication].statusBarOrientation;
     }
+}
+
+// If we return YES here, UIWindow leaks our controller in the Titanium configuration.
+- (BOOL)canBecomeFirstResponder {
+    return NO;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

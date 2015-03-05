@@ -2,7 +2,7 @@
 //  ComPspdfkitView.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2015 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -15,9 +15,8 @@
 #import "PSPDFUtils.h"
 #import <libkern/OSAtomic.h>
 
-@interface ComPspdfkitView() {
-    UIViewController *_navController; // UINavigationController or PSPDFViewController
-}
+@interface ComPspdfkitView ()
+@property (nonatomic) UIViewController *navController; // UINavigationController or PSPDFViewController
 @end
 
 @implementation ComPspdfkitView
@@ -27,7 +26,8 @@
 
 - (void)createControllerProxy {
     PSTiLog(@"createControllerProxy");
-    if (!_controllerProxy) {
+    
+    if (!_controllerProxy) { // self triggers creation
         NSArray *pdfPaths = [PSPDFUtils resolvePaths:[self.proxy valueForKey:@"filename"]];
         PSPDFDocument *pdfDocument = [[PSPDFDocument alloc] initWithBaseURL:nil files:pdfPaths];
         TIPSPDFViewController *pdfController = [[TIPSPDFViewController alloc] initWithDocument:pdfDocument];
@@ -41,16 +41,25 @@
         }
 
         // Encapsulate controller into proxy.
-        _controllerProxy = [[TIPSPDFViewControllerProxy alloc] initWithPDFController:pdfController context:self.proxy.pageContext parentProxy:self.proxy];
+        self.controllerProxy = [[TIPSPDFViewControllerProxy alloc] initWithPDFController:pdfController context:self.proxy.pageContext parentProxy:self.proxy];
 
         if (!pdfController.configuration.useParentNavigationBar) {
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pdfController];
-            _navController = navController;
+            self.navController = navController;
         }else {
-            _navController = pdfController;
+            self.navController = pdfController;
         }
     }
 }
+
+- (UIViewController *)pspdf_closestViewController {
+    UIResponder *responder = self;
+    while ((responder = [responder nextResponder])) {
+        if ([responder isKindOfClass:UIViewController.class]) break;
+    }
+    return (UIViewController *)responder;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -64,6 +73,28 @@
 
 - (void)dealloc {
     PSTiLog(@"ComPspdfkitView dealloc");
+    [self destroyViewControllerRelationship];
+}
+
+- (void)didMoveToWindow {
+    [super didMoveToWindow];
+    
+    UIViewController *controller = [self pspdf_closestViewController];
+    if (controller) {
+        if (self.window) {
+            [controller addChildViewController:self.navController];
+            [self.navController didMoveToParentViewController:controller];
+        } else {
+            [self destroyViewControllerRelationship];
+        }
+    }
+}
+
+- (void)destroyViewControllerRelationship {
+    if (self.navController.parentViewController) {
+        [self.navController willMoveToParentViewController:nil];
+        [self.navController removeFromParentViewController];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,13 +125,6 @@
 
         [self addSubview:_navController.view];
         [TiUtils setView:_navController.view positionRect:bounds];
-
-        // Wait a runloop until we're properly connected with the navigationController
-        // This is mainly important to fix a bug where pushing the controller initially doesn't show the bar button items because we try to set them too early.
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_navController viewWillAppear:NO];
-            [_navController viewDidAppear:NO];
-        });
     }else {
         // force controller reloading to adapt to new position
         [TiUtils setView:_navController.view positionRect:bounds];

@@ -2,7 +2,7 @@
 //  PSPDFUtils.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2015 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -66,7 +66,7 @@
                         if ([object respondsToSelector:NSSelectorFromString(arrayItem)]) {
                             [newArray addObject:[object valueForKey:arrayItem]];
                         }
-                    }else {
+                    } else {
                         id newArrayItem = arrayItem;
                         if (![arrayItem isKindOfClass:UIBarButtonItem.class] && [arrayItem respondsToSelector:@selector(barButtonItem)]) {
                             newArrayItem = [arrayItem performSelector:@selector(barButtonItem)];
@@ -91,17 +91,6 @@
                 obj = [NSMutableOrderedSet orderedSetWithArray:obj];
             }
 
-            // Custom keys for bar button items
-            else if ([key isEqual:PROPERTY(sendOptions)]) {
-                key = @"emailButtonItem.sendOptions";
-            }
-            else if ([key isEqual:PROPERTY(openInOptions)]) {
-                key = @"openInButtonItem.openOptions";
-            }
-            else if ([key isEqual:PROPERTY(printOptions)]) {
-                key = @"printButtonItem.printOptions";
-            }
-
             // processed later
             else if ([key isEqual:@"lockedInterfaceOrientation"]) {
                 return; // continue in a block
@@ -120,7 +109,12 @@
                     PSPDFViewController *ctrl = object;
                     // set value via PSPDFConfiguration
                     [ctrl updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-                        [builder setValue:obj forKey:key];
+                        @try {
+                            [builder setValue:obj forKey:key];
+                        }
+                        @catch (NSException *exception) {
+                            PSCLog(@"Warning! Unable to set %@ for %@.", obj, key);
+                        }
                     }];
                     isControllerNeedsReload = YES;
                 }

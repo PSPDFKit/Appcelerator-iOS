@@ -2,7 +2,7 @@
 //  ComPspdfkitModule.h
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2015 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -164,7 +164,13 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
 - (void)setLicenseKey:(id)license {
     NSString *licenseString = [license isKindOfClass:NSArray.class] ? [license firstObject] : license;
     if ([licenseString isKindOfClass:NSString.class] && licenseString.length > 0) {
-        PSPDFSetLicenseKey(licenseString.UTF8String);
+        if (![NSThread isMainThread]) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                PSPDFSetLicenseKey(licenseString.UTF8String);
+            });
+        } else {
+            PSPDFSetLicenseKey(licenseString.UTF8String);
+        }
     }
 }
 

@@ -2,7 +2,7 @@
 //  TIPSPDFViewControllerProxy.h
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2015 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -17,6 +17,10 @@
 
 /// Appcelerator Proxy for PSPDFViewController. Exposes a subset.
 @interface TIPSPDFViewControllerProxy : TiProxy <TiProxyDelegate, PSPDFViewControllerDelegate>
+
+@property (atomic, weak) TIPSPDFViewController *controller; // we're keeping a reverse relation with associated object
+
+@property (atomic, weak) ComPspdfkitViewProxy *viewProxy;
 
 // proxy is initialized and keeps the view controller around
 - (id)initWithPDFController:(TIPSPDFViewController *)pdfController context:(id<TiEvaluator>)context parentProxy:(TiProxy *)parentProxy;
@@ -46,7 +50,7 @@
 - (void)close:(id)args;
 
 /// Register a callback for the didTapOnAnnotation event. Return true if you manually use the annotation, else false.
-- (void)setDidTapOnAnnotationCallback:(id)args;
+- (void)setDidTapOnAnnotationCallback:(KrollCallback *)callback;
 
 /// Opens the PSPDFOutlineViewController
 - (void)showOutlineView:(id)arg;
@@ -74,10 +78,6 @@
 
 /// Bookmark the current page
 - (void)bookmarkPage:(id)arg;
-
-@property(atomic, weak) TIPSPDFViewController *controller; // we're keeping a reverse relation with associated object
-
-@property(atomic, weak) ComPspdfkitViewProxy *viewProxy;
 
 /// Exposes a helper to change link annotation color. Set to change.
 - (void)setLinkAnnotationBorderColor:(id)arg;

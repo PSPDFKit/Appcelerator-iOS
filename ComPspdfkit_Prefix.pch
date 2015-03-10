@@ -19,3 +19,8 @@
 #else
 #define PSCLog(...)
 #endif
+
+// HACK: Titanium defines this macro, JavaScriptCore does as well.
+#ifdef JSC_OBJC_API_ENABLED
+#undef JSC_OBJC_API_ENABLED
+#endif

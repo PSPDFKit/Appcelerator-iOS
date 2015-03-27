@@ -39,11 +39,13 @@
         if (![self.proxy valueForKey:@"options"][PROPERTY(leftBarButtonItems)]) {
             pdfController.leftBarButtonItems = @[];
         }
+        
+        BOOL navBarHidden = [[self.proxy valueForKey:@"options"][PROPERTY(navBarHidden)] boolValue];
 
         // Encapsulate controller into proxy.
         self.controllerProxy = [[TIPSPDFViewControllerProxy alloc] initWithPDFController:pdfController context:self.proxy.pageContext parentProxy:self.proxy];
 
-        if (!pdfController.configuration.useParentNavigationBar) {
+        if (!pdfController.configuration.useParentNavigationBar && !navBarHidden) {
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pdfController];
             self.navController = navController;
         }else {

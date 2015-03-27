@@ -99,6 +99,11 @@
             else if ([key.lowercaseString hasSuffix:@"size"] && [obj isKindOfClass:NSArray.class] && [obj count] == 2) {
                 obj = [NSValue valueWithCGSize:CGSizeMake([[obj objectAtIndex:0] floatValue], [[obj objectAtIndex:1] floatValue])];
             }
+            
+            else if ([key isEqual:@"navBarHidden"]) {
+                // handled in -[ComPspdfkitView createControllerProxy]
+                return;
+            }
 
             PSCLog(@"Set %@ to %@", key, obj);
 

@@ -166,10 +166,10 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     if ([licenseString isKindOfClass:NSString.class] && licenseString.length > 0) {
         if (![NSThread isMainThread]) {
             dispatch_sync(dispatch_get_main_queue(), ^{
-                PSPDFSetLicenseKey(licenseString.UTF8String);
+                [PSPDFKit setLicenseKey:licenseString];
             });
         } else {
-            PSPDFSetLicenseKey(licenseString.UTF8String);
+            [PSPDFKit setLicenseKey:licenseString];
         }
     }
 }
@@ -295,7 +295,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
 - (void)setLogLevel:(id)logLevel {
     ENSURE_UI_THREAD(setLogLevel, logLevel);
 
-    PSPDFLogLevel = [PSPDFUtils intValue:logLevel];
+    [[PSPDFKit sharedInstance] setLogLevel:[PSPDFUtils intValue:logLevel]];
     PSCLog(@"New Log level set to %d", PSPDFLogLevel);
 }
 

@@ -245,7 +245,8 @@
 
     PSCLog(@"registering annotation callback: %@", callback);
     if (self.didTapOnAnnotationCallback != callback) {
-        self.didTapOnAnnotationCallback = callback;
+        // Use ivar to prevent infinite loop
+        _didTapOnAnnotationCallback = callback;
     }
 }
 

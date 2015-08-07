@@ -143,12 +143,6 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
         //PSTiLog(@"_pspdf_displayPdfInternal");
         proxy = [[TIPSPDFViewControllerProxy alloc] initWithPDFController:pdfController context:self.pageContext parentProxy:self];
 
-        // rotation lock?
-        UIInterfaceOrientation lockedInterfaceOrientation = [options[@"lockedInterfaceOrientation"] integerValue];
-        if (UIDeviceOrientationIsValidInterfaceOrientation(lockedInterfaceOrientation)) {
-            pdfController.proxy.lockedInterfaceOrientationValue = lockedInterfaceOrientation;
-        }
-
         [rootViewController presentViewController:navController animated:animation > 0 completion:NULL];
     });
     return proxy;

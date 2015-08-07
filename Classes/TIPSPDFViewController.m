@@ -69,37 +69,6 @@
     }
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    BOOL superRotate = [super shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
-
-    UIInterfaceOrientation lockedInterfaceOrientation = self.proxy.lockedInterfaceOrientationValue;
-    if ((int)lockedInterfaceOrientation != -1) {
-        return toInterfaceOrientation == lockedInterfaceOrientation;
-    }else {
-        return superRotate;
-    }
-}
-
-// Translate shouldAutorotateToInterfaceOrientation to iOS6.
-- (NSUInteger)supportedInterfaceOrientations {
-    UIInterfaceOrientation lockedInterfaceOrientation = self.proxy.lockedInterfaceOrientationValue;
-    if (self.rotationLockEnabled || (int)lockedInterfaceOrientation == -1) {
-        return [super supportedInterfaceOrientations];
-    }else {
-        return 1 << lockedInterfaceOrientation;
-    }
-}
-
-// iOS 6
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    UIInterfaceOrientation lockedInterfaceOrientation = self.proxy.lockedInterfaceOrientationValue;
-    if ((int)lockedInterfaceOrientation != -1) {
-        return lockedInterfaceOrientation;
-    }else {
-        return [UIApplication sharedApplication].statusBarOrientation;
-    }
-}
-
 // If we return YES here, UIWindow leaks our controller in the Titanium configuration.
 - (BOOL)canBecomeFirstResponder {
     return NO;

@@ -109,10 +109,6 @@
 /// Expose the scrollingEnabled property
 - (void)setScrollingEnabled:(id)args;
 
-/// Query/Lock interface orientation.
-- (id)currentInterfaceOrientation;
-- (id)lockedInterfaceOrientation;
-
 // -1 will reset the lock
 - (void)setLockedInterfaceOrientation:(id)arg;
 

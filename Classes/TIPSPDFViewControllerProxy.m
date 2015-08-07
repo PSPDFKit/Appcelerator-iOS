@@ -258,22 +258,6 @@
     return @(interfaceOrientation);
 }
 
-- (id)lockedInterfaceOrientation {
-    return @(self.lockedInterfaceOrientationValue);
-}
-
-- (void)setLockedInterfaceOrientation:(id)arg {
-    ENSURE_SINGLE_ARG(arg, NSNumber);
-    ENSURE_UI_THREAD(setLockedInterfaceOrientation, arg);
-
-    UIInterfaceOrientation interfaceOrientation = [arg integerValue];
-    if (UIDeviceOrientationIsValidInterfaceOrientation(interfaceOrientation) || (int)interfaceOrientation == -1) {
-        self.lockedInterfaceOrientationValue = interfaceOrientation;
-    }
-
-    [UIViewController attemptRotationToDeviceOrientation];
-}
-
 - (void)saveAnnotations:(id)args {
     ENSURE_UI_THREAD(saveAnnotations, args);
 

@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "38373B868A40918B13B4E42F7C2D906EEB524B41",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C6F4C767ECA3FA6FC1D3A7F957FB185F76E06282" : 0,
+    "2CA729AB1944164A3B5E0AE6D2A6709381F551C7" : 0,
+    "38373B868A40918B13B4E42F7C2D906EEB524B41" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "85FE8685-3180-49F2-A02D-14B55552CC4E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C6F4C767ECA3FA6FC1D3A7F957FB185F76E06282" : "PSPDFKit\/Assets",
+    "2CA729AB1944164A3B5E0AE6D2A6709381F551C7" : "PSPDFKit",
+    "38373B868A40918B13B4E42F7C2D906EEB524B41" : "PSPDFKit-Titanium"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "PSPDFKit-Titanium-Source",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "PSPDFKit-Titanium-Source.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:PSPDFKit\/PSPDFKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2CA729AB1944164A3B5E0AE6D2A6709381F551C7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:PSPDFKit\/PSPDFKit-Titanium.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "38373B868A40918B13B4E42F7C2D906EEB524B41"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:PSPDFKit\/Assets.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C6F4C767ECA3FA6FC1D3A7F957FB185F76E06282"
+    }
+  ]
+}

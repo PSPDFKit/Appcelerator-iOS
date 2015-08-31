@@ -20,6 +20,32 @@
 #import "ComPspdfkitViewProxy.h"
 #import <objc/runtime.h>
 
+#define PSC_SILENCE_CALL_TO_UNKNOWN_SELECTOR(expression) \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+expression \
+_Pragma("clang diagnostic pop")
+
+#define PSCWeakifyAs(object, weakName) typeof(object) __weak weakName = object
+
+void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
+    // If there's no target, return an empty block.
+    if (!target) return ^(__unused id sender) {};
+
+    NSCParameterAssert(action);
+
+    // All ObjC methods have two arguments. This fails if either target is nil, action not implemented or else.
+    NSUInteger numberOfArguments = [target methodSignatureForSelector:action].numberOfArguments;
+    NSCAssert(numberOfArguments == 2 || numberOfArguments == 3, @"%@ should have at most one argument.", NSStringFromSelector(action));
+
+    PSCWeakifyAs(target, weakTarget);
+    if (numberOfArguments == 2) {
+        return ^(__unused id sender) { PSC_SILENCE_CALL_TO_UNKNOWN_SELECTOR([weakTarget performSelector:action];) };
+    } else {
+        return ^(id sender) { PSC_SILENCE_CALL_TO_UNKNOWN_SELECTOR([weakTarget performSelector:action withObject:sender];) };
+    }
+}
+
 @interface TIPSPDFViewControllerProxy ()
 
 @property (nonatomic) KrollCallback  *didTapOnAnnotationCallback;
@@ -313,10 +339,9 @@
 
 - (void)showBarButton:(SEL)barButtonSEL action:(id)action {
     dispatch_async(dispatch_get_main_queue(), ^{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [[self.controller performSelector:barButtonSEL] action:action ? [action[0] view] : self];
-#pragma clang diagnostic pop
+        UIBarButtonItem *barButtonItem = [self.controller performSelector:barButtonSEL];
+        id sender = action ? [action[0] view] : self;
+        tipspdf_targetActionBlock(barButtonItem.target, barButtonItem.action)(sender);
     });
 }
 

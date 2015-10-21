@@ -334,7 +334,7 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
     ENSURE_UI_THREAD(hidePopover, args);
 
     BOOL animated = [args count] == 1 && [args[0] boolValue];
-    [self.controller dismissPopoverAnimated:animated forClass:nil completion:NULL];
+    [self.controller.presentedViewController dismissViewControllerAnimated:animated completion:NULL];
 }
 
 - (void)showBarButton:(SEL)barButtonSEL action:(id)action {

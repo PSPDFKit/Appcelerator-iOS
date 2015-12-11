@@ -1,5 +1,5 @@
-PSPDFKit-Titanium
-=================
+PSPDFKit for iOS Appcelerator Bindings
+======================================
 
 Appcelerator Titanium Bridge for PSPDFKit for iOS.
 

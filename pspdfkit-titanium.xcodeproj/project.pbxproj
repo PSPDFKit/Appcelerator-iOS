@@ -40,7 +40,6 @@
 		7884211D148309BE00203926 /* TIPSPDFAnnotationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7884211B148309BE00203926 /* TIPSPDFAnnotationProxy.m */; };
 		7884211F14830B1600203926 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884211E14830B1500203926 /* UIKit.framework */; };
 		7884212114830B1B00203926 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884212014830B1B00203926 /* CoreMedia.framework */; };
-		7884212314830B2900203926 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884212214830B2900203926 /* libz.dylib */; };
 		7884212514830B2E00203926 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884212414830B2E00203926 /* AVFoundation.framework */; };
 		7884212714830B3100203926 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884212614830B3100203926 /* MediaPlayer.framework */; };
 		7884212914830B3A00203926 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884212814830B3A00203926 /* MessageUI.framework */; };
@@ -53,7 +52,6 @@
 		7884214014830B7600203926 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7884213F14830B7600203926 /* SystemConfiguration.framework */; };
 		78ED7A57146F00FE002EE22C /* TIPSPDFViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78ED7A55146F00FE002EE22C /* TIPSPDFViewController.h */; };
 		78ED7A58146F00FE002EE22C /* TIPSPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ED7A56146F00FE002EE22C /* TIPSPDFViewController.m */; };
-		78FB05BA177304060006CE08 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FB05B9177304060006CE08 /* libxml2.dylib */; };
 		AA747D9F0F9514B9006C5449 /* ComPspdfkit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ComPspdfkit_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -118,7 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78FB05BA177304060006CE08 /* libxml2.dylib in Frameworks */,
 				7884214014830B7600203926 /* SystemConfiguration.framework in Frameworks */,
 				7884213E14830B6E00203926 /* CFNetwork.framework in Frameworks */,
 				7884213C14830B6900203926 /* MobileCoreServices.framework in Frameworks */,
@@ -134,7 +131,6 @@
 				7884211F14830B1600203926 /* UIKit.framework in Frameworks */,
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
 				7853C2EA1A852074000AA2BD /* PSPDFKit in Frameworks */,
-				7884212314830B2900203926 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,10 +290,10 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Peter Steinberger";
 			};
-			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "PSPDFKit-Titanium" */;
+			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "pspdfkit-titanium" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -398,9 +394,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DEAD_CODE_STRIPPING = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = TITANIUM;
@@ -411,7 +407,8 @@
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-fobjc-arc-exceptions";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -435,7 +432,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DEAD_CODE_STRIPPING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -448,7 +444,7 @@
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-fobjc-arc-exceptions";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -510,7 +506,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "PSPDFKit-Titanium" */ = {
+		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "pspdfkit-titanium" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB922308733DC00010E9CD /* Debug */,

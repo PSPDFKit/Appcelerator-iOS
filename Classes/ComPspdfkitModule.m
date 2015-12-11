@@ -119,8 +119,10 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
         NSString *salt = documentOptions[@"salt"];
         if (passphrase.length && salt.length) {
             NSURL *pdfURL = [NSURL fileURLWithPath:[pdfNames firstObject]];
-            PSPDFAESCryptoDataProvider *cryptoWrapper = [[PSPDFAESCryptoDataProvider alloc] initWithURL:pdfURL passphrase:passphrase salt:salt rounds:PSPDFDefaultPBKDFNumberOfRounds];
-            document = [PSPDFDocument documentWithDataProvider:cryptoWrapper.dataProvider];
+            PSPDFAESCryptoDataProvider *cryptoWrapper = [[PSPDFAESCryptoDataProvider alloc] initWithURL:pdfURL passphraseProvider:^NSString *{
+                return passphrase;
+            } salt:salt rounds:PSPDFDefaultPBKDFNumberOfRounds];
+            document = [PSPDFDocument documentWithDataProvider:cryptoWrapper];
         }
 
         if (!document) document = [[PSPDFDocument alloc] initWithBaseURL:nil files:pdfNames];

@@ -119,6 +119,13 @@
 			remoteGlobalIDString = 780B4168146E7DAB00DF07F1;
 			remoteInfo = PSPDFKit;
 		};
+		78C89BA71BD7F6B400B1FA4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 781800881AFE3C4B001817FC /* PSPDFKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 430F37FD1B69118500A00793;
+			remoteInfo = "PSPDFKit-No-Public-Headers";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -256,6 +263,7 @@
 				781800971AFE3C4C001817FC /* libPSPDFKit.a */,
 				781800991AFE3C4C001817FC /* libPSPDFKit.a */,
 				7818009B1AFE3C4C001817FC /* libPSPDFKit.a */,
+				78C89BA81BD7F6B400B1FA4B /* libPSPDFKit.a */,
 				7818009D1AFE3C4C001817FC /* PSPDFKit.framework */,
 				7818009F1AFE3C4C001817FC /* PSPDFKit.framework */,
 				781800A11AFE3C4C001817FC /* PSPDFKit.framework */,
@@ -329,7 +337,7 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Peter Steinberger";
 			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "PSPDFKit-Titanium-Source" */;
@@ -409,6 +417,13 @@
 			remoteRef = 781800A01AFE3C4C001817FC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		78C89BA81BD7F6B400B1FA4B /* libPSPDFKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPSPDFKit.a;
+			remoteRef = 78C89BA71BD7F6B400B1FA4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -471,12 +486,9 @@
 					"$(PROJECT_DIR)/PSPDFKit-Demo/PSPDFKit.embeddedframework/**",
 					"PSPDFKit/**",
 				);
-				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ComPspdfkit_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"PSPDFKit-Demo/**",
 					"$(TITANIUM_BASE_SDK)/**",
@@ -501,7 +513,8 @@
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DEAD_CODE_STRIPPING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TITANIUM,
@@ -515,7 +528,7 @@
 					"$(TITANIUM_BASE_SDK2)/**",
 					"PSPDFKit/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-fobjc-arc-exceptions";
 				SDKROOT = iphoneos;
@@ -544,8 +557,8 @@
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DEAD_CODE_STRIPPING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TITANIUM,
 					PSPDF_SOURCE,
@@ -558,7 +571,7 @@
 					"$(TITANIUM_BASE_SDK2)/**",
 					"PSPDFKit/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-fobjc-arc-exceptions";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -580,7 +593,6 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ComPspdfkit_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"PSPDFKit-Demo/**",
 					"$(TITANIUM_BASE_SDK)/**",

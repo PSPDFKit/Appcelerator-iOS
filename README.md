@@ -1,8 +1,6 @@
 PSPDFKit for iOS Appcelerator Bindings
 ======================================
 
-Appcelerator Titanium Bridge for PSPDFKit for iOS.
-
 PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 
 Note: Currently Appcelerator does not work with dynamic frameworks. As of PSPDFKit v5, we only provide a dynamic framework. We still keep the wrapper open source, and can provide a static build on request until Appcelerator resolves this issue. We're already in contact with them and are helping them to find a solution.

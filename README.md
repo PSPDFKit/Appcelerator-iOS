@@ -1,9 +1,11 @@
 PSPDFKit-Titanium
 =================
 
-Appcelerator Titanium Bridge for PSPDFKit.
+Appcelerator Titanium Bridge for PSPDFKit for iOS.
 
-PSPDFKit is a framework for displaying and annotating PDFs in your iOS apps.
+PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
+
+Note: Currently Appcelerator does not work with dynamic frameworks. As of PSPDFKit v5, we only provide a dynamic framework. We still keep the wrapper open source, and can provide a static build on request until Appcelerator resolves this issue. We're already in contact with them and are helping them to find a solution.
 
 ## How to build
 
@@ -12,13 +14,12 @@ PSPDFKit is a framework for displaying and annotating PDFs in your iOS apps.
 3. Download the binary build of PSPDFKit from your customer portal: https://customers.pspdfkit.com
 4. Open the downloaded .dmg and copy `PSPDFKit.embeddedframework` into the `PSPDFKit-Titanium` folder.
 5. Call `./build.py` in the `PSPDFKit-Titanium` folder.
-6. Copy the created .zip into the Titanium folder: `cp com.pspdfkit.source-iphone-4.x.x.zip ~/Library/Application\ Support/Titanium`
+6. Copy the created .zip into the Titanium folder: `cp com.pspdfkit.source-iphone-5.x.x.zip ~/Library/Application\ Support/Titanium`
 7. Copy the `PSPDFKit.bundle` from `PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle` into your project's `Resources/iphone`.
 
 ## License
 
 This project can be used for evaluation or if you have a valid PSPDFKit license.  
-All items and source code Copyright © 2010-2015 PSPDFKit GmbH.
+All items and source code Copyright © 2010-2016 PSPDFKit GmbH.
 
-Please read the full license in the corresponding License.pdf file downloadable at  
-http://pspdfkit.com/license.html
+See LICENSE for details.

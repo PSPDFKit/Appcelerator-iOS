@@ -1,7 +1,7 @@
 PSPDFKit Appcelerator Titanium Module
 =====================================
 
-** PSPDFKit needs Xcode 7.0+ to compile and works with iOS 8.0 upwards. ***
+** PSPDFKit needs Xcode 7.2+ to compile and works with iOS 8.0 upwards. ***
 
 IMPORTANT: PSPDFKit needs the "PSPDFKit.bundle" in the app directory. You find this bundle in:
 PSPDFKit-Demo/PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A/Resurces/PSPDFKit.bundle.
@@ -24,7 +24,7 @@ Register your module with your application by editing `tiapp.xml` and adding you
 Example:
 
 <modules>
-	<module version="4.X">com.pspdfkit</module>
+	<module version="5.X">com.pspdfkit</module>
 </modules>
 
 When you run your project, the compiler will know automatically compile in your module
@@ -33,7 +33,7 @@ dependencies and copy appropriate image assets into the application.
 You also need to change the minimum deployment target. Add this to `tiapp.xml` by editing it in text.
 
     <ios>
-        <min-ios-ver>7.0</min-ios-ver>
+        <min-ios-ver>8.0</min-ios-ver>
     </ios>
 
 

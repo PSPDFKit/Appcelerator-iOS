@@ -54,10 +54,6 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     return YES;
 }
 
-@interface TIPSPDFViewControllerProxy (PSPDFInternal)
-@property(atomic, assign) UIInterfaceOrientation lockedInterfaceOrientationValue;
-@end
-
 @interface TiRootViewController (PSPDFInternal)
 - (void)refreshOrientationWithDuration:(NSTimeInterval)duration;
 - (void)pspdf_refreshOrientationWithDuration:(NSTimeInterval)duration; // will be added dynamically

@@ -88,12 +88,7 @@
 
             // special case handling for annotation name list
             if ([key isEqual:@"editableAnnotationTypes"] && [obj isKindOfClass:NSArray.class]) {
-                obj = [NSMutableOrderedSet orderedSetWithArray:obj];
-            }
-
-            // processed later
-            else if ([key isEqual:@"lockedInterfaceOrientation"]) {
-                return; // continue in a block
+                obj = [NSMutableSet setWithArray:obj];
             }
 
             else if ([key.lowercaseString hasSuffix:@"size"] && [obj isKindOfClass:NSArray.class] && [obj count] == 2) {

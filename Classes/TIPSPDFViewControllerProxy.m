@@ -50,15 +50,12 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
 
 @property (nonatomic) KrollCallback  *didTapOnAnnotationCallback;
 @property (nonatomic, weak) TiProxy *parentProxy;
-@property (atomic, assign) UIInterfaceOrientation lockedInterfaceOrientationValue;
 @property (atomic) UIColor *linkAnnotationBorderBackedColor;
 @property (atomic) UIColor *linkAnnotationHighlightBackedColor;
 
 @end
 
 @implementation TIPSPDFViewControllerProxy
-
-@synthesize lockedInterfaceOrientationValue = _lockedInterfaceOrientationValue;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Lifecycle
@@ -67,7 +64,6 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
     if ((self = [super _initWithPageContext:context])) {
         PSTiLog(@"init TIPSPDFViewControllerProxy");
         self.parentProxy = parentProxy;
-        self.lockedInterfaceOrientationValue = -1;
         self.controller = pdfController;
         self.controller.delegate = self;
         // As long as pdfController exists, we're not getting released.
@@ -137,7 +133,7 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
 - (void)setEditableAnnotationTypes:(id)arg {
     ENSURE_UI_THREAD(setEditableAnnotationTypes, arg);
     
-    NSMutableOrderedSet *editableAnnotationTypes = [NSMutableOrderedSet orderedSet];
+    NSMutableSet *editableAnnotationTypes = [NSMutableSet set];
     if ([arg isKindOfClass:NSArray.class]) {
         for (__strong NSString *item in arg) {
             item = PSSafeCast(item, NSString.class);
@@ -146,8 +142,10 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
             }
         }
     }
-    self.controller.document.editableAnnotationTypes = editableAnnotationTypes;
-    [self.controller reloadData];
+
+    [self.controller updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.editableAnnotationTypes = editableAnnotationTypes;
+    }];
 }
 
 - (void)setThumbnailFilterOptions:(id)arg {
@@ -276,14 +274,6 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
     }
 }
 
-- (id)currentInterfaceOrientation {
-    __block UIInterfaceOrientation interfaceOrientation;
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        interfaceOrientation = self.controller.interfaceOrientation;
-    });
-    return @(interfaceOrientation);
-}
-
 - (void)saveAnnotations:(id)args {
     ENSURE_UI_THREAD(saveAnnotations, args);
 
@@ -333,14 +323,20 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
 - (void)hidePopover:(id)args {
     ENSURE_UI_THREAD(hidePopover, args);
 
-    BOOL animated = [args count] == 1 && [args[0] boolValue];
+    BOOL const animated = [args count] == 1 && [args[0] boolValue];
     [self.controller.presentedViewController dismissViewControllerAnimated:animated completion:NULL];
 }
 
+#define PSPDF_SILENCE_CALL_TO_UNKNOWN_SELECTOR(expression) \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+expression \
+_Pragma("clang diagnostic pop")
+
 - (void)showBarButton:(SEL)barButtonSEL action:(id)action {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIBarButtonItem *barButtonItem = [self.controller performSelector:barButtonSEL];
-        id sender = action ? [action[0] view] : self;
+        PSPDF_SILENCE_CALL_TO_UNKNOWN_SELECTOR(UIBarButtonItem *barButtonItem = [self.controller performSelector:barButtonSEL];)
+        id const sender = action ? [action[0] view] : self;
         tipspdf_targetActionBlock(barButtonItem.target, barButtonItem.action)(sender);
     });
 }

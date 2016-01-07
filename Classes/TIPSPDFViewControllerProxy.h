@@ -109,9 +109,6 @@
 /// Expose the scrollingEnabled property
 - (void)setScrollingEnabled:(id)args;
 
-// -1 will reset the lock
-- (void)setLockedInterfaceOrientation:(id)arg;
-
 // Save changed annotations.
 - (void)saveAnnotations:(id)args;
 

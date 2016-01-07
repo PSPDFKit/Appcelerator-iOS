@@ -94,7 +94,6 @@ modalButton.addEventListener('click', function(e) {
     var pdfController = pspdfkit.showPDFAnimated('PSPDFKit.pdf', 4, // animation option: 0 = no animation, 1 = default animation, 2 = UIModalTransitionStyleCoverVertical, 3 =  UIModalTransitionStyleFlipHorizontal, 4 =  UIModalTransitionStyleCrossDissolve
     // http://developer.apple.com/library/ios/#documentation/uikit/reference/UIViewController_Class/Reference/Reference.html
     {
-        lockedInterfaceOrientation : 3, // lock to one interface orientation. optional.
         pageMode : 0, // PSPDFPageModeSingle
         pageTransition : 2, // PSPDFPageCurlTransition
         linkAction : 3, // PSPDFLinkActionInlineBrowser (new default)
@@ -132,10 +131,6 @@ modalButton.addEventListener('click', function(e) {
 
     // get current document path
     //var documentPath = pdfController.documentPath;
-
-    //UIDeviceOrientationPortrait = 1, UIDeviceOrientationPortraitUpsideDown = 2, UIDeviceOrientationLandscapeLeft = 3, UIDeviceOrientationLandscapeRight = 4, -1 to remove lock.
-    // there's also currentInterfaceOrientation to query the current state.'
-    //pdfController.lockedInterfaceOrientation = 3;
 
     //pdfController.showCloseButton = false;
 

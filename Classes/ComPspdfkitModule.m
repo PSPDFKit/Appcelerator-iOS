@@ -68,6 +68,9 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
 - (void)startup {
 	[super startup];
     [self printVersionStringOnce];
+
+    // Appcelerator doesn't cope well with high memory usage.
+    PSPDFKit.sharedInstance[@"com.pspdfkit.low-memory-mode"] = @YES;
 }
 
 // this method is called when the module is being unloaded

@@ -361,7 +361,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/ComPspdfkit.dst;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -374,7 +374,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ComPspdfkit_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					"PSPDFKit-Demo/**",
+					"$(SRCROOT)/PSPDFKit.embeddedframework/PSPDFKit.framework/Headers/include/**",
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
 				);
@@ -386,7 +386,7 @@
 					"$(PROJECT_DIR)/PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A",
 				);
 				PRODUCT_NAME = ComPspdfkit;
-				USER_HEADER_SEARCH_PATHS = "PSPDFKit-Demo/**";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -455,7 +455,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/ComPspdfkit.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -465,7 +465,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ComPspdfkit_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					"PSPDFKit-Demo/**",
+					"$(SRCROOT)/PSPDFKit.embeddedframework/PSPDFKit.framework/Headers/include/**",
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
 				);
@@ -477,7 +477,7 @@
 					"$(PROJECT_DIR)/PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A",
 				);
 				PRODUCT_NAME = ComPspdfkit;
-				USER_HEADER_SEARCH_PATHS = "PSPDFKit-Demo/**";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

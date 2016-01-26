@@ -374,7 +374,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ComPspdfkit_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/PSPDFKit.embeddedframework/PSPDFKit.framework/Headers/include/**",
+					"$(SRCROOT)/PSPDFKit.embeddedframework/PSPDFKit.framework/Headers/**",
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
 				);
@@ -465,7 +465,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ComPspdfkit_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/PSPDFKit.embeddedframework/PSPDFKit.framework/Headers/include/**",
+					"$(SRCROOT)/PSPDFKit.embeddedframework/PSPDFKit.framework/Headers/**",
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
 				);

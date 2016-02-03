@@ -15,6 +15,15 @@ Note: Currently Appcelerator does not work with dynamic frameworks. As of PSPDFK
 6. Copy the created .zip into the Titanium folder: `cp com.pspdfkit.source-iphone-5.x.x.zip ~/Library/Application\ Support/Titanium`
 7. Copy the `PSPDFKit.bundle` from `PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle` into your project's `Resources/iphone`.
 
+## Troubleshooting
+
+#### 'PSPDFKit.h' file not found
+
+If `PSPDFKit.h` can't be found you need to add the directory that contains `PSPDFKit.h` to the "Header Search Paths" build setting in the Xcode project (`pspdfkit-titanium.xcodeproj`). You can open `PSPDFKit.embeddedframework` to find this directory. It's most likely one of the following paths:
+
+* `$(SRCROOT)/PSPDFKit.embeddedframework/PSPDFKit.framework/Headers/include` (recursive)
+* `$(SRCROOT)/PSPDFKit.embeddedframework/PSPDFKit.framework/Headers` (recursive)
+
 ## License
 
 This project can be used for evaluation or if you have a valid PSPDFKit license.  

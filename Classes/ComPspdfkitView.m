@@ -31,8 +31,9 @@
         NSArray *pdfPaths = [PSPDFUtils resolvePaths:[self.proxy valueForKey:@"filename"]];
         PSPDFDocument *pdfDocument = [[PSPDFDocument alloc] initWithBaseURL:nil files:pdfPaths];
         TIPSPDFViewController *pdfController = [[TIPSPDFViewController alloc] initWithDocument:pdfDocument];
-        
-        [PSPDFUtils applyOptions:[self.proxy valueForKey:@"options"] onObject:pdfController];
+
+        NSDictionary *options = [self.proxy valueForKey:@"options"];
+        [PSPDFUtils applyOptions:options onObject:pdfController];
         [PSPDFUtils applyOptions:[self.proxy valueForKey:@"documentOptions"] onObject:pdfDocument];
 
         // default-hide close button
@@ -40,13 +41,22 @@
             pdfController.leftBarButtonItems = @[];
         }
         
-        BOOL navBarHidden = [[self.proxy valueForKey:@"options"][PROPERTY(navBarHidden)] boolValue];
+        const BOOL navBarHidden = [[self.proxy valueForKey:@"options"][PROPERTY(navBarHidden)] boolValue];
 
         // Encapsulate controller into proxy.
         self.controllerProxy = [[TIPSPDFViewControllerProxy alloc] initWithPDFController:pdfController context:self.proxy.pageContext parentProxy:self.proxy];
 
         if (!pdfController.configuration.useParentNavigationBar && !navBarHidden) {
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pdfController];
+
+            // Support for tinting the navigation controller/bar
+            if (options[@"barColor"]) {
+                UIColor *barColor = [[TiColor colorNamed:options[@"barColor"]] color];
+                if (barColor) {
+                    navController.navigationBar.tintColor = barColor;
+                }
+            }
+
             self.navController = navController;
         }else {
             self.navController = pdfController;

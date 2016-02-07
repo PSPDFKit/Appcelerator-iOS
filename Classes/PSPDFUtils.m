@@ -100,6 +100,11 @@
                 return;
             }
 
+            // There is no password property since this is a write-only property.
+            else if ([key isEqual:@"password"] && [object isKindOfClass:PSPDFDocument.class]) {
+                [(PSPDFDocument *)object unlockWithPassword:obj];
+            }
+
             PSCLog(@"Set %@ to %@", key, obj);
 
             if ([object respondsToSelector:NSSelectorFromString(key)]) {

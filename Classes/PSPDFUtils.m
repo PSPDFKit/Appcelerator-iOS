@@ -45,23 +45,24 @@
 
     __block BOOL isControllerNeedsReload = NO;
     // set options
-    [options enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
+    [options enumerateKeysAndObjectsUsingBlock:^(NSString *key, id value, BOOL *stop) {
+        BOOL processed = NO;
         @try {
             PSCLog(@"setting %@ to %@.", key, obj);
 
             // convert boolean to YES/NO
-            if ([obj isEqual:@"YES"])    obj = @YES;
-            else if([obj isEqual:@"NO"]) obj = @NO;
+            if ([value isEqual:@"YES"])    value = @YES;
+            else if([value isEqual:@"NO"]) value = @NO;
 
             // convert color
             if ([key rangeOfString:@"color" options:NSCaseInsensitiveSearch].length > 0) {
-                obj = [[TiColor colorNamed:obj] color];
+                value = [[TiColor colorNamed:value] color];
             }
 
             // special handling for toolbar
-            if ([key hasSuffix:@"BarButtonItems"] && [obj isKindOfClass:NSArray.class]) {
+            if ([key hasSuffix:@"BarButtonItems"] && [value isKindOfClass:NSArray.class]) {
                 NSMutableArray *newArray = [NSMutableArray array];
-                for (id arrayItem in obj) {
+                for (id arrayItem in value) {
                     if ([arrayItem isKindOfClass:NSString.class]) {
                         if ([object respondsToSelector:NSSelectorFromString(arrayItem)]) {
                             [newArray addObject:[object valueForKey:arrayItem]];
@@ -83,16 +84,16 @@
                         [newArray addObject:newArrayItem];
                     }
                 }
-                obj = newArray;
+                value = newArray;
             }
 
             // special case handling for annotation name list
-            if ([key isEqual:@"editableAnnotationTypes"] && [obj isKindOfClass:NSArray.class]) {
-                obj = [NSMutableSet setWithArray:obj];
+            if ([key isEqual:@"editableAnnotationTypes"] && [value isKindOfClass:NSArray.class]) {
+                value = [NSMutableSet setWithArray:value];
             }
 
-            else if ([key.lowercaseString hasSuffix:@"size"] && [obj isKindOfClass:NSArray.class] && [obj count] == 2) {
-                obj = [NSValue valueWithCGSize:CGSizeMake([[obj objectAtIndex:0] floatValue], [[obj objectAtIndex:1] floatValue])];
+            else if ([key.lowercaseString hasSuffix:@"size"] && [value isKindOfClass:NSArray.class] && [value count] == 2) {
+                value = [NSValue valueWithCGSize:CGSizeMake([[value objectAtIndex:0] floatValue], [[value objectAtIndex:1] floatValue])];
             }
             
             else if ([key isEqual:@"navBarHidden"]) {
@@ -101,27 +102,45 @@
             }
 
             // There is no password property since this is a write-only property.
-            else if ([key isEqual:@"password"] && [object isKindOfClass:PSPDFDocument.class]) {
-                [(PSPDFDocument *)object unlockWithPassword:obj];
+            if ([object isKindOfClass:PSPDFDocument.class]) {
+                PSPDFDocument *document = (PSPDFDocument *)object;
+
+                // We support `password` as a property even though the call is different.
+                if ([key isEqual:@"password"]) {
+                    [document unlockWithPassword:value];
+                    processed = YES;
+                // Allow to customize the URL handler for special links.
+                // Should be in format protocolStrings = "myProtocol://,myprotocol://" (comma is the separator, no spaces!)
+                } else if ([key isEqual:@"protocolStrings"]) {
+                    NSArray *protocolStrings = [value componentsSeparatedByString:@","];
+                    [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *pdfDocumentProvider) {
+                        pdfDocumentProvider.annotationManager.protocolStrings = protocolStrings;
+                    }];
+                    // Ensure document providers are re-set.
+                    [document clearCache];
+                    processed = YES;
+                }
             }
 
             PSCLog(@"Set %@ to %@", key, obj);
 
-            if ([object respondsToSelector:NSSelectorFromString(key)]) {
-                [object setValue:obj forKeyPath:key];
-            } else {
-                if ([object isKindOfClass:PSPDFViewController.class]) {
-                    PSPDFViewController *ctrl = object;
-                    // set value via PSPDFConfiguration
-                    [ctrl updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-                        @try {
-                            [builder setValue:obj forKey:key];
-                        }
-                        @catch (NSException *exception) {
-                            PSCLog(@"Warning! Unable to set %@ for %@.", obj, key);
-                        }
-                    }];
-                    isControllerNeedsReload = YES;
+            if (!processed) {
+                if ([object respondsToSelector:NSSelectorFromString(key)]) {
+                    [object setValue:value forKeyPath:key];
+                } else {
+                    if ([object isKindOfClass:PSPDFViewController.class]) {
+                        PSPDFViewController *ctrl = object;
+                        // set value via PSPDFConfiguration
+                        [ctrl updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+                            @try {
+                                [builder setValue:value forKey:key];
+                            }
+                            @catch (NSException *exception) {
+                                PSCLog(@"Warning! Unable to set %@ for %@.", obj, key);
+                            }
+                        }];
+                        isControllerNeedsReload = YES;
+                    }
                 }
             }
         }

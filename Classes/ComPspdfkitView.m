@@ -38,7 +38,7 @@
 
         // default-hide close button
         if (![self.proxy valueForKey:@"options"][PROPERTY(leftBarButtonItems)]) {
-            pdfController.leftBarButtonItems = @[];
+            pdfController.navigationItem.leftBarButtonItems = @[];
         }
         
         const BOOL navBarHidden = [[self.proxy valueForKey:@"options"][PROPERTY(navBarHidden)] boolValue];

@@ -8,7 +8,7 @@ Note: Currently Appcelerator does not work with dynamic frameworks. As of PSPDFK
 ## How to build
 
 1. Checkout the project: `git clone https://github.com/PSPDFKit/PSPDFKit-Titanium.git`
-2. Make sure you have Titanium 5.2.1 GA or later installed: http://www.appcelerator.com
+2. Make sure you have Titanium 5.2.2 GA or later installed: http://www.appcelerator.com
 3. Download the binary build of PSPDFKit from your customer portal: https://customers.pspdfkit.com
 4. Open the downloaded .dmg and copy `PSPDFKit.embeddedframework` into the checked out folder.
 5. Call `./build.py` in the `PSPDFKit-Titanium` folder.

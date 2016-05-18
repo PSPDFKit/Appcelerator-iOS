@@ -2,7 +2,7 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 5.3.5
+version: 5.3.6
 description: PSPDFKit Annotate Titanium Module
 author: PSPDFKit GmbH
 license: Commercial, see www.PSPDFKit.com

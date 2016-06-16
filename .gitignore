@@ -24,4 +24,4 @@ build
 com.pspdfkit*
 PSPDFKit
 
-PSPDFKit.embeddedframework
+PSPDFKit.framework

@@ -26,7 +26,6 @@
 		24DD6CFA1134B3F500162E58 /* ComPspdfkitModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* ComPspdfkitModule.m */; };
 		24DE9E1111C5FE74003F90F6 /* ComPspdfkitModuleAssets.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DE9E0F11C5FE74003F90F6 /* ComPspdfkitModuleAssets.h */; };
 		24DE9E1211C5FE74003F90F6 /* ComPspdfkitModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE9E1011C5FE74003F90F6 /* ComPspdfkitModuleAssets.m */; };
-		781800A41AFE3C63001817FC /* libPSPDFKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 781800951AFE3C4C001817FC /* libPSPDFKit.a */; };
 		782DDA161483CAB600E7EEFD /* ComPspdfkitViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 782DDA141483CAB400E7EEFD /* ComPspdfkitViewProxy.h */; };
 		782DDA171483CAB600E7EEFD /* ComPspdfkitViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 782DDA151483CAB400E7EEFD /* ComPspdfkitViewProxy.m */; };
 		782DDA1D1483CB6100E7EEFD /* ComPspdfkitView.h in Headers */ = {isa = PBXBuildFile; fileRef = 782DDA1B1483CB6100E7EEFD /* ComPspdfkitView.h */; };
@@ -53,6 +52,7 @@
 		78ED7A58146F00FE002EE22C /* TIPSPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ED7A56146F00FE002EE22C /* TIPSPDFViewController.m */; };
 		AA747D9F0F9514B9006C5449 /* ComPspdfkit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ComPspdfkit_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		B984DF0A1D12D1A700BDFA4E /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7818009D1AFE3C4C001817FC /* PSPDFKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,19 +112,33 @@
 			remoteGlobalIDString = 785CAB9A1AE8386C008AB5AE;
 			remoteInfo = "PSPDFKit-No-OpenSSL.framework";
 		};
-		781800A21AFE3C58001817FC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 781800881AFE3C4B001817FC /* PSPDFKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 780B4168146E7DAB00DF07F1;
-			remoteInfo = PSPDFKit;
-		};
 		78C89BA71BD7F6B400B1FA4B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 781800881AFE3C4B001817FC /* PSPDFKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 430F37FD1B69118500A00793;
 			remoteInfo = "PSPDFKit-No-Public-Headers";
+		};
+		B984DF041D12D19C00BDFA4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 781800881AFE3C4B001817FC /* PSPDFKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78E99C531BE4C53900E9A550;
+			remoteInfo = "PSPDFKit-AppExport";
+		};
+		B984DF061D12D19C00BDFA4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 781800881AFE3C4B001817FC /* PSPDFKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78E9990D1BE4BD4800E9A550;
+			remoteInfo = "PSPDFKit-AppExport.framework";
+		};
+		B984DF081D12D19F00BDFA4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 781800881AFE3C4B001817FC /* PSPDFKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B81D1AA519A79F6C00BFA32E;
+			remoteInfo = PSPDFKit.framework;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -171,7 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				781800A41AFE3C63001817FC /* libPSPDFKit.a in Frameworks */,
+				B984DF0A1D12D1A700BDFA4E /* PSPDFKit.framework in Frameworks */,
 				7884214014830B7600203926 /* SystemConfiguration.framework in Frameworks */,
 				7884213E14830B6E00203926 /* CFNetwork.framework in Frameworks */,
 				7884213C14830B6900203926 /* MobileCoreServices.framework in Frameworks */,
@@ -264,9 +278,11 @@
 				781800991AFE3C4C001817FC /* libPSPDFKit.a */,
 				7818009B1AFE3C4C001817FC /* libPSPDFKit.a */,
 				78C89BA81BD7F6B400B1FA4B /* libPSPDFKit.a */,
+				B984DF051D12D19C00BDFA4E /* libPSPDFKit.a */,
 				7818009D1AFE3C4C001817FC /* PSPDFKit.framework */,
 				7818009F1AFE3C4C001817FC /* PSPDFKit.framework */,
 				781800A11AFE3C4C001817FC /* PSPDFKit.framework */,
+				B984DF071D12D19C00BDFA4E /* PSPDFKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -324,7 +340,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				781800A31AFE3C58001817FC /* PBXTargetDependency */,
+				B984DF091D12D19F00BDFA4E /* PBXTargetDependency */,
 			);
 			name = pspdfkit;
 			productName = pspdfkit;
@@ -424,6 +440,20 @@
 			remoteRef = 78C89BA71BD7F6B400B1FA4B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B984DF051D12D19C00BDFA4E /* libPSPDFKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPSPDFKit.a;
+			remoteRef = B984DF041D12D19C00BDFA4E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B984DF071D12D19C00BDFA4E /* PSPDFKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PSPDFKit.framework;
+			remoteRef = B984DF061D12D19C00BDFA4E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -466,10 +496,10 @@
 			target = D2AAC07D0554694100DB518D /* pspdfkit */;
 			targetProxy = 24416B8411C4CA280047AFDD /* PBXContainerItemProxy */;
 		};
-		781800A31AFE3C58001817FC /* PBXTargetDependency */ = {
+		B984DF091D12D19F00BDFA4E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = PSPDFKit;
-			targetProxy = 781800A21AFE3C58001817FC /* PBXContainerItemProxy */;
+			name = PSPDFKit.framework;
+			targetProxy = B984DF081D12D19F00BDFA4E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -481,19 +511,13 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/ComPspdfkit.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/PSPDFKit-Demo/PSPDFKit.embeddedframework/**",
-					"PSPDFKit/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ComPspdfkit_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					"PSPDFKit-Demo/**",
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
-					"PSPDFKit/**",
 				);
 				INSTALL_PATH = /usr/local/lib;
 				LIBRARY_SEARCH_PATHS = (
@@ -502,7 +526,7 @@
 					/Developer/usr/lib/arc,
 				);
 				PRODUCT_NAME = ComPspdfkit;
-				USER_HEADER_SEARCH_PATHS = "PSPDFKit-Demo/** PSPDFKit/** ../PSPDFKit/iOS/PSPDFKit/**";
+				USER_HEADER_SEARCH_PATHS = "../PSPDFKit/iOS/PSPDFKit/** ../PSPDFKit/core/PSPDFDatabase/iOS";
 			};
 			name = Debug;
 		};
@@ -585,19 +609,13 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				DSTROOT = /tmp/ComPspdfkit.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/PSPDFKit-Demo/PSPDFKit.embeddedframework/**",
-					"PSPDFKit/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ComPspdfkit_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					"PSPDFKit-Demo/**",
 					"$(TITANIUM_BASE_SDK)/**",
 					"$(TITANIUM_BASE_SDK2)/**",
-					"PSPDFKit/**",
 				);
 				INSTALL_PATH = /usr/local/lib;
 				LIBRARY_SEARCH_PATHS = (
@@ -606,7 +624,7 @@
 					/Developer/usr/lib/arc,
 				);
 				PRODUCT_NAME = ComPspdfkit;
-				USER_HEADER_SEARCH_PATHS = "PSPDFKit-Demo/** PSPDFKit/** ../PSPDFKit/iOS/PSPDFKit/**";
+				USER_HEADER_SEARCH_PATHS = "../PSPDFKit/iOS/PSPDFKit/** ../PSPDFKit/core/PSPDFDatabase/iOS";
 			};
 			name = Release;
 		};

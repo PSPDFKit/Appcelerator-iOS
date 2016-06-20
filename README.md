@@ -36,6 +36,12 @@ The `ti.dynamiclib` plugin embeds `PSPDFKit.framework` into your app. You can fi
 
 If `PSPDFKit.h` can't be found you need to add the directory that contains `PSPDFKit.h` to the "Header Search Paths" build setting in the Xcode project (`pspdfkit-titanium.xcodeproj`). The correct directory is `$(SRCROOT)/PSPDFKit.framework/Headers` (recursive).
 
+#### App Store Upload
+
+`PSPDFKit.framework` needs to be stripped of unwanted architectures, in order for the App Store upload to succeed.  
+To do this you need to open the Xcode project in `build/iphone/{project-name}.xcodeproj` and follow step 2 of our [integration guide](https://pspdfkit.com/guides/ios/current/getting-started/integrating-pspdfkit/#toc_integrating-the-dynamic-framework).  
+`strip-framework.sh` removes the unwanted architectures. After that the App Store upload succeeds.
+
 ## License
 
 This project can be used for evaluation or if you have a valid PSPDFKit license.  

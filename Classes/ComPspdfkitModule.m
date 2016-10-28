@@ -153,7 +153,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
 #pragma mark - Public
 
 - (id)PSPDFKitVersion {
-    return PSPDFKit.sharedInstance.version;
+    return PSPDFKit.versionString;
 }
 
 - (void)setLicenseKey:(id)license {
@@ -219,7 +219,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
         [[PSPDFKit sharedInstance].cache cacheDocument:document
                                              pageSizes:@[[NSValue valueWithCGSize:CGSizeMake(170.f, 220.f)], [NSValue valueWithCGSize:UIScreen.mainScreen.bounds.size]]
                                  withDiskCacheStrategy:PSPDFDiskCacheStrategyEverything
-                                            aroundPage:0];
+                                            aroundPageAtIndex:0];
     }
 }
 
@@ -229,10 +229,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     // be somewhat intelligent about path search
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
     for (PSPDFDocument *document in documents) {
-        NSError *error = nil;
-        if (![[PSPDFKit sharedInstance].cache removeCacheForDocument:document deleteDocument:NO error:&error]) {
-            PSCLog(@"Failed to clear cache for %@: %@", document, error);
-        }
+        [[PSPDFKit sharedInstance].cache removeCacheForDocument:document];
     }
 }
 
@@ -261,10 +258,14 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
 
     // be somewhat intelligent about path search
     if (document && page < [document pageCount]) {
-        image = [[PSPDFKit sharedInstance].cache imageFromDocument:document page:page size:full ? UIScreen.mainScreen.bounds.size : thumbnailSize options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync];
+        PSPDFMutableRenderRequest *renderRequest = [[PSPDFMutableRenderRequest alloc] initWithDocument:document];
+        renderRequest.pageIndex = page;
+        renderRequest.imageSize = full ? UIScreen.mainScreen.bounds.size : thumbnailSize;
+        image = [[PSPDFKit sharedInstance].cache imageForRequest:renderRequest imageSizeMatching:PSPDFCacheImageSizeMatchingDefault];
+
         if (!image) {
             CGSize size = full ? [[UIScreen mainScreen] bounds].size : thumbnailSize;
-            image = [document imageForPage:page size:size clippedToRect:CGRectZero annotations:nil options:nil receipt:NULL error:NULL];
+            image = [document imageForPageAtIndex:page size:size clippedToRect:CGRectZero annotations:nil options:nil error:NULL];
         }
     }
 

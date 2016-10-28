@@ -91,7 +91,7 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
             page = [[self page] unsignedIntegerValue];
         });
     }else {
-        page = self.controller.page;
+        page = self.controller.pageIndex;
     }
 
     return @(page);
@@ -225,7 +225,7 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
     NSUInteger pageValue = [PSPDFUtils intValue:args onPosition:0];
     NSUInteger animationValue = [PSPDFUtils intValue:args onPosition:1];
     BOOL animated = animationValue == NSNotFound || animationValue == 1;
-    [self.controller setPage:pageValue animated:animated];
+    [self.controller setPageIndex:pageValue animated:animated];
 }
 
 - (void)setViewMode:(id)args {
@@ -278,7 +278,7 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
     ENSURE_UI_THREAD(saveAnnotations, args);
 
     NSError *error = nil;
-    BOOL success = [self.controller.document saveAnnotationsWithError:&error];
+    BOOL success = [self.controller.document save:&error];
     if (!success && self.controller.configuration.isTextSelectionEnabled)  {
         PSCLog(@"Saving annotations failed: %@", [error localizedDescription]);
     }
@@ -407,7 +407,7 @@ _Pragma("clang diagnostic pop")
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint {
     NSParameterAssert([pdfController isKindOfClass:[TIPSPDFViewController class]]);
 
-    NSMutableDictionary *eventDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:pageView.page], @"page", nil];
+    NSMutableDictionary *eventDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:pageView.pageIndex], @"page", nil];
     // only set a subset
     if ([annotation isKindOfClass:[PSPDFLinkAnnotation class]]) {
         PSPDFLinkAnnotation *linkAnnotation = (PSPDFLinkAnnotation *)annotation;
@@ -452,7 +452,7 @@ _Pragma("clang diagnostic pop")
 /// controller did show/scrolled to a new page (at least 51% of it is visible)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
     if ([[self eventProxy] _hasListeners:@"didShowPage"]) {
-        NSDictionary *eventDict = @{@"page": [NSNumber numberWithInteger:pageView.page]};
+        NSDictionary *eventDict = @{@"page": [NSNumber numberWithInteger:pageView.pageIndex]};
         [[self eventProxy] fireEvent:@"didShowPage" withObject:eventDict];
     }
 }
@@ -460,7 +460,7 @@ _Pragma("clang diagnostic pop")
 /// page was fully rendered at zoomlevel = 1
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
     if ([[self eventProxy] _hasListeners:@"didRenderPage"]) {
-        NSDictionary *eventDict = @{@"page": [NSNumber numberWithInteger:pageView.page]};
+        NSDictionary *eventDict = @{@"page": [NSNumber numberWithInteger:pageView.pageIndex]};
         [[self eventProxy] fireEvent:@"didRenderPage" withObject:eventDict];
     }
 }

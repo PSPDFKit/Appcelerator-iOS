@@ -130,16 +130,38 @@
                 } else {
                     if ([object isKindOfClass:PSPDFViewController.class]) {
                         PSPDFViewController *ctrl = object;
-                        // set value via PSPDFConfiguration
-                        [ctrl updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-                            @try {
-                                [builder setValue:value forKey:key];
+                        // special handling for toolbar
+                        if ([key hasSuffix:@"BarButtonItems"] && [value isKindOfClass:NSArray.class]) {
+                            PSPDFNavigationItem *navigationItem = ctrl.navigationItem;
+                            NSArray *barButtonItems = (NSArray *)value;
+                            NSArray * (^removeItems)(NSArray *, NSArray *) = ^(NSArray *barButtonItems, NSArray *itemsToRemove) {
+                                NSMutableArray *mutableBarButtonItems = barButtonItems.mutableCopy;
+                                [mutableBarButtonItems removeObjectsInArray:itemsToRemove];
+                                return mutableBarButtonItems;
+                            };
+                            if ([key isEqualToString:@"leftBarButtonItems"]) {
+                                navigationItem.rightBarButtonItems = removeItems(navigationItem.rightBarButtonItems, barButtonItems);
+                                navigationItem.leftBarButtonItems = barButtonItems;
+                                if ([barButtonItems containsObject:ctrl.closeButtonItem]) {
+                                    navigationItem.closeBarButtonItem = nil;
+                                }
                             }
-                            @catch (NSException *exception) {
-                                PSCLog(@"Warning! Unable to set %@ for %@.", obj, key);
+                            if ([key isEqualToString:@"rightBarButtonItems"]) {
+                                navigationItem.leftBarButtonItems = removeItems(navigationItem.leftBarButtonItems, barButtonItems);
+                                navigationItem.rightBarButtonItems = barButtonItems.reverseObjectEnumerator.allObjects;
                             }
-                        }];
-                        isControllerNeedsReload = YES;
+                        } else {
+                            // set value via PSPDFConfiguration
+                            [ctrl updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+                                @try {
+                                    [builder setValue:value forKey:key];
+                                }
+                                @catch (NSException *exception) {
+                                    PSCLog(@"Warning! Unable to set %@ for %@.", obj, key);
+                                }
+                            }];
+                            isControllerNeedsReload = YES;
+                        }
                     }
                 }
             }

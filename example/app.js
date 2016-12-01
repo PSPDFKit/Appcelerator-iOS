@@ -1,17 +1,6 @@
 /*
 PSPDFKit Appcelerator Sample Code
 
-To install the module copy the included com.pspdfkit folder to the following directory on your Mac
-/Library/Aplication Support/Titanium/modules
-Then on your project modify the tiapp.xml and include the following before the final </ti:app>
-<modules>
-<module version="INSERT_CURRENT_PSPDFKIT_VERSION_NUMBER">com.pspdfkit</module>
-</modules>
-This will allow Titanium to find the module at compilation time.
-
-Note: PSPDFKit v3 needs at least Xcode 5.0 or higher and supports iOS 6.0+.
-Type "xcode-select --print-path" in the console and check that it lists the correct Xcode version.
-
 To synchronize popovers, you can listen for the "didPresentPopover" event that PSPDFKit fires after opening a popover.
 */
 

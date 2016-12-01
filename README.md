@@ -37,7 +37,7 @@ The `ti.dynamiclib` plugin embeds `PSPDFKit.framework` into your app. You can fi
 
 To use the module in code, you will need to require it, before using it.
 
-```
+```js
 var pspdfkit = require('com.pspdfkit');
 var pdfView = pspdfkit.createView({
     filename : 'PSPDFKit.pdf',
@@ -59,7 +59,7 @@ If `PSPDFKit.h` can't be found you need to add the directory that contains `PSPD
 
 #### Build error
 
-```
+```bash
 [ERROR] :  ** BUILD FAILED **
 [ERROR] :  The following build commands failed:
 [ERROR] :   Ld build/Products/Debug-iphonesimulator/PSPDFKit-Appcelerator.app/PSPDFKit-Appcelerator normal x86_64
@@ -68,7 +68,7 @@ If `PSPDFKit.h` can't be found you need to add the directory that contains `PSPD
 
 If you get the above build error when running the project, you likely forgot to include the PSPDFKit module in the `tiapp.xml`following lines in 
 
-```
+```xml
   <modules>
     <module platform="iphone">com.pspdfkit</module>
   </modules>

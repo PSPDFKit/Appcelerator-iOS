@@ -26,7 +26,7 @@ var pspdfkit = require('com.pspdfkit');
 Ti.API.info("module is => " + pspdfkit);
 
 // You need to activate your PSPDFKit before you can use it.
-// Follow the instructions in the email you get after purchasing from http://pspdfkit.com.
+// Follow the instructions in the email you get after licensing the framework.
 pspdfkit.setLicenseKey("INSERT_LICENSE_HERE");
 
 // increase log level (only needed for debugging)
@@ -36,7 +36,7 @@ pspdfkit.setLogLevel(3);
 // add custom language additions. Optional.
 // English, German, and French are built-in but can be overridden here.
 // This dictionary is just provided so you can easily look up the words.
-// See all strings at /Users/USERNAME/Library/Application\ Support/Titanium/modules/iphone/com.pspdfkit.source/VERSIONNUMBER/example/PSPDFKit.bundle/en.lproj
+// See all strings at PSPDFKit.framework/PSPDFKit.bundle/en.lproj
 pspdfkit.setLanguageDictionary({
     "en" : {
         // general
@@ -99,13 +99,11 @@ modalButton.addEventListener('click', function(e) {
         linkAction : 3, // PSPDFLinkActionInlineBrowser (new default)
         thumbnailSize: [200, 200], // Allows custom thumbnail size.
 
-        // toolbar config: see http://pspdfkit.com/documentation/Classes/PSPDFViewController.html#//api/name/outlineButtonItem for built in options.
+        // toolbar config: see https://pspdfkit.com/api/ios/Classes/PSPDFViewController.html#/c:objc(cs)PSPDFViewController(py)outlineButtonItem for built in options.
         // Built in options are send via string. Invalid strings will simply be ignored.
         leftBarButtonItems : ["closeButtonItem"],
         rightBarButtonItems : [navButton, "viewModeButtonItem"],
 
-        // note that the "annotationButtonItem" is not available in PSPDFKit Basic (the marketplace.appcelerator.com version)
-        // to get text selection and annotation feature, purchase a full license of PSPDFKit Annotate at http://PSPDFKit.com
         additionalBarButtonItems : ["openInButtonItem", "emailButtonItem", "printButtonItem", "searchButtonItem", "outlineButtonItem", "annotationButtonItem"] // text list, does *not* support custom buttons.
 
         //printOptions : 1, // See values from PSPDFPrintOptionsDocumentOnly
@@ -143,7 +141,7 @@ modalButton.addEventListener('click', function(e) {
     // example how to hide the top left close button
     //pdfView.showCloseButton = false;
 
-    // If this is PSPDFKit Annotate, you can save annotations using:
+    // You can save annotations using:
     pdfController.saveAnnotations();
 
     // PSPDFKit Annotate also allows you to define the annotation save destination:

@@ -23,6 +23,9 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
   <plugins>
     <plugin version="1.0">ti.dynamiclib</plugin>
   </plugins>
+  <modules>
+    <module platform="iphone">com.pspdfkit</module>
+  </modules>
 </ti:app>
 ```
 
@@ -53,6 +56,23 @@ var pdfView = pspdfkit.createView({
 #### 'PSPDFKit.h' file not found
 
 If `PSPDFKit.h` can't be found you need to add the directory that contains `PSPDFKit.h` to the "Header Search Paths" build setting in the Xcode project (`PSPDFKit-Titanium.xcodeproj`). The correct directory is `$(SRCROOT)/PSPDFKit.framework/Headers` (recursive).
+
+#### Build error
+
+```
+[ERROR] :  ** BUILD FAILED **
+[ERROR] :  The following build commands failed:
+[ERROR] :   Ld build/Products/Debug-iphonesimulator/PSPDFKit-Appcelerator.app/PSPDFKit-Appcelerator normal x86_64
+[ERROR] :  (1 failure)
+```
+
+If you get the above build error when running the project, you likely forgot to include the PSPDFKit module in the `tiapp.xml`following lines in 
+
+```
+  <modules>
+    <module platform="iphone">com.pspdfkit</module>
+  </modules>
+```
 
 #### App Store Upload
 

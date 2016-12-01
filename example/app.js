@@ -422,7 +422,7 @@ webDownloadTestButton.addEventListener('click', function(e) {
             },
             timeout : 15000
         });
-        xhr.open('GET', 'http://www.enough.de/fileadmin/uploads/dev_guide_pdfs/Guide_11thEdition_WEB-1.pdf');
+        xhr.open('GET', 'https://pspdfkit.com/downloads/case-study-ebriefing.pdf');
         xhr.file = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, fileName);
         xhr.send();
     } else {

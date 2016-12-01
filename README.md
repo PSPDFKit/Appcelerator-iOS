@@ -10,11 +10,10 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 3. Download the binary build of PSPDFKit from your customer portal: https://customers.pspdfkit.com
 4. Open the downloaded .dmg and copy `PSPDFKit.framework` into the checked out folder.
 5. Call `./build.py` in the `Appcelerator-iOS` folder.
-6. Copy the created .zip into the Titanium folder: `cp com.pspdfkit-iphone-6.x.x.zip ~/Library/Application\ Support/Titanium`
-7. Unzip it (and optionally remove the .zip afterwards): `unzip ~/Library/Application\ Support/Titanium/com.pspdfkit-iphone-6.x.x.zip`
-8. Copy `PSPDFKit.framework` into your project's `Resources/iphone`.
-9. Copy `ti.dynamiclib` from `Appcelerator-iOS` into the `plugins` directory of your project's root folder. If the `plugins` directory doesn't exist you have to create it first.
-10. Modify your project's `tiapp.xml` to contain the following entries:
+6. Unzip the created .zip into the Titanium folder (and optionally remove the .zip afterwards): `unzip ./com.pspdfkit-iphone-6.x.x.zip -d ~/Library/Application\ Support/Titanium`
+7. Copy `PSPDFKit.framework` into your project's `Resources/iphone`.
+8. Copy `ti.dynamiclib` from `Appcelerator-iOS` into the `plugins` directory of your project's root folder. If the `plugins` directory doesn't exist, you have to create it first.
+9. Modify your project's `tiapp.xml` to contain the following entries:
 
 ```xml
 <ti:app xmlns:ti="http://ti.appcelerator.org">
@@ -28,6 +27,7 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 ```
 
 Note: PSPDFKit v6 needs at least Xcode 8.0 or higher and supports iOS 9.0+.
+
 The `ti.dynamiclib` plugin embeds `PSPDFKit.framework` into your app. You can find more info about it [here](https://jira.appcelerator.org/browse/TIMOB-20557).
 
 ## Using the PSPDFKit module

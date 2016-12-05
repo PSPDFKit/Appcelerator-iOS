@@ -66,7 +66,7 @@ If `PSPDFKit.h` can't be found you need to add the directory that contains `PSPD
 [ERROR] :  (1 failure)
 ```
 
-If you get the above build error when running the project, you likely forgot to include the PSPDFKit module in the `tiapp.xml`following lines in 
+If you get the above build error when running the project, you likely forgot to include the PSPDFKit module in the `tiapp.xml`:
 
 ```xml
   <modules>

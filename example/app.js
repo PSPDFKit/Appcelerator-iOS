@@ -226,7 +226,7 @@ window.add(pdfView);
 // example how to start a search.
 // Window needs to be completely visible before calling this (thus the delay)
 setTimeout(function() {
-    pdfView.searchForString("aspect", true);
+    pdfView.searchForString("iOS", true);
 }, 1000);
 
 // to coordinate the internal popovers with the view, you can use hidePopover(true) (true/false is the animation value)

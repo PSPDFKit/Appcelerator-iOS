@@ -30,6 +30,7 @@
 		782DDA171483CAB600E7EEFD /* ComPspdfkitViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 782DDA151483CAB400E7EEFD /* ComPspdfkitViewProxy.m */; };
 		782DDA1D1483CB6100E7EEFD /* ComPspdfkitView.h in Headers */ = {isa = PBXBuildFile; fileRef = 782DDA1B1483CB6100E7EEFD /* ComPspdfkitView.h */; };
 		782DDA1E1483CB6100E7EEFD /* ComPspdfkitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 782DDA1C1483CB6100E7EEFD /* ComPspdfkitView.m */; };
+		784C317B1E004FFF00F9C9B5 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784C317A1E004FFF00F9C9B5 /* WebKit.framework */; };
 		787023CC1481A0F5005A7792 /* TIPSPDFViewControllerProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 787023CA1481A0F5005A7792 /* TIPSPDFViewControllerProxy.h */; };
 		787023CD1481A0F5005A7792 /* TIPSPDFViewControllerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 787023CB1481A0F5005A7792 /* TIPSPDFViewControllerProxy.m */; };
 		7870240C1481BDE8005A7792 /* PSPDFUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7870240A1481BDE8005A7792 /* PSPDFUtils.h */; };
@@ -154,6 +155,7 @@
 		782DDA151483CAB400E7EEFD /* ComPspdfkitViewProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComPspdfkitViewProxy.m; path = Classes/ComPspdfkitViewProxy.m; sourceTree = "<group>"; };
 		782DDA1B1483CB6100E7EEFD /* ComPspdfkitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComPspdfkitView.h; path = Classes/ComPspdfkitView.h; sourceTree = "<group>"; };
 		782DDA1C1483CB6100E7EEFD /* ComPspdfkitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComPspdfkitView.m; path = Classes/ComPspdfkitView.m; sourceTree = "<group>"; };
+		784C317A1E004FFF00F9C9B5 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		787023CA1481A0F5005A7792 /* TIPSPDFViewControllerProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TIPSPDFViewControllerProxy.h; path = Classes/TIPSPDFViewControllerProxy.h; sourceTree = "<group>"; };
 		787023CB1481A0F5005A7792 /* TIPSPDFViewControllerProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TIPSPDFViewControllerProxy.m; path = Classes/TIPSPDFViewControllerProxy.m; sourceTree = "<group>"; };
 		7870240A1481BDE8005A7792 /* PSPDFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSPDFUtils.h; path = Classes/PSPDFUtils.h; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784C317B1E004FFF00F9C9B5 /* WebKit.framework in Frameworks */,
 				B984DF0A1D12D1A700BDFA4E /* PSPDFKit.framework in Frameworks */,
 				7884214014830B7600203926 /* SystemConfiguration.framework in Frameworks */,
 				7884213E14830B6E00203926 /* CFNetwork.framework in Frameworks */,
@@ -230,6 +233,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				784C317A1E004FFF00F9C9B5 /* WebKit.framework */,
 				781800881AFE3C4B001817FC /* PSPDFKit.xcodeproj */,
 				7823534418F3F2C5006AFF14 /* PSPDFKit.bundle */,
 				78DE62FF18897DF900DC6D84 /* PSPDFKit.xcconfig */,

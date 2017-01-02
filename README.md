@@ -11,9 +11,7 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 4. Open the downloaded .dmg and copy `PSPDFKit.framework` into the checked out folder.
 5. Call `appc ti build -p ios --build-only` in the `Appcelerator-iOS` folder.
 6. Unzip the created .zip into the Titanium folder (and optionally remove the .zip afterwards): 
-```bash
-unzip ./com.pspdfkit-iphone-6.x.x.zip -d ~/Library/Application\ Support/Titanium`
-```
+`unzip ./com.pspdfkit-iphone-6.x.x.zip -d ~/Library/Application\ Support/Titanium`
 7. Copy `PSPDFKit.framework` into your project's `Resources/iphone`.
 8. Modify your project's `tiapp.xml` to contain the following entries:
 

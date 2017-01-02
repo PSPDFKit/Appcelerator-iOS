@@ -3,11 +3,21 @@
  */
 #import "ComPspdfkitModuleAssets.h"
 
-extern NSData* filterData(NSString* thedata, NSString* identifier);
+extern NSData* filterDataInRange(NSData* thedata, NSRange range);
 
 @implementation ComPspdfkitModuleAssets
 
-- (NSData *)moduleAsset {
+- (NSData*) moduleAsset
+{
+	
+
+	return nil;
+}
+
+- (NSData*) resolveModuleAsset:(NSString*)path
+{
+	
+
 	return nil;
 }
 

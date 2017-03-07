@@ -72,12 +72,6 @@ If you get the above build error when running the project, you likely forgot to 
   </modules>
 ```
 
-#### App Store Upload
-
-`PSPDFKit.framework` needs to be stripped of unwanted architectures, in order for the App Store upload to succeed.  
-To do this you need to open the Xcode project in `build/iphone/{project-name}.xcodeproj` and follow step 2 of our [integration guide](https://pspdfkit.com/guides/ios/current/getting-started/integrating-pspdfkit/#toc_integrating-the-dynamic-framework).  
-`strip-framework.sh` removes the unwanted architectures. After that the App Store upload succeeds.
-
 ## License
 
 This project can be used for evaluation or if you have a valid PSPDFKit license.  

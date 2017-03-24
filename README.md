@@ -5,6 +5,8 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 
 ## How to build
 
+**Note:** Read the [Alloy](#alloy) section before building the module if you're using the Alloy framework.
+
 1. Checkout the project: `git clone https://github.com/PSPDFKit/Appcelerator-iOS.git`
 2. Make sure you have Titanium 6.0.2 GA or later installed: http://www.appcelerator.com
 3. Download the binary build of PSPDFKit from your customer portal: https://customers.pspdfkit.com
@@ -28,7 +30,7 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 
 Note: PSPDFKit 6 for iOS needs at least Xcode 8.2 or higher and supports iOS 9.0+.
 
-The `ti.dynamiclib` module hook in `hooks/ti.dynamiclib.js` embeds `PSPDFKit.framework` into your app. 
+The `ti.dynamiclib` module hook in [`hooks/ti.dynamiclib.js`](hooks/ti.dynamiclib.js) embeds `PSPDFKit.framework` into your app. 
 You can find more info about it [here](https://jira.appcelerator.org/browse/TIMOB-20557).
 
 ## Using the PSPDFKit module
@@ -71,6 +73,13 @@ If you get the above build error when running the project, you likely forgot to 
     <module platform="iphone">com.pspdfkit</module>
   </modules>
 ```
+
+#### Alloy
+
+Alloy overwrites all files in the `Resources` folder everytime the application is built. This means you need to copy `PSPDFKit.framework` into a different folder than the default `Resources/iphone`, for example `Frameworks`. You also need to do the following before building the module:
+
+* Modify `FRAMEWORK_SEARCH_PATHS` in [`module.xcconfig`](module.xcconfig) to point to the new folder, for example replace `"$(SRCROOT)/../../Resources/iphone"` with `"$(SRCROOT)/../../Frameworks"`.
+* Modify [`hooks/ti.dynamiclib.js`](hooks/ti.dynamiclib.js) to use the new framework path, for example replace `../../Resources/iphone/PSPDFKit.framework` with `../../Frameworks/PSPDFKit.framework`.
 
 ## License
 

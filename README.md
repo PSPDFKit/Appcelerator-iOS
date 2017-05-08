@@ -28,7 +28,7 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 </ti:app>
 ```
 
-Note: PSPDFKit 6 for iOS needs at least Xcode 8.2 or higher and supports iOS 9.0+.
+Note: PSPDFKit 6 for iOS needs at least Xcode 8 or higher and supports iOS 9+.
 
 The `ti.dynamiclib` module hook in [`hooks/ti.dynamiclib.js`](hooks/ti.dynamiclib.js) embeds `PSPDFKit.framework` into your app. 
 You can find more info about it [here](https://jira.appcelerator.org/browse/TIMOB-20557).

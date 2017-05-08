@@ -24,11 +24,17 @@ FOUNDATION_EXTERN void (^pst_targetActionBlock(id target, SEL action))(id);
 // Helper class for argument parsing.
 @interface PSPDFUtils : NSObject
 
-// Returns a integer from an argument array.
+// Returns an integer from an argument array.
 + (NSInteger)intValue:(id)args;
 
-// Returns a integer from an argument array, on a specific position. Position starts at 0. Returns `NSNotFound` if invalid.
+// Returns an integer from an argument array, on a specific position. Position starts at 0. Returns `NSNotFound` if invalid.
 + (NSInteger)intValue:(id)args onPosition:(NSUInteger)position;
+
+// Returns a float from an argument array.
++ (CGFloat)floatValue:(id)args;
+
+// Returns a float from an argument array, on a specific position. Position starts at 0. Returns `NSNotFound` if invalid.
++ (CGFloat)floatValue:(id)args onPosition:(NSUInteger)position;
 
 // Uses KVO to set an option on an object.
 + (void)applyOptions:(NSDictionary *)options onObject:(id)object;

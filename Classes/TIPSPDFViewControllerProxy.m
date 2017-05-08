@@ -50,6 +50,7 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
 
 @property (nonatomic) KrollCallback  *didTapOnAnnotationCallback;
 @property (nonatomic, weak) TiProxy *parentProxy;
+@property (atomic) CGFloat linkAnnotationBackedStrokeWidth;
 @property (atomic) UIColor *linkAnnotationBorderBackedColor;
 @property (atomic) UIColor *linkAnnotationHighlightBackedColor;
 
@@ -112,6 +113,14 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
 
 - (id)documentPath {
     return [[self.controller.document fileURL] path];
+}
+
+- (void)setLinkAnnotationStrokeWidth:(id)arg {
+    ENSURE_UI_THREAD(setLinkAnnotationStrokeWidth, arg);
+
+    self.linkAnnotationBackedStrokeWidth = [PSPDFUtils floatValue:arg];
+    // Ensure controller is reloaded.
+    [self.controller reloadData];
 }
 
 - (void)setLinkAnnotationBorderColor:(id)arg {
@@ -479,6 +488,9 @@ _Pragma("clang diagnostic pop")
         PSPDFLinkAnnotationView *linkAnnotation = (PSPDFLinkAnnotationView *)annotationView;
         if (self.linkAnnotationBorderBackedColor) {
             linkAnnotation.borderColor = self.linkAnnotationBorderBackedColor;
+        }
+        if (self.linkAnnotationBackedStrokeWidth) {
+            linkAnnotation.strokeWidth = self.linkAnnotationBackedStrokeWidth;
         }
     }
     return annotationView;

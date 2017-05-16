@@ -36,6 +36,9 @@
 /// Register a callback for the didTapOnAnnotation event. Return true if you manually use the annotation, else false.
 - (void)setDidTapOnAnnotationCallback:(id)args;
 
+/// Exposes a helper to change link annotation stroke width. Set to change.
+- (void)setLinkAnnotationStrokeWidth:(id)arg;
+
 /// Exposes a helper to change link annotation color. Set to change.
 - (void)setLinkAnnotationBorderColor:(id)arg;
 

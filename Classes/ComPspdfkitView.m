@@ -51,7 +51,7 @@
 
             // Support for tinting the navigation controller/bar
             if (options[@"barColor"]) {
-                UIColor *barColor = (UIColor *)[[TiColor colorNamed:options[@"barColor"]] color];
+                UIColor *barColor = [[TiColor colorNamed:options[@"barColor"]] _color];
                 if (barColor) {
                     navController.navigationBar.tintColor = barColor;
                 }

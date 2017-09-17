@@ -72,7 +72,7 @@
 
             // convert color
             if ([key rangeOfString:@"color" options:NSCaseInsensitiveSearch].length > 0) {
-                value = [[TiColor colorNamed:value] color];
+                value = (UIColor *)[[TiColor colorNamed:value] color];
             }
 
             // special handling for toolbar

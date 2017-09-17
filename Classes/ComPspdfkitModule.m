@@ -217,9 +217,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
     for (PSPDFDocument *document in documents) {
         [[PSPDFKit sharedInstance].cache cacheDocument:document
-                                             pageSizes:@[[NSValue valueWithCGSize:CGSizeMake(170.f, 220.f)], [NSValue valueWithCGSize:UIScreen.mainScreen.bounds.size]]
-                                 withDiskCacheStrategy:PSPDFDiskCacheStrategyEverything
-                                            aroundPageAtIndex:0];
+                                             withPageSizes:@[[NSValue valueWithCGSize:CGSizeMake(170.f, 220.f)], [NSValue valueWithCGSize:UIScreen.mainScreen.bounds.size]]];
     }
 }
 

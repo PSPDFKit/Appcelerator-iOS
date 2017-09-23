@@ -39,7 +39,8 @@ exports.init = function (logger, config, cli, appc) {
 			var scriptPath = '$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/PSPDFKit.framework/strip-framework.sh'; // Or set to null if not required
 			var frameworkPaths = [
         			// Replace with the path of your embedded framework. Make sure the path is relative to `build/iphone`
-				'../../Resources/iphone/PSPDFKit.framework'
+				'../../Resources/iphone/PSPDFKit.framework',
+				'../../Resources/iphone/PSPDFKitUI.framework'
 			];
 			// ---
 			

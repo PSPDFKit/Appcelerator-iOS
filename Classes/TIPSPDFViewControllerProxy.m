@@ -287,7 +287,7 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
     ENSURE_UI_THREAD(saveAnnotations, args);
 
     NSError *error = nil;
-    BOOL success = [self.controller.document save:&error];
+    BOOL success = [self.controller.document saveWithOptions:nil error:&error];
     if (!success && self.controller.configuration.isTextSelectionEnabled)  {
         PSCLog(@"Saving annotations failed: %@", [error localizedDescription]);
     }

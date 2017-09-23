@@ -121,10 +121,22 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
             PSPDFAESCryptoDataProvider *cryptoWrapper = [[PSPDFAESCryptoDataProvider alloc] initWithURL:pdfURL passphraseProvider:^NSString *{
                 return passphrase;
             } salt:salt rounds:PSPDFDefaultPBKDFNumberOfRounds];
-            document = [PSPDFDocument documentWithDataProvider:cryptoWrapper];
+            document = [[PSPDFDocument alloc] initWithDataProviders:@[cryptoWrapper]];
         }
 
-        if (!document) document = [[PSPDFDocument alloc] initWithBaseURL:nil files:pdfNames];
+        if (!document) {
+            NSMutableArray<PSPDFCoordinatedFileDataProvider *> *dataProviders = [NSMutableArray array];
+            for (NSString *pdfPath in pdfNames) {
+                NSURL *pdfURL = [NSURL fileURLWithPath:pdfPath isDirectory:NO];
+                if ([pdfURL.pathExtension.lowercaseString isEqualToString:@"pdf"]) {
+                    PSPDFCoordinatedFileDataProvider *coordinatedFileDataProvider = [[PSPDFCoordinatedFileDataProvider alloc] initWithFileURL:pdfURL];
+                    if (coordinatedFileDataProvider) {
+                        [dataProviders addObject:coordinatedFileDataProvider];
+                    }
+                }
+            }
+            document = [[PSPDFDocument alloc] initWithDataProviders:dataProviders];
+        }
 
         TIPSPDFViewController *pdfController = [[TIPSPDFViewController alloc] initWithDocument:document];
 

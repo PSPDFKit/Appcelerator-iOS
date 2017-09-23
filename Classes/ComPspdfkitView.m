@@ -29,7 +29,18 @@
     
     if (!_controllerProxy) { // self triggers creation
         NSArray *pdfPaths = [PSPDFUtils resolvePaths:[self.proxy valueForKey:@"filename"]];
-        PSPDFDocument *pdfDocument = [[PSPDFDocument alloc] initWithBaseURL:nil files:pdfPaths];
+        NSMutableArray<PSPDFCoordinatedFileDataProvider *> *dataProviders = [NSMutableArray array];
+        for (NSString *pdfPath in pdfPaths) {
+            NSURL *pdfURL = [NSURL fileURLWithPath:pdfPath isDirectory:NO];
+            if ([pdfURL.pathExtension.lowercaseString isEqualToString:@"pdf"]) {
+                PSPDFCoordinatedFileDataProvider *coordinatedFileDataProvider = [[PSPDFCoordinatedFileDataProvider alloc] initWithFileURL:pdfURL];
+                if (coordinatedFileDataProvider) {
+                    [dataProviders addObject:coordinatedFileDataProvider];
+                }
+            }
+        }
+
+        PSPDFDocument *pdfDocument = [[PSPDFDocument alloc] initWithDataProviders:dataProviders];
         TIPSPDFViewController *pdfController = [[TIPSPDFViewController alloc] initWithDocument:pdfDocument];
 
         NSDictionary *options = [self.proxy valueForKey:@"options"];

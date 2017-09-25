@@ -14,5 +14,5 @@ name: PSPDFKit
 moduleid: com.pspdfkit
 guid: 3056f4e3-4ee6-4cf3-8417-1d8b8f95853c0
 platform: iphone
-minsdk: 6.0.4.GA
+minsdk: 6.2.2.GA
 architectures: i386 x86_64 armv7 arm64

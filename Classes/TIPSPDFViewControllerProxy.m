@@ -220,11 +220,11 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
     }
 }
 
-- (void)setScrollingEnabled:(id)args {
-    ENSURE_UI_THREAD(setScrollingEnabled, args);
+- (void)setScrollEnabled:(id)args {
+    ENSURE_UI_THREAD(setScrollEnabled, args);
 
     NSUInteger pageValue = [PSPDFUtils intValue:args onPosition:0];
-    [_controller setScrollingEnabled:pageValue];
+    [_controller.documentViewController setScrollEnabled:pageValue];
 }
 
 - (void)scrollToPage:(id)args {
@@ -496,35 +496,35 @@ _Pragma("clang diagnostic pop")
     return annotationView;
 }
 
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowHUD:(BOOL)animated {
-    if ([[self eventProxy] _hasListeners:@"shouldShowHUD"]) {
-        [[self eventProxy] fireEvent:@"shouldShowHUD" withObject:nil];
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowUserInterface:(BOOL)animated {
+    if ([[self eventProxy] _hasListeners:@"shouldShowUserInterface"]) {
+        [[self eventProxy] fireEvent:@"shouldShowUserInterface" withObject:nil];
     }
-    if ([[self eventProxy] _hasListeners:@"willShowHUD"]) {
-        [[self eventProxy] fireEvent:@"willShowHUD" withObject:nil];
-    }
-    return YES;
-}
-
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowHUD:(BOOL)animated {
-    if ([[self eventProxy] _hasListeners:@"didShowHUD"]) {
-        [[self eventProxy] fireEvent:@"didShowHUD" withObject:nil];
-    }
-}
-
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldHideHUD:(BOOL)animated {
-    if ([[self eventProxy] _hasListeners:@"shouldHideHUD"]) {
-        [[self eventProxy] fireEvent:@"shouldHideHUD" withObject:nil];
-    }
-    if ([[self eventProxy] _hasListeners:@"willHideHUD"]) {
-        [[self eventProxy] fireEvent:@"willHideHUD" withObject:nil];
+    if ([[self eventProxy] _hasListeners:@"willShowUserInterface"]) {
+        [[self eventProxy] fireEvent:@"willShowUserInterface" withObject:nil];
     }
     return YES;
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController didHideHUD:(BOOL)animated {
-    if ([[self eventProxy] _hasListeners:@"didHideHUD"]) {
-        [[self eventProxy] fireEvent:@"didHideHUD" withObject:nil];
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowUserInterface:(BOOL)animated {
+    if ([[self eventProxy] _hasListeners:@"didShowUserInterface"]) {
+        [[self eventProxy] fireEvent:@"didShowUserInterface" withObject:nil];
+    }
+}
+
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldHideUserInterface:(BOOL)animated {
+    if ([[self eventProxy] _hasListeners:@"shouldHideUserInterface"]) {
+        [[self eventProxy] fireEvent:@"shouldHideUserInterface" withObject:nil];
+    }
+    if ([[self eventProxy] _hasListeners:@"willHideUserInterface"]) {
+        [[self eventProxy] fireEvent:@"willHideUserInterface" withObject:nil];
+    }
+    return YES;
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didHideUserInterface:(BOOL)animated {
+    if ([[self eventProxy] _hasListeners:@"didHideUserInterface"]) {
+        [[self eventProxy] fireEvent:@"didHideUserInterface" withObject:nil];
     }
 }
 

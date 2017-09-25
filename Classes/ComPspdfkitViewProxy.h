@@ -67,7 +67,7 @@
 - (void)setAllowedMenuActions:(id)arg;
 
 /// Expose the scrollingEnabled property
-- (void)setScrollingEnabled:(id)arg;
+- (void)setScrollEnabled:(id)arg;
 
 /// Return document path.
 - (id)documentPath;

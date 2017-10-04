@@ -157,9 +157,9 @@ _Pragma("clang diagnostic pop") \
     [[[self pdfView] controllerProxy] setEditableAnnotationTypes:arg];
 }
 
-- (void)setScrollingEnabled:(id)arg {
-    ENSURE_UI_THREAD(setScrollingEnabled, arg);
-    [[[self pdfView] controllerProxy] setScrollingEnabled:arg];
+- (void)setScrollEnabled:(id)arg {
+    ENSURE_UI_THREAD(setScrollEnabled, arg);
+    [[[self pdfView] controllerProxy] setScrollEnabled:arg];
 }
 
 - (void)setPrintOptions:(id)arg {

@@ -109,8 +109,8 @@
 /// Document's menu actions.
 - (void)setAllowedMenuActions:(id)arg;
 
-/// Expose the scrollingEnabled property
-- (void)setScrollingEnabled:(id)args;
+/// Expose the scrollEnabled property
+- (void)setScrollEnabled:(id)args;
 
 // Save changed annotations.
 - (void)saveAnnotations:(id)args;

@@ -458,19 +458,19 @@ _Pragma("clang diagnostic pop")
     return processed;
 }
 
-/// controller did show/scrolled to a new page (at least 51% of it is visible)
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
-    if ([[self eventProxy] _hasListeners:@"didShowPage"]) {
-        NSDictionary *eventDict = @{@"page": [NSNumber numberWithInteger:pageView.pageIndex]};
-        [[self eventProxy] fireEvent:@"didShowPage" withObject:eventDict];
+/// controller did begin displaying a new page (at least 51% of it is visible)
+- (void)pdfViewController:(PSPDFViewController *)pdfController willBeginDisplayingPageView:(PSPDFPageView *)pageView forPageAtIndex:(NSInteger)pageIndex {
+    if ([[self eventProxy] _hasListeners:@"willBeginDisplayingPageView"]) {
+        NSDictionary *eventDict = @{@"page": [NSNumber numberWithInteger:pageIndex]};
+        [[self eventProxy] fireEvent:@"willBeginDisplayingPageView" withObject:eventDict];
     }
 }
 
-/// page was fully rendered at zoomlevel = 1
-- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
-    if ([[self eventProxy] _hasListeners:@"didRenderPage"]) {
+/// page was fully rendered
+- (void)pdfViewController:(PSPDFViewController *)pdfController didFinishRenderTaskForPageView:(PSPDFPageView *)pageView {
+    if ([[self eventProxy] _hasListeners:@"didFinishRenderTaskForPageView"]) {
         NSDictionary *eventDict = @{@"page": [NSNumber numberWithInteger:pageView.pageIndex]};
-        [[self eventProxy] fireEvent:@"didRenderPage" withObject:eventDict];
+        [[self eventProxy] fireEvent:@"didFinishRenderTaskForPageView" withObject:eventDict];
     }
 }
 
@@ -483,7 +483,6 @@ _Pragma("clang diagnostic pop")
 }
 
 - (UIView <PSPDFAnnotationPresenting> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationPresenting> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
-
     if (annotation.type == PSPDFAnnotationTypeLink && [annotationView isKindOfClass:[PSPDFLinkAnnotationView class]]) {
         PSPDFLinkAnnotationView *linkAnnotation = (PSPDFLinkAnnotationView *)annotationView;
         if (self.linkAnnotationBorderBackedColor) {

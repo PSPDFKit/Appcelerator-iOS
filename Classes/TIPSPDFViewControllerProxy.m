@@ -105,7 +105,7 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
             totalPages = [[self totalPages] unsignedIntegerValue];
         });
     }else {
-        totalPages = [[NSNumber numberWithInteger:[_controller.document pageCount]] unsignedIntegerValue];
+        totalPages = [@([_controller.document pageCount]) unsignedIntegerValue];
     }
 
     return @(totalPages);
@@ -416,7 +416,7 @@ _Pragma("clang diagnostic pop")
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView<PSPDFAnnotationPresenting> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint {
     NSParameterAssert([pdfController isKindOfClass:[TIPSPDFViewController class]]);
 
-    NSMutableDictionary *eventDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:pageView.pageIndex], @"page", nil];
+    NSMutableDictionary *eventDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(pageView.pageIndex), @"page", nil];
     // only set a subset
     if ([annotation isKindOfClass:[PSPDFLinkAnnotation class]]) {
         PSPDFLinkAnnotation *linkAnnotation = (PSPDFLinkAnnotation *)annotation;
@@ -458,19 +458,19 @@ _Pragma("clang diagnostic pop")
     return processed;
 }
 
-/// controller did show/scrolled to a new page (at least 51% of it is visible)
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
-    if ([[self eventProxy] _hasListeners:@"didShowPage"]) {
-        NSDictionary *eventDict = @{@"page": [NSNumber numberWithInteger:pageView.pageIndex]};
-        [[self eventProxy] fireEvent:@"didShowPage" withObject:eventDict];
+/// controller did begin displaying a new page (at least 51% of it is visible)
+- (void)pdfViewController:(PSPDFViewController *)pdfController willBeginDisplayingPageView:(PSPDFPageView *)pageView forPageAtIndex:(NSInteger)pageIndex {
+    if ([[self eventProxy] _hasListeners:@"willBeginDisplayingPageView"]) {
+        NSDictionary *eventDict = @{@"page": @(pageIndex)};
+        [[self eventProxy] fireEvent:@"willBeginDisplayingPageView" withObject:eventDict];
     }
 }
 
-/// page was fully rendered at zoomlevel = 1
-- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
-    if ([[self eventProxy] _hasListeners:@"didRenderPage"]) {
-        NSDictionary *eventDict = @{@"page": [NSNumber numberWithInteger:pageView.pageIndex]};
-        [[self eventProxy] fireEvent:@"didRenderPage" withObject:eventDict];
+/// page was fully rendered
+- (void)pdfViewController:(PSPDFViewController *)pdfController didFinishRenderTaskForPageView:(PSPDFPageView *)pageView {
+    if ([[self eventProxy] _hasListeners:@"didFinishRenderTaskForPageView"]) {
+        NSDictionary *eventDict = @{@"page": @(pageView.pageIndex)};
+        [[self eventProxy] fireEvent:@"didFinishRenderTaskForPageView" withObject:eventDict];
     }
 }
 
@@ -483,7 +483,6 @@ _Pragma("clang diagnostic pop")
 }
 
 - (UIView <PSPDFAnnotationPresenting> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationPresenting> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
-
     if (annotation.type == PSPDFAnnotationTypeLink && [annotationView isKindOfClass:[PSPDFLinkAnnotationView class]]) {
         PSPDFLinkAnnotationView *linkAnnotation = (PSPDFLinkAnnotationView *)annotationView;
         if (self.linkAnnotationBorderBackedColor) {

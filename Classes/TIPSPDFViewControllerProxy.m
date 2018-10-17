@@ -2,7 +2,7 @@
 //  TIPSPDFViewControllerProxy.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2017 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2018 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -302,32 +302,32 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
     self.controller.document.annotationSaveMode = annotationSaveMode;
 }
 
-- (void)setPrintOptions:(id)arg {
-    ENSURE_SINGLE_ARG(arg, NSNumber);
-    ENSURE_UI_THREAD(setPrintOptions, arg);
-
-    [self.controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-        builder.printSharingOptions = [arg integerValue];
-    }];
-}
-
-- (void)setSendOptions:(id)arg {
-    ENSURE_SINGLE_ARG(arg, NSNumber);
-    ENSURE_UI_THREAD(setSendOptions, arg);
-
-    [self.controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-        builder.mailSharingOptions = [arg integerValue];
-    }];
-}
-
-- (void)setOpenInOptions:(id)arg {
-    ENSURE_SINGLE_ARG(arg, NSNumber);
-    ENSURE_UI_THREAD(setOpenInOptions, arg);
-
-    [self.controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-        builder.openInSharingOptions = [arg integerValue];
-    }];
-}
+//- (void)setPrintOptions:(id)arg {
+//    ENSURE_SINGLE_ARG(arg, NSNumber);
+//    ENSURE_UI_THREAD(setPrintOptions, arg);
+//
+//    [self.controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+//        builder.printSharingOptions = [arg integerValue];
+//    }];
+//}
+//
+//- (void)setSendOptions:(id)arg {
+//    ENSURE_SINGLE_ARG(arg, NSNumber);
+//    ENSURE_UI_THREAD(setSendOptions, arg);
+//
+//    [self.controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+//        builder.mailSharingOptions = [arg integerValue];
+//    }];
+//}
+//
+//- (void)setOpenInOptions:(id)arg {
+//    ENSURE_SINGLE_ARG(arg, NSNumber);
+//    ENSURE_UI_THREAD(setOpenInOptions, arg);
+//
+//    [self.controller updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+//        builder.openInSharingOptions = [arg integerValue];
+//    }];
+//}
 
 - (void)hidePopover:(id)args {
     ENSURE_UI_THREAD(hidePopover, args);

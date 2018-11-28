@@ -95,11 +95,6 @@ modalButton.addEventListener('click', function(e) {
 
         additionalBarButtonItems : ["openInButtonItem", "emailButtonItem", "printButtonItem", "searchButtonItem", "outlineButtonItem", "annotationButtonItem"] // text list, does *not* support custom buttons.
 
-        // printOptions : 1, // See values from PSPDFPrintOptionsDocumentOnly
-        // openInOptions : 0x1<0|0x1<1, // See values from PSPDFDocumentSharingOptions
-        // sendOptions : 1 // See values from PSPDFDocumentSharingOptions
-
-        // editableAnnotationTypes : ["Highlight", "Ink"] // Allows you to limit the editable annotation types
         // pageMode values 0=single page, 1=double page, 2=automatic
         // some supported properties
         // see https://pspdfkit.com/api/ios/Classes/PSPDFViewController.html
@@ -121,6 +116,8 @@ modalButton.addEventListener('click', function(e) {
 
     //pdfController.showCloseButton = false;
 
+    //pdfController.editableAnnotationTypes : ["Highlight", "Ink"] // Allows you to limit the editable annotation types
+    
     // Set the link annotation border width
     pdfController.linkAnnotationStrokeWidth = 1.0;
     // Changes the link annotation colors to a light red (first hex pair is optional alpha) (or use "clear" to hide)

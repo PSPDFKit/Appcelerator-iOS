@@ -10,6 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
+#import <PSPDFKit/PSPDFKit.h>
+#import <PSPDFKitUI/PSPDFKitUI.h>
+
 // uncomment to enable logging
 //#define PSTiLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #define PSTiLog(fmt, ...) 

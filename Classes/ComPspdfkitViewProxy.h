@@ -54,15 +54,6 @@
 /// Exposes helper to set `outlineBarButtonItem.availableControllerOptions`.
 - (void)setOutlineControllerFilterOptions:(id)arg;
 
-/// Exposes `printOptions` in `PSPDFPrintBarButtonItem`.
-- (void)setPrintOptions:(id)arg;
-
-/// Exposes `sendOptions` in `PSPDFEmailBarButtonItem`.
-- (void)setSendOptions:(id)arg;
-
-/// Exposes `openOptions` in `PSPDFOpenInBarButtonItem`.
-- (void)setOpenInOptions:(id)arg;
-
 /// Document's menu actions.
 - (void)setAllowedMenuActions:(id)arg;
 

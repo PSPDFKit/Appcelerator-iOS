@@ -10,6 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
+#import <PSPDFKit/PSPDFKit.h>
+#import <PSPDFKitUI/PSPDFKitUI.h>
+
 @class PSPDFDocument;
 
 // Compiler-checked selectors and performance optimized at runtime.

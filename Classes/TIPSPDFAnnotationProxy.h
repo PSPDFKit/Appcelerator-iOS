@@ -11,6 +11,7 @@
 //
 
 #import "TiProxy.h"
+#import <PSPDFKit/PSPDFKit.h>
 
 @interface TIPSPDFAnnotationProxy : TiProxy 
 

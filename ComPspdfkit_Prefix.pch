@@ -4,8 +4,6 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "PSPDFKit.h"
-#import "PSPDFKitUI.h"
 #endif
 
 // Logging

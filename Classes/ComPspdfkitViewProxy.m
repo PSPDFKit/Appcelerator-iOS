@@ -162,21 +162,6 @@ _Pragma("clang diagnostic pop") \
     [[[self pdfView] controllerProxy] setScrollEnabled:arg];
 }
 
-- (void)setPrintOptions:(id)arg {
-    ENSURE_UI_THREAD(setPrintOptions, arg);
-    [[[self pdfView] controllerProxy] setPrintOptions:arg];
-}
-
-- (void)setSendOptions:(id)arg {
-    ENSURE_UI_THREAD(setSendOptions, arg);
-    [[[self pdfView] controllerProxy] setSendOptions:arg];
-}
-
-- (void)setOpenInOptions:(id)arg {
-    ENSURE_UI_THREAD(setOpenInOptions, arg);
-    [[[self pdfView] controllerProxy] setOpenInOptions:arg];
-}
-
 - (id)documentPath {
     __block NSString *documentPath;
     if (![NSThread isMainThread]) {

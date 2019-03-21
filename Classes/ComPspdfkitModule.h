@@ -18,6 +18,8 @@
 /// PSPDFKit Titanium Bridge.
 @interface ComPspdfkitModule : TiModule
 
+__unused static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block);
+
 /// Get the version of PSPDFKit. (This is not the version of the module bridge)
 - (id)PSPDFKitVersion;
 

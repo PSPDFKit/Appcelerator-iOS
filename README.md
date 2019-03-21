@@ -1,5 +1,4 @@
-PSPDFKit for iOS Appcelerator Bindings
-======================================
+# PSPDFKit for iOS Appcelerator Bindings
 
 PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 
@@ -8,13 +7,13 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 **Note:** Read the [Alloy](#alloy) section before building the module if you're using the Alloy framework.
 
 1. Checkout the project: `git clone https://github.com/PSPDFKit/Appcelerator-iOS.git`
-2. Make sure you have Titanium 7.5.0.GA or later installed: http://www.appcelerator.com
-3. Download the binary build of PSPDFKit from your customer portal: https://customers.pspdfkit.com
-4. Open the downloaded .dmg and copy `PSPDFKit.framework` and `PSPDFKitUI.framework` into the checked out folder.
-5. Call `appc ti build -p ios --build-only` in the `Appcelerator-iOS` folder.
+2. Make sure you have Titanium 7.5.0.GA or later installed: https://www.appcelerator.com or `ti sdk install 7.5.0.GA`
+3. Download the binary build of PSPDFKit from [your customer portal](https://customers.pspdfkit.com)
+4. Open the downloaded .dmg and copy `PSPDFKit.framework` and `PSPDFKitUI.framework` into the `platform/` folder inside the project.
+4a. Optionally, copy the `PSPDFKit.bundle` from `PSPDFKit.framework` to `Resources/`
+5. Call `ti build -p ios --build-only` in the `Appcelerator-iOS` folder.
 6. Unzip the created .zip into the Titanium folder (and optionally remove the .zip afterwards): 
 `unzip ./com.pspdfkit-iphone-8.x.x.zip -d ~/Library/Application\ Support/Titanium`
-7. Copy `PSPDFKit.framework` and `PSPDFKitUI.framework` into your project's `Resources/iphone`.
 8. Modify your project's `tiapp.xml` to contain the following entries:
 
 ```xml
@@ -30,23 +29,21 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 
 Note: PSPDFKit 8 for iOS needs at least Xcode 10 or higher and supports iOS 10+.
 
-The `ti.dynamiclib` module hook in [`hooks/ti.dynamiclib.js`](hooks/ti.dynamiclib.js) embeds `PSPDFKit.framework` and `PSPDFKitUI.framework` into your app. 
-You can find more info about it [here](https://jira.appcelerator.org/browse/TIMOB-20557).
-
 ## Using the PSPDFKit module
 
-To use the module in code, you will need to require it, before using it.
+To use the module in code, you will need to require it, before using it. The following example uses the ES7 `import` syntax:
 
 ```js
-var pspdfkit = require('com.pspdfkit');
-var pdfView = pspdfkit.createView({
-    filename : 'PSPDFKit.pdf',
-    options : {
-        pageMode : 0, // PSPDFPageModeSingle
-        pageTransition : 2 // PSPDFPageCurlTransition
+import PSPDFKit from 'com.pspdfkit';
+
+const pdfView = PSPDFKit.createView({
+    filename: 'PSPDFKit.pdf',
+    options: {
+        pageMode: 0, // PSPDFPageModeSingle
+        pageTransition: 2 // PSPDFPageCurlTransition
     },
-    documentOptions : {
-        title : "Custom Title Here"
+    documentOptions: {
+        title: 'Custom Title Here'
     }
 });
 ```
@@ -84,7 +81,7 @@ Alloy overwrites all files in the `Resources` folder everytime the application i
 ## License
 
 This project can be used for evaluation or if you have a valid PSPDFKit license.  
-All items and source code Copyright © 2010-2018 PSPDFKit GmbH.
+All items and source code Copyright © 2010-2019 PSPDFKit GmbH.
 
 See LICENSE for details.
 

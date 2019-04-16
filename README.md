@@ -19,7 +19,7 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 ```xml
 <ti:app xmlns:ti="http://ti.appcelerator.org">
   <ios>
-    <min-ios-ver>10.0</min-ios-ver>
+    <min-ios-ver>11.0</min-ios-ver>
   </ios>
   <modules>
     <module platform="iphone">com.pspdfkit</module>
@@ -27,7 +27,7 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 </ti:app>
 ```
 
-Note: PSPDFKit 8 for iOS needs at least Xcode 10 or higher and supports iOS 10+.
+Note: PSPDFKit 8 for iOS needs at least Xcode 10.2 or higher and supports iOS 11+.
 
 ## Using the PSPDFKit module
 

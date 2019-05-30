@@ -7,7 +7,7 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android.
 **Note:** Read the [Alloy](#alloy) section before building the module if you're using the Alloy framework.
 
 1. Checkout the project: `git clone https://github.com/PSPDFKit/Appcelerator-iOS.git`
-2. Make sure you have Titanium 8.0.0.GA or later installed: https://www.appcelerator.com or `ti sdk install 8.0.0.GA`
+2. Make sure you have Titanium 8.0.1.GA or later installed: https://www.appcelerator.com or `ti sdk install 8.0.1.GA`
 3. Download the binary build of PSPDFKit from [your customer portal](https://customers.pspdfkit.com)
 4. Open the downloaded .dmg and copy `PSPDFKit.framework` and `PSPDFKitUI.framework` into the `platform/` folder inside the project.
 4a. Optionally, copy the `PSPDFKit.bundle` from `PSPDFKit.framework` to `Resources/`

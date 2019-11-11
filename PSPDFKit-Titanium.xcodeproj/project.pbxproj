@@ -21,12 +21,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1E471058C62505AC48578F54 /* Pods_pspdfkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51406BB422F289ACC82BB00 /* Pods_pspdfkit.framework */; };
 		24DD6CF91134B3F500162E58 /* ComPspdfkitModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* ComPspdfkitModule.h */; };
 		24DD6CFA1134B3F500162E58 /* ComPspdfkitModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* ComPspdfkitModule.m */; };
 		24DE9E1111C5FE74003F90F6 /* ComPspdfkitModuleAssets.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DE9E0F11C5FE74003F90F6 /* ComPspdfkitModuleAssets.h */; };
 		24DE9E1211C5FE74003F90F6 /* ComPspdfkitModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE9E1011C5FE74003F90F6 /* ComPspdfkitModuleAssets.m */; };
-		3A66F3222212D11200F62CCE /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A66F3202212D11200F62CCE /* PSPDFKitUI.framework */; };
-		3A66F3232212D11200F62CCE /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A66F3212212D11200F62CCE /* PSPDFKit.framework */; };
 		782DDA161483CAB600E7EEFD /* ComPspdfkitViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 782DDA141483CAB400E7EEFD /* ComPspdfkitViewProxy.h */; };
 		782DDA171483CAB600E7EEFD /* ComPspdfkitViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 782DDA151483CAB400E7EEFD /* ComPspdfkitViewProxy.m */; };
 		782DDA1D1483CB6100E7EEFD /* ComPspdfkitView.h in Headers */ = {isa = PBXBuildFile; fileRef = 782DDA1B1483CB6100E7EEFD /* ComPspdfkitView.h */; };
@@ -101,7 +100,10 @@
 		78FB05B9177304060006CE08 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		AA747D9E0F9514B9006C5449 /* ComPspdfkit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComPspdfkit_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C48458F389B6D42566A9B080 /* Pods-pspdfkit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pspdfkit.release.xcconfig"; path = "Target Support Files/Pods-pspdfkit/Pods-pspdfkit.release.xcconfig"; sourceTree = "<group>"; };
 		D2AAC07E0554694100DB518D /* libComPspdfkit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libComPspdfkit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D51406BB422F289ACC82BB00 /* Pods_pspdfkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pspdfkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E221D919043AED3C4ED2EF54 /* Pods-pspdfkit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pspdfkit.debug.xcconfig"; path = "Target Support Files/Pods-pspdfkit/Pods-pspdfkit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,14 +118,13 @@
 				7884213814830B5E00203926 /* QuartzCore.framework in Frameworks */,
 				7884213614830B5900203926 /* CoreGraphics.framework in Frameworks */,
 				7884212B14830B4000203926 /* ImageIO.framework in Frameworks */,
-				3A66F3222212D11200F62CCE /* PSPDFKitUI.framework in Frameworks */,
 				7884212914830B3A00203926 /* MessageUI.framework in Frameworks */,
 				7884212714830B3100203926 /* MediaPlayer.framework in Frameworks */,
 				7884212514830B2E00203926 /* AVFoundation.framework in Frameworks */,
 				7884212114830B1B00203926 /* CoreMedia.framework in Frameworks */,
 				7884211F14830B1600203926 /* UIKit.framework in Frameworks */,
-				3A66F3232212D11200F62CCE /* PSPDFKit.framework in Frameworks */,
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+				1E471058C62505AC48578F54 /* Pods_pspdfkit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +146,7 @@
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				EC0CF1EB9936AC4DF981C63A /* Pods */,
 			);
 			indentWidth = 4;
 			name = pspdfkit;
@@ -158,6 +160,7 @@
 				3A66F3212212D11200F62CCE /* PSPDFKit.framework */,
 				3A66F3202212D11200F62CCE /* PSPDFKitUI.framework */,
 				7884215214830D3700203926 /* System */,
+				D51406BB422F289ACC82BB00 /* Pods_pspdfkit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -216,6 +219,15 @@
 			name = System;
 			sourceTree = "<group>";
 		};
+		EC0CF1EB9936AC4DF981C63A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E221D919043AED3C4ED2EF54 /* Pods-pspdfkit.debug.xcconfig */,
+				C48458F389B6D42566A9B080 /* Pods-pspdfkit.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -242,6 +254,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "pspdfkit" */;
 			buildPhases = (
+				71E33183113FB373616286CE /* [CP] Check Pods Manifest.lock */,
 				D2AAC07A0554694100DB518D /* Headers */,
 				D2AAC07B0554694100DB518D /* Sources */,
 				D2AAC07C0554694100DB518D /* Frameworks */,
@@ -284,6 +297,31 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		71E33183113FB373616286CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-pspdfkit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2AAC07B0554694100DB518D /* Sources */ = {
@@ -330,6 +368,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ComPspdfkit_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(SRCROOT)/PSPDFKit.framework/Headers/**",
 					"$(SRCROOT)/PSPDFKitUI.framework/Headers/**",
 					"$(TITANIUM_BASE_SDK)/**",
@@ -472,6 +511,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ComPspdfkit_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(SRCROOT)/PSPDFKit.framework/Headers/**",
 					"$(SRCROOT)/PSPDFKitUI.framework/Headers/**",
 					"$(TITANIUM_BASE_SDK)/**",

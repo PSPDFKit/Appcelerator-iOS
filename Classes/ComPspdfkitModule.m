@@ -70,7 +70,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     [self printVersionStringOnce];
 
     // Appcelerator doesn't cope well with high memory usage.
-    PSPDFKit.sharedInstance[@"com.pspdfkit.low-memory-mode"] = @YES;
+    PSPDFKitGlobal.sharedInstance[@"com.pspdfkit.low-memory-mode"] = @YES;
 }
 
 // this method is called when the module is being unloaded
@@ -102,7 +102,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     static BOOL printVersionOnce = YES;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSLog(@"Initialized PSPDFKit %@", [self PSPDFKitVersion]);
+        NSLog(@"Initialized PSPDFKitGlobal %@", [self PSPDFKitVersion]);
         printVersionOnce = NO;
     });
 }
@@ -165,7 +165,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
 #pragma mark - Public
 
 - (id)PSPDFKitVersion {
-    return PSPDFKit.versionString;
+    return PSPDFKitGlobal.versionString;
 }
 
 - (void)setLicenseKey:(id)license {
@@ -173,10 +173,10 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     if ([licenseString isKindOfClass:NSString.class] && licenseString.length > 0) {
         if (![NSThread isMainThread]) {
             dispatch_sync(dispatch_get_main_queue(), ^{
-                [PSPDFKit setLicenseKey:licenseString];
+                [PSPDFKitGlobal setLicenseKey:licenseString];
             });
         } else {
-            [PSPDFKit setLicenseKey:licenseString];
+            [PSPDFKitGlobal setLicenseKey:licenseString];
         }
     }
 }
@@ -186,7 +186,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     [self printVersionStringOnce];
 
     if (pathArray.count < 1 || pathArray.count > 4 || ![pathArray[0] isKindOfClass:NSString.class] || [pathArray[0] length] == 0) {
-        PSCLog(@"PSPDFKit Error. At least one argument is needed: pdf filename (either absolute or relative (application bundle and documents directory are searched for it)\n \
+        PSCLog(@"PSPDFKitGlobal Error. At least one argument is needed: pdf filename (either absolute or relative (application bundle and documents directory are searched for it)\n \
                       Argument 2 sets animated to true or false. (optional, defaults to true)\n \
                       Argument 3 can be an array with options for PSPDFViewController. See http://pspdfkit.com/documentation.html for details. You need to write the numeric equivalent for enumeration values (e.g. PSPDFPageModeDouble has the numeric value of 1)\
                       Argument 4 can be an array with options for PSPDFDocument.\
@@ -218,7 +218,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     PSCLog(@"requesting clear cache... (spins of async)");
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [[PSPDFKit sharedInstance].cache clearCache];
+        [[PSPDFKitGlobal sharedInstance].cache clearCache];
     });
 }
 
@@ -228,7 +228,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     // be somewhat intelligent about path search
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
     for (PSPDFDocument *document in documents) {
-        [[PSPDFKit sharedInstance].cache cacheDocument:document
+        [[PSPDFKitGlobal sharedInstance].cache cacheDocument:document
                                              withPageSizes:@[[NSValue valueWithCGSize:CGSizeMake(170.f, 220.f)], [NSValue valueWithCGSize:UIScreen.mainScreen.bounds.size]]];
     }
 }
@@ -239,7 +239,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     // be somewhat intelligent about path search
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
     for (PSPDFDocument *document in documents) {
-        [[PSPDFKit sharedInstance].cache removeCacheForDocument:document];
+        [[PSPDFKitGlobal sharedInstance].cache removeCacheForDocument:document];
     }
 }
 
@@ -249,7 +249,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     // be somewhat intelligent about path search
     NSArray *documents = [PSPDFUtils documentsFromArgs:args];
     for (PSPDFDocument *document in documents) {
-        [[PSPDFKit sharedInstance].cache stopCachingDocument:document];
+        [[PSPDFKitGlobal sharedInstance].cache stopCachingDocument:document];
     }
 }
 
@@ -271,7 +271,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
         PSPDFMutableRenderRequest *renderRequest = [[PSPDFMutableRenderRequest alloc] initWithDocument:document];
         renderRequest.pageIndex = page;
         renderRequest.imageSize = full ? UIScreen.mainScreen.bounds.size : thumbnailSize;
-        image = [[PSPDFKit sharedInstance].cache imageForRequest:renderRequest imageSizeMatching:PSPDFCacheImageSizeMatchingDefault];
+        image = [[PSPDFKitGlobal sharedInstance].cache imageForRequest:renderRequest imageSizeMatching:PSPDFCacheImageSizeMatchingDefault];
 
         if (!image) {
             CGSize size = full ? [[UIScreen mainScreen] bounds].size : thumbnailSize;
@@ -292,7 +292,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     ENSURE_UI_THREAD(setLanguageDictionary, dictionary);
 
     if (![dictionary isKindOfClass:NSDictionary.class]) {
-        PSCLog(@"PSPDFKit Error. Argument error, need dictionary with languages.");
+        PSCLog(@"PSPDFKitGlobal Error. Argument error, need dictionary with languages.");
     }
 
     PSPDFSetLocalizationDictionary(dictionary);
@@ -301,7 +301,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
 - (void)setLogLevel:(id)logLevel {
     ENSURE_UI_THREAD(setLogLevel, logLevel);
 
-    [[PSPDFKit sharedInstance] setLogLevel:[PSPDFUtils intValue:logLevel]];
+    [[PSPDFKitGlobal sharedInstance] setLogLevel:[PSPDFUtils intValue:logLevel]];
     PSCLog(@"New Log level set to %d", PSPDFLogLevel);
 }
 

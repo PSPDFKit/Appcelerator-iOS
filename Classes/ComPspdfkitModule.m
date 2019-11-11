@@ -102,7 +102,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     static BOOL printVersionOnce = YES;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSLog(@"Initialized PSPDFKitGlobal %@", [self PSPDFKitVersion]);
+        NSLog(@"Initialized PSPDFKit %@", [self PSPDFKitVersion]);
         printVersionOnce = NO;
     });
 }
@@ -186,7 +186,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     [self printVersionStringOnce];
 
     if (pathArray.count < 1 || pathArray.count > 4 || ![pathArray[0] isKindOfClass:NSString.class] || [pathArray[0] length] == 0) {
-        PSCLog(@"PSPDFKitGlobal Error. At least one argument is needed: pdf filename (either absolute or relative (application bundle and documents directory are searched for it)\n \
+        PSCLog(@"PSPDFKit Error. At least one argument is needed: pdf filename (either absolute or relative (application bundle and documents directory are searched for it)\n \
                       Argument 2 sets animated to true or false. (optional, defaults to true)\n \
                       Argument 3 can be an array with options for PSPDFViewController. See http://pspdfkit.com/documentation.html for details. You need to write the numeric equivalent for enumeration values (e.g. PSPDFPageModeDouble has the numeric value of 1)\
                       Argument 4 can be an array with options for PSPDFDocument.\
@@ -292,7 +292,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     ENSURE_UI_THREAD(setLanguageDictionary, dictionary);
 
     if (![dictionary isKindOfClass:NSDictionary.class]) {
-        PSCLog(@"PSPDFKitGlobal Error. Argument error, need dictionary with languages.");
+        PSCLog(@"PSPDFKit Error. Argument error, need dictionary with languages.");
     }
 
     PSPDFSetLocalizationDictionary(dictionary);

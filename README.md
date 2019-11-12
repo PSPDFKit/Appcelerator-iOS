@@ -2,7 +2,7 @@
 
 PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9 for iOS needs at least Xcode 11 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)). 
 
-## Build instructions
+## Build Instructions
 
 > **Note:** Read the [Alloy](#alloy) section before building the module if you're using the Alloy framework.
 
@@ -21,6 +21,17 @@ $ git clone https://github.com/PSPDFKit/Appcelerator-iOS.git
 
 Once cloned, open the `Podfile` file on the root of the repository, and on line 6, replace `YOUR_COCOAPODS_KEY` with the private CocoaPods key for your copy of PSPDFKit, which you can retrieve from the [Customer Portal](https://customers.pspdfkit.com/customers/sign_in).
 
+```diff
+platform :ios, '11.0'
+
+use_frameworks!
+
+target :pspdfkit do
+-  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/cocoapods/YOUR_COCOAPODS_KEY_GOES_HERE/pspdfkit/latest.podspec'
++  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/cocoapods/XXXXXXXXXXXXXXXXXXXXXXXXXXXX/pspdfkit/latest.podspec'
+end
+```
+
 Inside the Appcelerator-iOS project, run `pod install` :
 
 ```bash
@@ -32,23 +43,6 @@ And now, build it:
 
 ```bash
 $ ti build -p ios --build-only
-
-    [DEBUG] Titanium SDK iOS directory: /Users/oscarcisneros/Library/Application Support/Titanium/mobilesdk/osx/8.2.1.GA/iphone
-    [INFO]  Project directory: /Users/oscarcisneros/Documents/PSPDFKit/Appcelerator-iOS
-    [INFO]  Module ID: com.pspdfkit
-    [INFO]  Module Type: Static Library (Objective-C)
-    [DEBUG] Writing module assets file: /Users/oscarcisneros/Documents/PSPDFKit/Appcelerator-iOS/Classes/ComPspdfkitModuleAssets.m
-    [DEBUG] Running: DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -configuration Release -sdk iphonesimulator -UseNewBuildSystem=NO ONLY_ACTIVE_ARCH=NO clean build
-    [DEBUG] Running: DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -configuration Release -sdk iphoneos -UseNewBuildSystem=NO ONLY_ACTIVE_ARCH=NO clean build
-    [INFO]  Creating universal library
-    [DEBUG] Searching library: /Users/oscarcisneros/Documents/PSPDFKit/Appcelerator-iOS/build/Release-iphoneos/libComPspdfkit.a
-    [DEBUG] Searching library: /Users/oscarcisneros/Documents/PSPDFKit/Appcelerator-iOS/build/Release-iphonesimulator/libComPspdfkit.a
-    [DEBUG] Running: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo /Users/oscarcisneros/Documents/PSPDFKit/Appcelerator-iOS/build/Release-iphoneos/libComPspdfkit.a /Users/oscarcisneros/Documents/PSPDFKit/Appcelerator-iOS/build/Release-iphonesimulator/libComPspdfkit.a -create -output /Users/oscarcisneros/Documents/PSPDFKit/Appcelerator-iOS/build/libcom.pspdfkit.a
-    [INFO]  Verifying universal library
-    [DEBUG] Running: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo -info /Users/oscarcisneros/Documents/PSPDFKit/Appcelerator-iOS/build/libcom.pspdfkit.a
-    [INFO]  Creating module zip
-    [INFO]  Writing module zip: /Users/oscarcisneros/Documents/PSPDFKit/Appcelerator-iOS/dist/com.pspdfkit-iphone-9.0.2.zip
-    [INFO]  Project built successfully in 9s 389ms
 ```
 
  Unzip the result into the Titanium folder (and optionally remove the .zip afterwards):
@@ -68,14 +62,6 @@ Finally, modify your project's `tiapp.xml` to contain the following entries:
     <module platform="iphone">com.pspdfkit</module>
   </modules>
 </ti:app>
-```
-
-### Using the correct version of Titanium
-
-If you have multiple versions of the Titanium SDK installed on your system, you'll need to also modify the `titanium.xcconfig` configuration file to set the correct version number:
-
-```
-TITANIUM_SDK_VERSION = 8.2.1.GA
 ```
 
 If you do not do this, have multiple versions of the Titanium SDK installed, and none of them is the one that's set on the `xcconfig` file, the build will fail with cryptic error messages.
@@ -120,6 +106,15 @@ If you get the above build error when running the project, you likely forgot to 
   <modules>
     <module platform="iphone">com.pspdfkit</module>
   </modules>
+```
+
+#### Using the correct version of Titanium
+
+If you have multiple versions of the Titanium SDK installed on your system, you'll need to also modify the `titanium.xcconfig` configuration file to set the correct version number:
+
+```diff
+- TITANIUM_SDK_VERSION = 8.0.1.GA
++ TITANIUM_SDK_VERSION = 8.2.1.GA
 ```
 
 #### Alloy

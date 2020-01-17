@@ -2,11 +2,11 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 9.0.2
+version: 9.2.0
 description: PSPDFKit Titanium Module
 author: PSPDFKit GmbH
 license: Commercial, see www.PSPDFKit.com
-copyright: Copyright (c) 2010-2019 by PSPDFKit GmbH
+copyright: Copyright (c) 2010-2020 by PSPDFKit GmbH
 
 
 # these should not be edited
@@ -14,5 +14,5 @@ name: PSPDFKit
 moduleid: com.pspdfkit
 guid: 3056f4e3-4ee6-4cf3-8417-1d8b8f95853c0
 platform: iphone
-minsdk: 8.0.1.GA
+minsdk: 8.3.0.GA
 architectures: x86_64 arm64

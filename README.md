@@ -1,12 +1,12 @@
 # PSPDFKit for iOS Appcelerator Bindings
 
-PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9 for iOS needs at least Xcode 11 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)). 
+PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.2 for iOS needs at least Xcode 11.3.1 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)). 
 
 ## Build Instructions
 
 > **Note:** Read the [Alloy](#alloy) section before building the module if you're using the Alloy framework.
 
-We recommend using [Titanium](https://github.com/appcelerator/titanium) version 8.2.1.GA, or later. You'll also need to install [CocoaPods](http://cocoapods.org) if don't have it installed already:
+We recommend using [Titanium](https://github.com/appcelerator/titanium) version 8.3.0.GA, or later. You'll also need to install [CocoaPods](http://cocoapods.org) if don't have it installed already:
 
 ```bash
 $ [sudo] npm install -g titanium
@@ -114,7 +114,7 @@ If you have multiple versions of the Titanium SDK installed on your system, you'
 
 ```diff
 - TITANIUM_SDK_VERSION = 8.0.1.GA
-+ TITANIUM_SDK_VERSION = 8.2.1.GA
++ TITANIUM_SDK_VERSION = 8.3.0.GA
 ```
 
 #### Alloy

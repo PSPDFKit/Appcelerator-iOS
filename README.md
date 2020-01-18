@@ -45,9 +45,16 @@ And now, build it:
 $ ti build -p ios --build-only
 ```
 
- Unzip the result into the Titanium folder (and optionally remove the .zip afterwards):
+If the command above throws an error citing `node-pre-gyp`, [make sure you're using Node 8](https://github.com/nodejs/node-gyp/issues/277): 
+
+```bash
+$ nvm install 8
+$ nvm use 8
+```
+
+Unzip the result into the Titanium folder (and optionally remove the .zip afterwards):
  
- ```bash
+```bash
 unzip ./dist/com.pspdfkit-iphone-9.0.2.zip -d ~/Library/Application\ Support/Titanium
 ```
 

@@ -271,7 +271,7 @@ static BOOL PSTReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
         PSPDFMutableRenderRequest *renderRequest = [[PSPDFMutableRenderRequest alloc] initWithDocument:document];
         renderRequest.pageIndex = page;
         renderRequest.imageSize = full ? UIScreen.mainScreen.bounds.size : thumbnailSize;
-        image = [[PSPDFKitGlobal sharedInstance].cache imageForRequest:renderRequest imageSizeMatching:PSPDFCacheImageSizeMatchingDefault];
+        image = [[PSPDFKitGlobal sharedInstance].cache imageForRequest:renderRequest imageSizeMatching:PSPDFCacheImageSizeMatchingDefault error:NULL];
 
         if (!image) {
             CGSize size = full ? [[UIScreen mainScreen] bounds].size : thumbnailSize;

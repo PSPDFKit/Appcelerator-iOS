@@ -1,14 +1,14 @@
 # PSPDFKit for iOS Appcelerator Bindings
 
-PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.2 for iOS needs at least Xcode 11.3.1 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)). 
+PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.2.1 for iOS needs at least Xcode 11.3.1 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)). 
 
 ## Getting Started Step by Step Guide
 
 > **Note:** Read the [Alloy](#alloy) section before building the module if you're using the Alloy framework.
 
-This uses the Appcelerator CLI, not Appcelerator Studio, and assumes Xcode 11.3 is installed as default.
+This uses the Appcelerator CLI, not Appcelerator Studio, and assumes Xcode 11.3.1 is installed as default.
 
-#### Configuring the environment
+#### Configuring the Environment
 
 First, let’s make sure our dependencies are installed.
 
@@ -40,7 +40,7 @@ $ appc use 7.1.2
 
 You can also run `appc use` to list all available versions for Appcelerator. If some of the following steps fail, please try with an older version of appcelerator, such as 7.0.12: `appc use 7.0.12`.
 
-#### Building the PSPDFKit module
+#### Building the PSPDFKit Module
 
 Assuming our workspace is located at `~/dev/`, we can now procceed to build the plugin.
 
@@ -74,14 +74,14 @@ $ cd Appcelerator-iOS/
 # Download the PSPDFKit dependency
 $ pod install
 
-# Build the plugin
+# Build the Plugin
 $ ti build -p ios --build-only
 ```
 
 Unzip the result into the Titanium folder:
  
 ```bash
-$ unzip ./dist/com.pspdfkit-iphone-9.2.zip -d ~/Library/Application\ Support/Titanium
+$ unzip ./dist/com.pspdfkit-iphone-9.2.1.zip -d ~/Library/Application\ Support/Titanium
 ```
 
 #### Using the PSPDFKit Plugin
@@ -133,7 +133,7 @@ Copy the UUID for the device (bold in the sample above), then run the app on it:
 $ appc run --platform ios -l trace --device-id 60FDA403-8D0B-40A4-BBE5-662C045A6A97
 ```
 
-## Using the PSPDFKit module
+## Using the PSPDFKit Module
 
 To use the module in code, you will need to require it, before using it. The following example uses the ES7 `import` syntax:
 

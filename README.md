@@ -116,16 +116,16 @@ $ mv MyApp/app MyApp/__app
 $ cp -R Appcelerator-iOS/example/ MyApp/Resources/
 ```
 
-Then, open `MyApp/Resources/app.js`, and insert your license key, which you can retrieve from the [Customer Portal](https://customers.pspdfkit.com/customers/sign_in):
+Open `MyApp/Resources/app.js` and update your license key, which you can retrieve from the [Customer Portal](https://customers.pspdfkit.com/customers/sign_in):
 
 ```diff
 // You need to activate your PSPDFKit before you can use it.
 // Follow the instructions in the email you get after licensing the framework.
 - pspdfkit.setLicenseKey("LICENSE_KEY_GOES_HERE");
-+ pspdfkit.setLicenseKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
++ pspdfkit.setLicenseKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 ```
 
-To run the application from the CLI, manually launch a Simulator.app instance, and from the Hardware menu, select a device to launch (`Hardware Menu/Device/iOS 13.3/iPhone 8`, for instance). Then get the UUID for the simulator you’ve launched:
+**To run the application** from the CLI, manually launch a Simulator.app instance, and from the Hardware menu, select a device to launch (`Hardware Menu/Device/iOS 13.3/iPhone 8`, for instance). Then get the UUID for the simulator you’ve launched:
 
 ```bash
 # List the booted simulators

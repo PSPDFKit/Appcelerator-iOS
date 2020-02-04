@@ -1,25 +1,58 @@
 # PSPDFKit for iOS Appcelerator Bindings
 
-PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.2 for iOS needs at least Xcode 11.3.1 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)). 
+PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.2.1 for iOS needs at least Xcode 11.3.1 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)). 
 
-## Build Instructions
+## Getting Started Step by Step Guide
 
 > **Note:** Read the [Alloy](#alloy) section before building the module if you're using the Alloy framework.
 
-We recommend using [Titanium](https://github.com/appcelerator/titanium) version 8.3.0.GA, or later. You'll also need to install [CocoaPods](http://cocoapods.org) if don't have it installed already:
+This uses the Appcelerator CLI, not Appcelerator Studio, and assumes Xcode 11.3.1 is installed as default.
+
+#### Configuring the Environment
+
+First, let’s make sure our dependencies are installed.
 
 ```bash
-$ [sudo] npm install -g titanium
-$ [sudo] gem install cocoapods
+# First, make sure we’re using Node 8.
+$ nvm use 8 -g			
+
+# Install Appcelerator CLI
+$ npm install appcelerator -g
+
+# Now install titanium
+$ npm install -g titanium
+
+# Install CocoaPods.
+$ gem install cocoapods
+
+# Run through the basic Appcelerator setup. Requires you to log in.
+$ appc setup
+
+# IMPORTANT: Make sure Xcode’s Command Line Tools are installed
+$ sudo xcode-select —install
+
+# IMPORTANT: Also make sure we’ve accepted the Xcode EULA
+$ sudo xcodebuild -license
+
+# Install the latest appcelerator
+$ appc use 7.1.2
 ```
 
-Now, clone the Appcelerator-iOS project to your local machine:
+You can also run `appc use` to list all available versions for Appcelerator. If some of the following steps fail, please try with an older version of appcelerator, such as 7.0.12: `appc use 7.0.12`.
+
+#### Building the PSPDFKit Module
+
+We can now procceed to build the plugin.
 
 ```bash
+# Move to the workspace
+$ cd ~/path/to/workspace/
+
+# Clone the PSPDFKit Appcelerator Plugin
 $ git clone https://github.com/PSPDFKit/Appcelerator-iOS.git
 ```
 
-Once cloned, open the `Podfile` file on the root of the repository, and on line 6, replace `YOUR_COCOAPODS_KEY` with the private CocoaPods key for your copy of PSPDFKit, which you can retrieve from the [Customer Portal](https://customers.pspdfkit.com/customers/sign_in).
+Modify `Appcelerator-iOS/Podfile` to include your CocoaPods key for PSPDFKit, which you can retrieve from the [Customer Portal](https://customers.pspdfkit.com/customers/sign_in):
 
 ```diff
 platform :ios, '11.0'
@@ -32,48 +65,75 @@ target :pspdfkit do
 end
 ```
 
-Inside the Appcelerator-iOS project, run `pod install` :
+Once you’ve done that, you can now install the dependencies and builld the plugin:
 
 ```bash
+# Move to the plugin’s directory
 $ cd Appcelerator-iOS/
+
+# Download the PSPDFKit dependency
 $ pod install
-```
 
-And now, build it: 
-
-```bash
+# Build the Plugin
 $ ti build -p ios --build-only
 ```
 
-If the command above throws an error citing `node-pre-gyp`, [make sure you're using Node 8](https://github.com/nodejs/node-gyp/issues/277): 
-
-```bash
-$ nvm install 8
-$ nvm use 8
-```
-
-Unzip the result into the Titanium folder (and optionally remove the .zip afterwards):
+Unzip the result into the Titanium folder:
  
 ```bash
-unzip ./dist/com.pspdfkit-iphone-9.0.2.zip -d ~/Library/Application\ Support/Titanium
+$ unzip ./dist/com.pspdfkit-iphone-9.2.1.zip -d ~/Library/Application\ Support/Titanium
 ```
 
-Finally, modify your project's `tiapp.xml` to contain the following entries:
+#### Using the PSPDFKit Plugin
 
-```xml
+Once we’ve installed the dependencies, and built the PSPDFKit plugin, we can now create a new app using the CLI:
+
+```bash
+# Go to the root of the workspace
+$ cd ..
+
+# And create the new app
+$ appc new --type app --name MyApp --id com.example.MyApp
+```
+
+Modify `MyNewApp/tiapp.xml` to include PSPDFKit as a module, and to define iOS 11 as the minimum iOS version:
+
+```diff
 <ti:app xmlns:ti="http://ti.appcelerator.org">
   <ios>
-    <min-ios-ver>11.0</min-ios-ver>
++   <min-ios-ver>11.0</min-ios-ver>
   </ios>
   <modules>
-    <module platform="iphone">com.pspdfkit</module>
++   <module platform="iphone">com.pspdfkit</module>
   </modules>
 </ti:app>
 ```
 
-If you do not do this, have multiple versions of the Titanium SDK installed, and none of them is the one that's set on the `xcconfig` file, the build will fail with cryptic error messages.
+And integrate the PSPDFKit example into the new application:
 
-## Using the PSPDFKit module
+```bash
+# Rename the app folder to avoid using the Alloy framework for now
+$ mv MyNewApp/app MyNewApp/__app
+
+# Copy the PSPDFKit example into place
+$ cp Appcelerator-iOS/example/* MyNewApp/Resources/
+```
+
+To run the application from the CLI, manually launch a Simulator.app instance, and from the Hardware menu, select a device to launch (`Hardware Menu/Device/iOS 13.3/iPhone 8`, for instance). Then get the UUID for the simulator you’ve launched:
+
+```bash
+# List the available simulators and 
+$ xcrun simctl list devices | grep Booted
+    iPhone 8 (**60FDA403-8D0B-40A4-BBE5-662C045A6A97**) (Booted)
+```
+
+Copy the UUID for the device (bold in the sample above), then run the app on it:
+
+```bash
+$ appc run --platform ios -l trace --device-id 60FDA403-8D0B-40A4-BBE5-662C045A6A97
+```
+
+## Using the PSPDFKit Module
 
 To use the module in code, you will need to require it, before using it. The following example uses the ES7 `import` syntax:
 

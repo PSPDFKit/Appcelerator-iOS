@@ -133,7 +133,7 @@ $ xcrun simctl list devices | grep Booted
     iPhone 8 (60FDA403-8D0B-40A4-BBE5-662C045A6A97) (Booted)
 ```
 
-Copy the UUID for the device (bold in the sample above), then run the app on it:
+Copy the UUID for the device, then run the app on it:
 
 ```bash
 # Move to the app directory

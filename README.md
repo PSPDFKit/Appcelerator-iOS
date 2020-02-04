@@ -42,11 +42,11 @@ You can also run `appc use` to list all available versions for Appcelerator. If 
 
 #### Building the PSPDFKit Module
 
-Assuming our workspace is located at `~/dev/`, we can now procceed to build the plugin.
+We can now procceed to build the plugin.
 
 ```bash
 # Move to the workspace
-$ cd ~/dev
+$ cd ~/path/to/workspace/
 
 # Clone the PSPDFKit Appcelerator Plugin
 $ git clone https://github.com/PSPDFKit/Appcelerator-iOS.git

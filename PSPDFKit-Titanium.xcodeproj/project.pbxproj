@@ -337,7 +337,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -r ${SRCROOT}/Pods/PSPDFKit/PSPDFKit.framework ${SRCROOT}/platform/PSPDFKit.framework\ncp -r ${SRCROOT}/Pods/PSPDFKit/PSPDFKitUI.framework ${SRCROOT}/platform/PSPDFKitUI.framework\n\n\n";
+			shellScript = "cp -R ${SRCROOT}/Pods/PSPDFKit/PSPDFKit.framework ${SRCROOT}/platform/PSPDFKit.framework\ncp -R ${SRCROOT}/Pods/PSPDFKit/PSPDFKitUI.framework ${SRCROOT}/platform/PSPDFKitUI.framework\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -16,11 +16,8 @@ First, let’s make sure our dependencies are installed.
 # First, make sure we’re using Node 8.
 $ nvm use 8 -g			
 
-# Install Appcelerator CLI
-$ npm install appcelerator -g
-
-# Now install titanium
-$ npm install -g titanium
+# Install Appcelerator CLI and Titanium 
+$ npm install appcelerator titanium -g
 
 # Install CocoaPods.
 $ gem install cocoapods
@@ -29,7 +26,7 @@ $ gem install cocoapods
 $ appc setup
 
 # IMPORTANT: Make sure Xcode’s Command Line Tools are installed
-$ sudo xcode-select —install
+$ sudo xcode-select --install
 
 # IMPORTANT: Also make sure we’ve accepted the Xcode EULA
 $ sudo xcodebuild -license
@@ -96,7 +93,7 @@ $ cd ..
 $ appc new --type app --name MyApp --id com.example.MyApp
 ```
 
-Modify `MyNewApp/tiapp.xml` to include PSPDFKit as a module, and to define iOS 11 as the minimum iOS version:
+Modify `MyApp/tiapp.xml` to include PSPDFKit as a module, and to define iOS 11 as the minimum iOS version:
 
 ```diff
 <ti:app xmlns:ti="http://ti.appcelerator.org">
@@ -104,7 +101,7 @@ Modify `MyNewApp/tiapp.xml` to include PSPDFKit as a module, and to define iOS 1
 +   <min-ios-ver>11.0</min-ios-ver>
   </ios>
   <modules>
-+   <module platform="iphone">com.pspdfkit</module>
++   <module version="9.2.1" platform="iphone">com.pspdfkit</module>
   </modules>
 </ti:app>
 ```
@@ -113,25 +110,40 @@ And integrate the PSPDFKit example into the new application:
 
 ```bash
 # Rename the app folder to avoid using the Alloy framework for now
-$ mv MyNewApp/app MyNewApp/__app
+$ mv MyApp/app MyApp/__app
 
 # Copy the PSPDFKit example into place
-$ cp Appcelerator-iOS/example/* MyNewApp/Resources/
+$ cp -R Appcelerator-iOS/example/ MyApp/Resources/
 ```
 
-To run the application from the CLI, manually launch a Simulator.app instance, and from the Hardware menu, select a device to launch (`Hardware Menu/Device/iOS 13.3/iPhone 8`, for instance). Then get the UUID for the simulator you’ve launched:
+Open `MyApp/Resources/app.js` and update your license key, which you can retrieve from the [Customer Portal](https://customers.pspdfkit.com/customers/sign_in):
+
+```diff
+// You need to activate your PSPDFKit before you can use it.
+// Follow the instructions in the email you get after licensing the framework.
+- pspdfkit.setLicenseKey("LICENSE_KEY_GOES_HERE");
++ pspdfkit.setLicenseKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+```
+
+**To run the application** from the CLI, manually launch a Simulator.app instance, and from the Hardware menu, select a device to launch (`Hardware Menu/Device/iOS 13.3/iPhone 8`, for instance). Then get the UUID for the simulator you’ve launched:
 
 ```bash
-# List the available simulators and 
+# List the booted simulators
 $ xcrun simctl list devices | grep Booted
-    iPhone 8 (**60FDA403-8D0B-40A4-BBE5-662C045A6A97**) (Booted)
+    iPhone 8 (60FDA403-8D0B-40A4-BBE5-662C045A6A97) (Booted)
 ```
 
-Copy the UUID for the device (bold in the sample above), then run the app on it:
+Copy the UUID for the device, then run the app on it:
 
 ```bash
+# Move to the app directory
+$ cd MyApp
+
+# And run the app on the device
 $ appc run --platform ios -l trace --device-id 60FDA403-8D0B-40A4-BBE5-662C045A6A97
 ```
+
+> The `-l trace` option is not required, but its useful to get more information should something go wrong with the installation.
 
 ## Using the PSPDFKit Module
 

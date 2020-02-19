@@ -192,8 +192,8 @@ If you get the above build error when running the project, you likely forgot to 
 If you have multiple versions of the Titanium SDK installed on your system, you'll need to also modify the `titanium.xcconfig` configuration file to set the correct version number:
 
 ```diff
-- TITANIUM_SDK_VERSION = 8.0.1.GA
-+ TITANIUM_SDK_VERSION = 8.3.0.GA
+- TITANIUM_SDK_VERSION = 8.3.0.GA
++ TITANIUM_SDK_VERSION = 8.3.1.GA
 ```
 
 #### Alloy

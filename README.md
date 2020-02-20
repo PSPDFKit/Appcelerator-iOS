@@ -4,16 +4,16 @@ PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.2.2 
 
 ## Getting Started Step by Step Guide
 
-> **Note:** Read the [Alloy](#alloy) section before building the module if you're using the Alloy framework.
+> **Note:** Read the [Alloy](#alloy) section before building the module if you’re using the Alloy framework.
 
 This uses the Appcelerator CLI, not Appcelerator Studio, and assumes Xcode 11.3.1 is installed as default.
 
-#### Configuring the Environment
+### Configuring the Environment
 
-First, let's make sure we properly prepare our global environment.
+First, let’s make sure we properly prepare our global environment:
 
 ```bash
-# Make sure Xcode’s Command Line Tools are installed.
+# Make sure that the Xcode Command Line Tools are installed.
 $ sudo xcode-select --install
 
 # Also make sure we’ve accepted the Xcode EULA.
@@ -23,7 +23,7 @@ $ sudo xcodebuild -license
 $ gem install cocoapods
 ```
 
-Then, let's clone the plugin.
+Then, let’s clone the plugin:
 
 ```bash
 # Move to the workspace.
@@ -33,7 +33,7 @@ $ cd ~/path/to/workspace/
 $ git clone https://github.com/PSPDFKit/Appcelerator-iOS.git
 ```
 
-After that, let's install Appcelerator tools.
+After that, let’s install the Appcelerator tools:
 
 ```bash
 # Move to the plugin directory.
@@ -48,13 +48,13 @@ $ npm install appcelerator titanium
 # Run through the basic Appcelerator setup. Requires you to log in.
 $ appc setup
 
-# Install the latest appcelerator (if it doesn't exist already).
+# Install the latest appcelerator (if it isn’t already).
 $ appc use 7.1.2
 ```
 
 You can also run `appc use` to list all available versions for Appcelerator. If some of the following steps fail, please try with an older version of appcelerator, such as 7.0.12: `appc use 7.0.12`.
 
-#### Building the PSPDFKit Module
+### Building the PSPDFKit Module
 
 From inside the plugin directory, modify `Podfile` to include your CocoaPods key for PSPDFKit, which you can retrieve from the [Customer Portal](https://customers.pspdfkit.com/customers/sign_in):
 
@@ -85,7 +85,7 @@ Unzip the result into the Titanium folder:
 $ unzip ./dist/com.pspdfkit-iphone-9.2.2.zip -d ~/Library/Application\ Support/Titanium
 ```
 
-#### Using the PSPDFKit Plugin
+### Using the PSPDFKit Plugin
 
 Once we’ve installed the dependencies, and built the PSPDFKit plugin, we can now create a new app using the CLI:
 
@@ -132,7 +132,7 @@ Open `MyApp/Resources/app.js` and update your license key, which you can retriev
 **To run the application** from the CLI, manually launch a Simulator.app instance, and from the Hardware menu, select a device to launch (`Hardware Menu/Device/iOS 13.3/iPhone 8`, for instance). Then get the UUID for the simulator you’ve launched:
 
 ```bash
-# List the booted simulators
+# List the booted simulators.
 $ xcrun simctl list devices | grep Booted
     iPhone 8 (60FDA403-8D0B-40A4-BBE5-662C045A6A97) (Booted)
 ```
@@ -170,11 +170,11 @@ const pdfView = PSPDFKit.createView({
 
 ## Troubleshooting
 
-#### 'PSPDFKit.h' file not found
+### 'PSPDFKit.h' file not found
 
-If `PSPDFKit.h` can't be found you need to add the directory that contains `PSPDFKit.h` to the "Header Search Paths" build setting in the Xcode project (`PSPDFKit-Titanium.xcodeproj`). The correct directories are `$(SRCROOT)/PSPDFKit.framework/Headers` and `$(SRCROOT)/PSPDFKitUI.framework/Headers` (recursive).
+If `PSPDFKit.h` can’t be found you need to add the directory that contains `PSPDFKit.h` to the "Header Search Paths" build setting in the Xcode project (`PSPDFKit-Titanium.xcodeproj`). The correct directories are `$(SRCROOT)/PSPDFKit.framework/Headers` and `$(SRCROOT)/PSPDFKitUI.framework/Headers` (recursive).
 
-#### Build error
+### Build error
 
 ```bash
 [ERROR] :  ** BUILD FAILED **
@@ -183,7 +183,7 @@ If `PSPDFKit.h` can't be found you need to add the directory that contains `PSPD
 [ERROR] :  (1 failure)
 ```
 
-If you get the above build error when running the project, you likely forgot to include the PSPDFKit module in the `tiapp.xml`:
+If you get the above build error when running the project, it’s likely because the PSPDFKit module was not included in your project’s `tiapp.xml`:
 
 ```xml
   <modules>
@@ -191,16 +191,16 @@ If you get the above build error when running the project, you likely forgot to 
   </modules>
 ```
 
-#### Using the correct version of Titanium
+### Using the correct version of Titanium
 
-If you have multiple versions of the Titanium SDK installed on your system, you'll need to also modify the `titanium.xcconfig` configuration file to set the correct version number:
+If you have multiple versions of the Titanium SDK installed on your system, you’ll need to also modify the `titanium.xcconfig` configuration file to set the correct version number:
 
 ```diff
 - TITANIUM_SDK_VERSION = 8.3.0.GA
 + TITANIUM_SDK_VERSION = 8.3.1.GA
 ```
 
-#### Alloy
+### Alloy
 
 Alloy overwrites all files in the `Resources` folder everytime the application is built. This means you need to copy `PSPDFKit.framework` and `PSPDFKitUI.framework` into a different folder than the default `Resources/iphone`, for example `Frameworks`. You also need to do the following before building the module:
 

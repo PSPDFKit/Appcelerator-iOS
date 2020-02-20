@@ -1,6 +1,6 @@
 # PSPDFKit for iOS Appcelerator Bindings
 
-PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.2.1 for iOS needs at least Xcode 11.3.1 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)). 
+PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.2.2 for iOS needs at least Xcode 11.3.1 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)). 
 
 ## Getting Started Step by Step Guide
 
@@ -78,7 +78,7 @@ $ ti build -p ios --build-only
 Unzip the result into the Titanium folder:
  
 ```bash
-$ unzip ./dist/com.pspdfkit-iphone-9.2.1.zip -d ~/Library/Application\ Support/Titanium
+$ unzip ./dist/com.pspdfkit-iphone-9.2.2.zip -d ~/Library/Application\ Support/Titanium
 ```
 
 #### Using the PSPDFKit Plugin
@@ -101,7 +101,7 @@ Modify `MyApp/tiapp.xml` to include PSPDFKit as a module, and to define iOS 11 a
 +   <min-ios-ver>11.0</min-ios-ver>
   </ios>
   <modules>
-+   <module version="9.2.1" platform="iphone">com.pspdfkit</module>
++   <module version="9.2.2" platform="iphone">com.pspdfkit</module>
   </modules>
 </ti:app>
 ```

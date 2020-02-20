@@ -28,3 +28,4 @@ PSPDFKit.framework
 PSPDFKitUI.framework
 
 metadata.json
+Podfile.lock

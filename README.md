@@ -1,6 +1,6 @@
 # PSPDFKit for iOS Appcelerator Bindings
 
-PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.2.2 for iOS needs at least Xcode 11.3.1 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)).
+PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.3.0 for iOS needs at least Xcode 11.4 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)).
 
 ## Getting Started Step by Step Guide
 
@@ -49,10 +49,10 @@ $ npm install appcelerator titanium
 $ appc setup
 
 # Install the latest appcelerator (if it isn’t already).
-$ appc use 7.1.2
+$ appc use 8.0.0
 ```
 
-You can also run `appc use` to list all available versions for Appcelerator. If some of the following steps fail, please try with an older version of appcelerator, such as 7.0.12: `appc use 7.0.12`.
+You can also run `appc use` to list all available versions for Appcelerator. If some of the following steps fail, please try with an older version of appcelerator, such as 7.1.2: `appc use 7.0.12`.
 
 ### Building the PSPDFKit Module
 
@@ -76,13 +76,13 @@ Once you’ve done that, you can now install the dependencies and builld the plu
 $ pod install
 
 # Build the Plugin.
-$ ti build --platform ios --build-only
+$ appc ti build --platform ios --build-only
 ```
 
 Unzip the result into the Titanium folder:
 
 ```bash
-$ unzip ./dist/com.pspdfkit-iphone-9.2.2.zip -d ~/Library/Application\ Support/Titanium
+$ unzip ./dist/com.pspdfkit-iphone-9.3.0.zip -d ~/Library/Application\ Support/Titanium
 ```
 
 ### Using the PSPDFKit Plugin
@@ -105,7 +105,7 @@ Modify `MyApp/tiapp.xml` to include PSPDFKit as a module, and to define iOS 11 a
 +   <min-ios-ver>11.0</min-ios-ver>
   </ios>
   <modules>
-+   <module version="9.2.2" platform="iphone">com.pspdfkit</module>
++   <module version="9.3.0" platform="iphone">com.pspdfkit</module>
   </modules>
 </ti:app>
 ```
@@ -144,10 +144,10 @@ Copy the UUID for the device, then run the app on it:
 $ cd MyApp
 
 # And run the app on the device.
-$ ti build --platform ios --device-id 60FDA403-8D0B-40A4-BBE5-662C045A6A97
+$ appc ti build --platform ios --device-id 60FDA403-8D0B-40A4-BBE5-662C045A6A97
 ```
 
-> Should something go wrong with the installation, prefix the command with `DEBUG=*` (like `DEBUG=* ti build...`) to enable verbose mode and get more information.
+> Should something go wrong with the installation, prefix the command with `DEBUG=*` (like `DEBUG=* appc ti build...`) to enable verbose mode and get more information.
 
 ## Using the PSPDFKit Module
 
@@ -196,8 +196,8 @@ If you get the above build error when running the project, it’s likely because
 If you have multiple versions of the Titanium SDK installed on your system, you’ll need to also modify the `titanium.xcconfig` configuration file to set the correct version number:
 
 ```diff
-- TITANIUM_SDK_VERSION = 8.3.0.GA
-+ TITANIUM_SDK_VERSION = 8.3.1.GA
+- TITANIUM_SDK_VERSION = 8.3.1.GA
++ TITANIUM_SDK_VERSION = 9.0.0.GA
 ```
 
 ### Alloy

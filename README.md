@@ -52,7 +52,7 @@ $ appc setup
 $ appc use 8.0.0
 ```
 
-You can also run `appc use` to list all available versions for Appcelerator. If some of the following steps fail, please try with an older version of appcelerator, such as 7.1.2: `appc use 7.0.12`.
+You can also run `appc use` to list all available versions for Appcelerator. If some of the following steps fail, please try with an older version of appcelerator, such as 7.1.2: `appc use 7.1.2`.
 
 ### Building the PSPDFKit Module
 

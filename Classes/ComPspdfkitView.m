@@ -75,14 +75,51 @@
     }
 }
 
-- (UIViewController *)pspdf_closestViewController {
-    UIResponder *responder = self;
+- (UIViewController *)closestViewControllerOfView:(UIView *)view {
+    UIResponder *responder = view;
     while ((responder = [responder nextResponder])) {
-        if ([responder isKindOfClass:UIViewController.class]) break;
+        if ([responder isKindOfClass:UIViewController.class]) {
+            break;
+        }
     }
     return (UIViewController *)responder;
 }
 
+/// This is a band-aid for Titanium not setting up the view controller hierarchy
+/// correctly. If a view controller is detached, we will run into various issues
+/// with view controller management and presentation. This can be removed once
+/// https://github.com/appcelerator/titanium_mobile/issues/11651 is fixed.
+- (void)fixContainmentAmongAncestorsOfViewController:(UIViewController *)viewController {
+    // Make sure that the root view controller is owned by Titanium.
+    Class rootViewControllerClass = NSClassFromString(@"TiRootViewController");
+    UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    if (rootViewControllerClass == Nil || rootViewController == nil || ![rootViewController isKindOfClass:rootViewControllerClass]) {
+        return;
+    }
+    // Find the detached view controller.
+    UIViewController *detachedViewController = viewController;
+    while (detachedViewController.parentViewController != nil) {
+        detachedViewController = detachedViewController.parentViewController;
+    }
+    // Root view controller is allowed to be detached. If we reach this, it means
+    // that the view controller hierarchy is good or that we fixed it already.
+    if (detachedViewController == rootViewController) {
+        return;
+    }
+    // Find the closest parent view controller of the detached view controler.
+    // This needs to be called on detached view controller's superview, as _it_
+    // is the closest view controller of its own view.
+    UIViewController *closestParentViewController = [self closestViewControllerOfView:detachedViewController.view.superview];
+    if (closestParentViewController == nil) {
+        return;
+    }
+    // Fix the containment by properly attaching the detached view controller.
+    NSLog(@"Fixing view controller containment by adding %@ as a child of %@.", detachedViewController, rootViewController);
+    [detachedViewController willMoveToParentViewController:closestParentViewController];
+    [closestParentViewController addChildViewController:detachedViewController];
+    // Run this again until we reach root view controller.
+    [self fixContainmentAmongAncestorsOfViewController:closestParentViewController];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -101,12 +138,12 @@
 
 - (void)didMoveToWindow {
     [super didMoveToWindow];
-    
-    UIViewController *controller = [self pspdf_closestViewController];
+    UIViewController *controller = [self closestViewControllerOfView:self];
     if (controller) {
         if (self.window) {
             [controller addChildViewController:self.navController];
             [self.navController didMoveToParentViewController:controller];
+            [self fixContainmentAmongAncestorsOfViewController:controller];
         } else {
             [self destroyViewControllerRelationship];
         }

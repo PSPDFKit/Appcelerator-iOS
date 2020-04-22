@@ -17,15 +17,23 @@ DerivedData
 *.hmap
 *.xccheckout
 
-#CocoaPods
+# CocoaPods
 Pods
-.build
-build
-com.pspdfkit*
-PSPDFKit
+Podfile.lock
 
+# Build Artifacts
+build
+.build
+
+# PSPDFKit Binaries
 PSPDFKit.framework
 PSPDFKitUI.framework
 
+# Appcelerator Artifacts
+com.pspdfkit*
 metadata.json
-Podfile.lock
+
+# Node.js
+.nvmrc
+package-lock.json
+node_modules

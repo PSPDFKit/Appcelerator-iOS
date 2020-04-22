@@ -1,12 +1,12 @@
 # PSPDFKit for iOS Appcelerator Bindings
 
-PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.3.0 for iOS needs at least Xcode 11.4 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)).
+PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.3.0 for iOS needs at least Xcode 11.4.1 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)).
 
 ## Getting Started Step by Step Guide
 
 > **Note:** Read the [Alloy](#alloy) section before building the module if you’re using the Alloy framework.
 
-This uses the Appcelerator CLI, not Appcelerator Studio, and assumes Xcode 11.3.1 is installed as default.
+This uses the Appcelerator CLI, not Appcelerator Studio, and assumes Xcode 11.4.1 is installed as default.
 
 ### Configuring the Environment
 
@@ -39,8 +39,8 @@ After that, let’s install the Appcelerator tools:
 # Move to the plugin directory.
 $ cd Appcelerator-iOS/
 
-# Make sure we’re using Node 8.
-$ nvm use 8
+# Make sure we’re using Node 12.
+$ nvm use 12
 
 # Install Appcelerator and Titanium CLIs.
 $ npm install appcelerator titanium
@@ -48,8 +48,12 @@ $ npm install appcelerator titanium
 # Run through the basic Appcelerator setup. Requires you to log in.
 $ appc setup
 
-# Install the latest appcelerator (if it isn’t already).
+# Install and select the latest supported Appcelerator version.
 $ appc use 8.0.0
+
+# Install and select the latest supported Titanium SDK version.
+$ titanium sdk install 9.0.0.GA
+$ titanium sdk select 9.0.0.GA
 ```
 
 You can also run `appc use` to list all available versions for Appcelerator. If some of the following steps fail, please try with an older version of appcelerator, such as 7.1.2: `appc use 7.1.2`.
@@ -64,8 +68,8 @@ platform :ios, '11.0'
 use_frameworks!
 
 target :pspdfkit do
--  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/cocoapods/YOUR_COCOAPODS_KEY_GOES_HERE/pspdfkit/latest.podspec'
-+  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/cocoapods/XXXXXXXXXXXXXXXXXXXXXXXXXXXX/pspdfkit/latest.podspec'
+-  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/cocoapods/YOUR_COCOAPODS_KEY_GOES_HERE/pspdfkit/9.3.0.podspec'
++  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/cocoapods/XXXXXXXXXXXXXXXXXXXXXXXXXXXX/pspdfkit/9.3.0.podspec'
 end
 ```
 
@@ -129,7 +133,7 @@ Open `MyApp/Resources/app.js` and update your license key, which you can retriev
 + pspdfkit.setLicenseKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 ```
 
-**To run the application** from the CLI, manually launch a Simulator.app instance, and from the Hardware menu, select a device to launch (`Hardware Menu/Device/iOS 13.3/iPhone 8`, for instance). Then get the UUID for the simulator you’ve launched:
+**To run the application** from the CLI, manually launch Simulator.app, and select a device to launch (File → Open Device → iOS 13.4 → iPhone 8, for instance). Then grab the UDID for the simulator you’ve launched:
 
 ```bash
 # List the booted simulators.
@@ -137,15 +141,17 @@ $ xcrun simctl list devices | grep Booted
     iPhone 8 (60FDA403-8D0B-40A4-BBE5-662C045A6A97) (Booted)
 ```
 
-Copy the UUID for the device, then run the app on it:
+Copy the UDID for the device, then run the app on it:
 
 ```bash
 # Move to the app directory.
 $ cd MyApp
 
-# And run the app on the device.
-$ appc ti build --platform ios --device-id 60FDA403-8D0B-40A4-BBE5-662C045A6A97
+# And run the app on the device whose UDID you grabbed in the previous step.
+$ titanium build --platform ios --device-id 60FDA403-8D0B-40A4-BBE5-662C045A6A97
 ```
+
+Alternatively, you can pass an empty device UDID to the above command, in which case it will list all available run destinations and will ask you to choose one.
 
 > Should something go wrong with the installation, prefix the command with `DEBUG=*` (like `DEBUG=* appc ti build...`) to enable verbose mode and get more information.
 

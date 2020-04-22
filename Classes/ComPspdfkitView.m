@@ -114,7 +114,7 @@
         return;
     }
     // Fix the containment by properly attaching the detached view controller.
-    NSLog(@"Fixing view controller containment by adding %@ as a child of %@.", detachedViewController, rootViewController);
+    NSLog(@"Fixing view controller containment by adding %@ as a child of %@.", detachedViewController, closestParentViewController);
     [detachedViewController willMoveToParentViewController:closestParentViewController];
     [closestParentViewController addChildViewController:detachedViewController];
     // Run this again until we reach root view controller.

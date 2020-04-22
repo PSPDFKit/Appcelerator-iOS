@@ -1,12 +1,12 @@
 # PSPDFKit for iOS Appcelerator Bindings
 
-PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.3.0 for iOS needs at least Xcode 11.4 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)).
+PSPDFKit - The Leading Mobile PDF Framework for iOS and Android. PSPDFKit 9.3.0 for iOS needs at least Xcode 11.4.1 or higher and supports iOS 11 ([read more](https://pspdfkit.com/guides/ios/current/announcements/version-support/)).
 
 ## Getting Started Step by Step Guide
 
 > **Note:** Read the [Alloy](#alloy) section before building the module if you’re using the Alloy framework.
 
-This uses the Appcelerator CLI, not Appcelerator Studio, and assumes Xcode 11.4 is installed as default.
+This uses the Appcelerator CLI, not Appcelerator Studio, and assumes Xcode 11.4.1 is installed as default.
 
 ### Configuring the Environment
 

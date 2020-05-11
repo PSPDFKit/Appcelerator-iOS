@@ -2,7 +2,7 @@
 //  PSPDFUtils.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2018 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,7 +11,6 @@
 //
 
 #import "PSPDFUtils.h"
-#import "TiUtils.h"
 
 @implementation PSPDFUtils
 
@@ -111,7 +110,7 @@
             else if ([key.lowercaseString hasSuffix:@"size"] && [value isKindOfClass:NSArray.class] && [value count] == 2) {
                 value = [NSValue valueWithCGSize:CGSizeMake([[value objectAtIndex:0] floatValue], [[value objectAtIndex:1] floatValue])];
             }
-            
+
             else if ([key isEqual:@"navBarHidden"]) {
                 // handled in -[ComPspdfkitView createControllerProxy]
                 return;
@@ -211,7 +210,7 @@
 
 + (NSString *)resolvePath:(NSString *)filePath {
     if (![filePath isKindOfClass:NSString.class]) return nil;
-    
+
     // If this is a full path; don't try to replace any parts.
     if (filePath.isAbsolutePath) {
         return PSFixIncorrectPath(filePath);

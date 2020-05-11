@@ -2,7 +2,7 @@
 //  TIPSPDFViewControllerProxy.h
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2018 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,11 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "TiProxy.h"
-#import "TiModule.h"
-
-#import <PSPDFKit/PSPDFKit.h>
 #import <PSPDFKitUI/PSPDFKitUI.h>
+#import <TitaniumKit/TitaniumKit.h>
 
 @class TIPSPDFViewController, ComPspdfkitModule, ComPspdfkitViewProxy;
 
@@ -61,7 +58,7 @@
 /// Opens the PSPDFBrightnessViewController
 - (void)showBrightnessView:(id)arg;
 
-/// Opens the UIPrintInteractionController 
+/// Opens the UIPrintInteractionController
 - (void)showPrintView:(id)arg;
 
 /// Opens the MFMailComposeViewController

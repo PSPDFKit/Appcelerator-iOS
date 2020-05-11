@@ -2,7 +2,7 @@
 //  ComPspdfkitView.h
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2018 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,8 +10,10 @@
 //  This notice may not be removed from this file.
 //
 
-#import "TIPSPDFViewControllerProxy.h"
-#import "TiUIViewProxy.h"
+#import <PSPDFKitUI/PSPDFKitUI.h>
+#import <TitaniumKit/TitaniumKit.h>
+
+@class TIPSPDFViewControllerProxy;
 
 @interface ComPspdfkitView : TiUIView
 @property (nonatomic) TIPSPDFViewControllerProxy *controllerProxy;

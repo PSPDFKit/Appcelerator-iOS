@@ -2,7 +2,7 @@
 //  PSPDFUtils.h
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2018 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,17 +10,10 @@
 //  This notice may not be removed from this file.
 //
 
-#import <PSPDFKit/PSPDFKit.h>
 #import <PSPDFKitUI/PSPDFKitUI.h>
+#import <TitaniumKit/TitaniumKit.h>
 
 @class PSPDFDocument;
-
-// Compiler-checked selectors and performance optimized at runtime.
-#if DEBUG
-#define PROPERTY(property) NSStringFromSelector(@selector(property))
-#else
-#define PROPERTY(property) @#property
-#endif
 
 FOUNDATION_EXTERN void (^pst_targetActionBlock(id target, SEL action))(id);
 

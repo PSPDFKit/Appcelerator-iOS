@@ -2,7 +2,7 @@
 //  TIPSPDFViewController.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2018 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,8 +11,9 @@
 //
 
 #import "TIPSPDFViewController.h"
-#import "TIPSPDFViewControllerProxy.h"
+
 #import "ComPspdfkitModule.h"
+#import "TIPSPDFViewControllerProxy.h"
 #import <objc/runtime.h>
 
 @interface PSPDFViewController (Internal)

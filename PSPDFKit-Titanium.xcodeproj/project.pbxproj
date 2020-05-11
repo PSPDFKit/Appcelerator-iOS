@@ -72,7 +72,6 @@
 			children = (
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
-				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
 			);
 			indentWidth = 4;
@@ -80,13 +79,6 @@
 			sourceTree = "<group>";
 			tabWidth = 4;
 			usesTabs = 0;
-		};
-		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
 		};
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
@@ -166,7 +158,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1140;
-				ORGANIZATIONNAME = "Peter Steinberger";
+				ORGANIZATIONNAME = "PSPDFKit GmbH";
 			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "PSPDFKit-Titanium" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -225,7 +217,6 @@
 		};
 		1DEB922308733DC00010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -268,7 +259,6 @@
 		};
 		78A35E41149F55240039CE92 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;

@@ -362,21 +362,6 @@ async function versionsCommand(argv) {
 
 }
 
-async function titaniumSdkVersionCommand(argv) {
-
-    // Load the manifest file and look for `minsdk` key in it.
-
-    let manifestContents = fs.readFileSync(path.resolve(__dirname, "../", "manifest"), "utf-8")
-    let titaniumVersionMatch = manifestContents.match(/minsdk: (.+)\n/)
-
-    if (!_.isNull(titaniumVersionMatch) && titaniumVersionMatch.length == 2) {
-        console.log(titaniumVersionMatch[1])
-    } else {
-        process.exit(1)
-    }
-
-}
-
 // Helpers.
 
 /**
@@ -486,11 +471,6 @@ yargs
             console.error(chalk.red(`Run this command again with '--verbose' to enable additional logging.`))
             process.exit(1)
         }
-    })
-    .command({
-        command: "info",
-        describe: "Required Titanium SDK version.",
-        handler: titaniumSdkVersionCommand,
     })
     .demandCommand()
     .help("help", "Show help for the given command.")

@@ -1,39 +1,33 @@
-# Xcode
+# MacOS boilerplate.
 .DS_Store
-*/build/*
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
+.Trashes
+.localized
+
+# Xcode boilerplate.
 xcuserdata
-profile
-*.moved-aside
-DerivedData
-.idea/
-*.hmap
+*.pbxuser
 *.xccheckout
+*.xcuserstate
 
-# CocoaPods
-Pods
-Podfile.lock
-
-# Build Artifacts
+# Build artifacts.
 build
-.build
-
-# PSPDFKit Binaries
-PSPDFKit.framework
-PSPDFKitUI.framework
-
-# Appcelerator Artifacts
-com.pspdfkit*
+dist
 metadata.json
+module.xcconfig
+platform
+Podfile
+Podfile.lock
+Pods
+titanium.xcconfig
 
-# Node.js
+# Do not ignore templates.
+!scripts/templates/*
+
+# Node.js artifacts.
 .nvmrc
 package-lock.json
 node_modules
+
+# PSPDFKit binaries.
+PSPDFKit.framework
+PSPDFKitUI.framework

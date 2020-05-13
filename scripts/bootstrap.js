@@ -168,7 +168,7 @@ async function buildCommand(argv) {
     // integrate targets so it won't mess up the Xcode project.
 
     try {
-        await spawn("pod", ["install", "--no-ansi", "--verbose"], spawnOptions)
+        await spawn("pod", ["install", `--project-directory=${srcroot}`, "--no-ansi", "--verbose"], spawnOptions)
     } catch (error) {
         console.error(chalk.red(`Failed to download PSPDFKit binaries.`))
         console.error(chalk.red(`Please make sure that your key is correct and that you have Internet connection.`))
@@ -263,7 +263,7 @@ async function buildCommand(argv) {
     // the prompt, so we also reset the ANSI escape codes just in case.
 
     try {
-        await spawn(titaniumBin, ["build", "--build-only", "--platform", "ios", "--sdk", titaniumVersion, "--log-level", "trace", "--no-banner", "--no-progress-bars", "--no-prompts"], spawnOptions)
+        await spawn(titaniumBin, ["build", "--project-dir", srcroot, "--build-only", "--platform", "ios", "--sdk", titaniumVersion, "--log-level", "trace", "--no-banner", "--no-progress-bars", "--no-prompts"], spawnOptions)
         process.stdout.write(chalk.reset())
     } catch (error) {
         console.error(chalk.red("Failed to build PSPDFKit Titanium module."))

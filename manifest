@@ -7,7 +7,7 @@
 #  This notice may not be removed from this file.
 #
 
-# The following values will be replaced during installation.
+# The following values will be used by the build script.
 
 version: 9.3.3
 minsdk: 9.0.1.GA

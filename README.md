@@ -200,7 +200,7 @@ If you're unable to install Titanium or Appcelerator CLI globally using `npm ins
 # Use the locally installed Titanium CLI binary.
 $ npx titanium --help
 
-# Use the localy installed Appcelerator CLI binary.
+# Use the locally installed Appcelerator CLI binary.
 $ npx appc --help
 ```
 

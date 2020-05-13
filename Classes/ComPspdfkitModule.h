@@ -2,18 +2,16 @@
 //  ComPspdfkitModule.h
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2018 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
 //
-//  Appcelerator Titanium is Copyright (c) 2009-2014 by Appcelerator, Inc.
-//  and licensed under the Apache Public License (version 2)
-//
 
-#import "TiModule.h"
+#import <PSPDFKitUI/PSPDFKitUI.h>
+#import <TitaniumKit/TitaniumKit.h>
 
 /// PSPDFKit Titanium Bridge.
 @interface ComPspdfkitModule : TiModule

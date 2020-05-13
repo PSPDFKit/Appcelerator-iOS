@@ -1,0 +1,19 @@
+#
+#  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
+#
+#  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+#  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+#  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+#  This notice may not be removed from this file.
+#
+
+platform :ios, "11.0"
+use_frameworks!
+
+install! "cocoapods", {
+  integrate_targets: false
+}
+
+target "PSPDFKit" do
+    pod "PSPDFKit", podspec: "https://customers.pspdfkit.com/cocoapods/<%= key %>/pspdfkit/<%= version %>.podspec"
+end

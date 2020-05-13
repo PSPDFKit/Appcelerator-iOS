@@ -1,7 +1,4 @@
 //
-//  TIPSPDFAnnotationProxy.h
-//  PSPDFKit-Titanium
-//
 //  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
@@ -10,15 +7,5 @@
 //  This notice may not be removed from this file.
 //
 
-#import <PSPDFKitUI/PSPDFKitUI.h>
-#import <TitaniumKit/TitaniumKit.h>
-
-@interface TIPSPDFAnnotationProxy : TiProxy
-
-/// Initializes annotation proxy.
-- (instancetype)initWithAnnotation:(PSPDFAnnotation *)annotation;
-
-/// Link if target is a website.
-@property (nonatomic, readonly) NSString *siteLinkTarget;
-
-@end
+TITANIUM_SDK = <%= titanium_sdkroot %>
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$(TITANIUM_SDK)/iphone/Frameworks"

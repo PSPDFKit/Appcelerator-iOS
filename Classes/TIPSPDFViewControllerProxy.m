@@ -2,7 +2,7 @@
 //  TIPSPDFViewControllerProxy.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2018 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,13 +11,11 @@
 //
 
 #import "TIPSPDFViewControllerProxy.h"
-#import "TIPSPDFViewController.h"
+
 #import "ComPspdfkitModule.h"
-#import "TiUtils.h"
-#import "TiApp.h"
-#import "TiBase.h"
-#import "PSPDFUtils.h"
 #import "ComPspdfkitViewProxy.h"
+#import "PSPDFUtils.h"
+#import "TIPSPDFViewController.h"
 #import <objc/runtime.h>
 
 #define PSC_SILENCE_CALL_TO_UNKNOWN_SELECTOR(expression) \
@@ -141,7 +139,7 @@ void (^tipspdf_targetActionBlock(id target, SEL action))(id) {
 
 - (void)setEditableAnnotationTypes:(id)arg {
     ENSURE_UI_THREAD(setEditableAnnotationTypes, arg);
-    
+
     NSMutableSet *editableAnnotationTypes = [NSMutableSet set];
     if ([arg isKindOfClass:NSArray.class]) {
         for (__strong NSString *item in arg) {
@@ -424,7 +422,7 @@ _Pragma("clang diagnostic pop")
         processed = [retVal boolValue];
         PSCLog(@"retVal: %d", processed);
     }
-    
+
     if ([[self eventProxy] _hasListeners:@"didTapOnAnnotation"]) {
         [[self eventProxy] fireEvent:@"didTapOnAnnotation" withObject:eventDict];
     }

@@ -1,18 +1,28 @@
 #
-# this is your module manifest and used by Titanium
-# during compilation, packaging, distribution, etc.
+#  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
 #
-version: 9.3.2
+#  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+#  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+#  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+#  This notice may not be removed from this file.
+#
+
+# The following values will be replaced during installation.
+
+version: 9.3.3
+minsdk: 9.0.1.GA
+
+# Do not edit the below lines.
+
+name: PSPDFKit
 description: PSPDFKit Titanium Module
 author: PSPDFKit GmbH
+
 license: Commercial, see www.PSPDFKit.com
 copyright: Copyright (c) 2010-2020 by PSPDFKit GmbH
 
+platform: iphone
+architectures: x86_64 arm64
 
-# these should not be edited
-name: PSPDFKit
 moduleid: com.pspdfkit
 guid: 3056f4e3-4ee6-4cf3-8417-1d8b8f95853c0
-platform: iphone
-minsdk: 9.0.1.GA
-architectures: x86_64 arm64

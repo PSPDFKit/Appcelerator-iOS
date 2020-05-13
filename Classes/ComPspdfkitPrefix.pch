@@ -1,5 +1,5 @@
 //
-//  TIPSPDFAnnotationProxy.h
+//  ComPspdfkitPrefix.pch
 //  PSPDFKit-Titanium
 //
 //  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
@@ -10,15 +10,16 @@
 //  This notice may not be removed from this file.
 //
 
-#import <PSPDFKitUI/PSPDFKitUI.h>
-#import <TitaniumKit/TitaniumKit.h>
+#import <UIKit/UIKit.h>
 
-@interface TIPSPDFAnnotationProxy : TiProxy
+// HACK: Titanium defines this macro, JavaScriptCore does as well.
+#ifdef JSC_OBJC_API_ENABLED
+#undef JSC_OBJC_API_ENABLED
+#endif
 
-/// Initializes annotation proxy.
-- (instancetype)initWithAnnotation:(PSPDFAnnotation *)annotation;
-
-/// Link if target is a website.
-@property (nonatomic, readonly) NSString *siteLinkTarget;
-
-@end
+//#define kPSCLogEnabled
+#ifdef kPSCLogEnabled
+#define PSCLog(fmt, ...) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define PSCLog(...)
+#endif

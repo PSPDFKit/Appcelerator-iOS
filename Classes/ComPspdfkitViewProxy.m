@@ -2,7 +2,7 @@
 //  ComPspdfkitViewProxy.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2018 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,6 +11,7 @@
 //
 
 #import "ComPspdfkitViewProxy.h"
+
 #import "ComPspdfkitView.h"
 #import "TIPSPDFViewController.h"
 #import "TIPSPDFViewControllerProxy.h"
@@ -50,7 +51,7 @@ _Pragma("clang diagnostic pop") \
 - (void)viewDidAttach {
     PSPDF_ENSURE_UI_THREAD_0_ARGS
     PSTiLog(@"viewDidAttach: %@ %@", [self pdfView], [[self pdfView] controllerProxy]);
-    
+
     self.controllerProxy = [[self pdfView] controllerProxy];
     self.controllerProxy.viewProxy = self; // register viewProxy
 }

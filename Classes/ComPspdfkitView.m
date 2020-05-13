@@ -2,7 +2,7 @@
 //  ComPspdfkitView.m
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2018 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,8 +11,10 @@
 //
 
 #import "ComPspdfkitView.h"
-#import "TIPSPDFViewController.h"
+
 #import "PSPDFUtils.h"
+#import "TIPSPDFViewController.h"
+#import "TIPSPDFViewControllerProxy.h"
 #import <libkern/OSAtomic.h>
 
 @interface ComPspdfkitView ()
@@ -26,7 +28,7 @@
 
 - (void)createControllerProxy {
     PSTiLog(@"createControllerProxy");
-    
+
     if (!_controllerProxy) { // self triggers creation
         NSArray *pdfPaths = [PSPDFUtils resolvePaths:[self.proxy valueForKey:@"filename"]];
         NSMutableArray<PSPDFCoordinatedFileDataProvider *> *dataProviders = [NSMutableArray array];
@@ -48,11 +50,11 @@
         [PSPDFUtils applyOptions:[self.proxy valueForKey:@"documentOptions"] onObject:pdfDocument];
 
         // default-hide close button
-        if (![self.proxy valueForKey:@"options"][PROPERTY(leftBarButtonItems)]) {
+        if (![self.proxy valueForKey:@"options"][@"leftBarButtonItems"]) {
             pdfController.navigationItem.leftBarButtonItems = @[];
         }
-        
-        const BOOL navBarHidden = [[self.proxy valueForKey:@"options"][PROPERTY(navBarHidden)] boolValue];
+
+        const BOOL navBarHidden = [[self.proxy valueForKey:@"options"][@"navBarHidden"] boolValue];
 
         // Encapsulate controller into proxy.
         self.controllerProxy = [[TIPSPDFViewControllerProxy alloc] initWithPDFController:pdfController context:self.proxy.pageContext parentProxy:self.proxy];
@@ -162,7 +164,7 @@
 
 - (TIPSPDFViewControllerProxy *)controllerProxy {
     PSTiLog(@"accessing controllerProxy");
-    
+
     if (!_controllerProxy) {
         if (!NSThread.isMainThread) {
             dispatch_sync(dispatch_get_main_queue(), ^{
@@ -172,13 +174,13 @@
             [self createControllerProxy];
         }
     }
-    
+
     return _controllerProxy;
 }
 
 - (void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds {
     PSTiLog(@"frameSizeChanged:%@ bounds:%@", NSStringFromCGRect(frame), NSStringFromCGRect(bounds));
-    
+
     // be sure our view is attached
     if (!self.controllerProxy.controller.view.window) {
         // creates controller lazy
@@ -189,7 +191,7 @@
         // force controller reloading to adapt to new position
         [TiUtils setView:_navController.view positionRect:bounds];
         [self.controllerProxy.controller reloadData];
-    }    
+    }
 }
 
 @end

@@ -2,7 +2,7 @@
 //  TIPSPDFViewController.h
 //  PSPDFKit-Titanium
 //
-//  Copyright (c) 2011-2018 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,12 +10,12 @@
 //  This notice may not be removed from this file.
 //
 
-#import <PSPDFKit/PSPDFKit.h>
 #import <PSPDFKitUI/PSPDFKitUI.h>
+#import <TitaniumKit/TitaniumKit.h>
 
 // uncomment to enable logging
 //#define PSTiLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define PSTiLog(fmt, ...) 
+#define PSTiLog(fmt, ...)
 
 @class TIPSPDFViewControllerProxy;
 

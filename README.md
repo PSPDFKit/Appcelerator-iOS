@@ -2,7 +2,7 @@
 
 **[PSPDFKit for iOS](https://pspdfkit.com/pdf-sdk/ios) — the best way to handle PDF documents on iOS.** A high-performance viewer, extensive annotation and document editing tools, digital signatures, and more. All engineered for the best possible user and developer experience.
 
-PSPDFKit for iOS Titanium module requires a valid license of PSPDFKit for iOS. You can [request a trial license here](https://pspdfkit.com/try). PSPDFKit 9.3.2 for iOS needs requires Xcode 11.4 or newer and supports iOS 11. Read more about version support [in our guides](https://pspdfkit.com/guides/ios/current/announcements/version-support).
+PSPDFKit for iOS Titanium module requires a valid license of PSPDFKit for iOS. You can [request a trial license here](https://pspdfkit.com/try). PSPDFKit 9 for iOS needs requires Xcode 11.4 or newer and supports iOS 11. Read more about version support [in our guides](https://pspdfkit.com/guides/ios/current/announcements/version-support).
 
 ## Getting Started
 

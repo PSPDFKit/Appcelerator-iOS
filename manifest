@@ -9,7 +9,7 @@
 
 # The following values will be replaced during installation.
 
-version: 9.3.2
+version: 9.3.3
 minsdk: 9.0.1.GA
 
 # Do not edit the below lines.

@@ -37,13 +37,17 @@ From inside the cloned directory, install the remaining required tools:
 $ cd Appcelerator-iOS
 
 # Make sure you're using Node 12.
+# You can use nvm to manage multiple Node versions.
 $ nvm use 12
 
 # Install CocoaPods globally.
 $ gem install cocoapods
 
-# Install Titanium CLI and local build script dependencies.
-$ npm install -g titanium && npm install
+# Install Titanium CLI globally.
+$ npm install -g titanium
+
+# Install local build script dependencies.
+$ npm install
 ```
 
 ### Building the Module
@@ -68,9 +72,10 @@ First, you need to set up the Appcelerator environment:
 $ cd ..
 
 # Make sure you're using Node 12.
+# You can use nvm to manage multiple Node versions.
 $ nvm use 12
 
-# Install Appcelerator CLI.
+# Install Appcelerator CLI globally.
 $ npm install -g appcelerator
 
 # Run through the basic Appcelerator setup. Requires you to log in.
@@ -185,6 +190,18 @@ If you want to install the minimal version that PSPDFKit for iOS Titanium module
 ```bash
 # Install the minimal required version of Titanium SDK.
 $ titanium sdk install $(node scripts/bootstrap.js versions --just titanium)
+```
+
+### Using Local Titanium Binaries
+
+If you're unable to install Titanium or Appcelerator CLI globally using `npm install -g`, you can instead rely on the local binaries by taking advantage of [npx](https://www.npmjs.com/package/npx). Just prefix all your `titanium` and `appc` commands with `npx`:
+
+```bash
+# Use the locally installed Titanium CLI binary.
+$ npx titanium --help
+
+# Use the localy installed Appcelerator CLI binary.
+$ npx appc --help
 ```
 
 ### Build Errors

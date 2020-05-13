@@ -206,7 +206,7 @@ $ npx appc --help
 
 ### Build Errors
 
-```bash
+```none
 [ERROR] ** BUILD FAILED **
 [ERROR] The following build commands failed:
 [ERROR]  Ld build/Products/Debug-iphonesimulator/MyApp.app/MyApp normal x86_64

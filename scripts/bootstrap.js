@@ -278,7 +278,7 @@ async function buildCommand(argv) {
     let moduleDestinationPath = path.resolve(process.env.HOME, "Library", "Application Support", "Titanium")
 
     try {
-        await spawn("unzip", ["-f", "-o", mozuleZipPath, "-d", moduleDestinationPath], spawnOptions)
+        await spawn("unzip", ["-o", mozuleZipPath, "-d", moduleDestinationPath], spawnOptions)
     } catch (error) {
         console.error(chalk.red(`Failed to unzip the built PSPDFKit Titanium module from '${mozuleZipPath}' to '${moduleDestinationPath}'.`))
         console.error(chalk.red("Please make sure this script has read-write access to the above locations."))

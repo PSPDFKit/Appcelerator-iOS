@@ -4,6 +4,13 @@
 
 PSPDFKit for iOS Titanium module requires a valid license of PSPDFKit for iOS. You can [request a trial license here](https://pspdfkit.com/try). PSPDFKit 9 for iOS requires Xcode 11.4.1 or later and supports iOS 11 or later. Read more about version support [in our guides](https://pspdfkit.com/guides/ios/current/announcements/version-support).
 
+## Support, Issues and License Questions
+
+PSPDFKit offers support for customers with an active SDK license via https://pspdfkit.com/support/request/
+
+Are you evaluating our SDK? That's great, we're happy to help out!
+To make sure this is fast, please us a work email and have someone from your company fill out our sales form: https://pspdfkit.com/sales/
+
 ## Getting Started
 
 In the following steps, you will build PSPDFKit for iOS Titanium module using Titanium CLI.

@@ -2,14 +2,13 @@
 
 **[PSPDFKit for iOS](https://pspdfkit.com/pdf-sdk/ios) — the best way to handle PDF documents on iOS.** A high-performance viewer, extensive annotation and document editing tools, digital signatures, and more. All engineered for the best possible user and developer experience.
 
-PSPDFKit for iOS Titanium module requires a valid license of PSPDFKit for iOS. You can [request a trial license here](https://pspdfkit.com/try). PSPDFKit 9 for iOS requires Xcode 11.4.1 or later and supports iOS 11 or later. Read more about version support [in our guides](https://pspdfkit.com/guides/ios/current/announcements/version-support).
+PSPDFKit for iOS Titanium module requires a valid license of PSPDFKit for iOS. You can [request a trial license here](https://pspdfkit.com/try). PSPDFKit 9.4 for iOS requires Xcode 11.5 or later and supports iOS 12 or later. Read more about version support [in our guides](https://pspdfkit.com/guides/ios/current/announcements/version-support).
 
 ## Support, Issues and License Questions
 
-PSPDFKit offers support for customers with an active SDK license via https://pspdfkit.com/support/request/
+PSPDFKit offers support for customers with an active SDK license via [our support platform](https://pspdfkit.com/support/request).
 
-Are you evaluating our SDK? That's great, we're happy to help out!
-To make sure this is fast, please use a work email and have someone from your company fill out our sales form: https://pspdfkit.com/sales/
+Are you evaluating our SDK? That's great, we're happy to help out! To make sure this is fast, please use a work email and have someone from your company fill out [our sales form](https://pspdfkit.com/sales).
 
 ## Getting Started
 
@@ -59,11 +58,11 @@ $ npm install
 
 ### Building the Module
 
-From inside the cloned directory, run the build script with your CocoaPods key for PSPDFKit, which you can retrieve from the [customer portal](https://customers.pspdfkit.com/customers). The build script will make sure all required tools are installed and the build the PSPDFKit Titanium module. By default, it will use the Titanium SDK version declared in [manifest](manifest) but you can force it to use a different one using `--sdk` option.
+From inside the cloned directory, run the build script which will first make sure that all required tools are installed and then build the PSPDFKit for iOS Titanium module. By default, it will use the Titanium SDK version declared in the [manifest](manifest) file but you can force it to use a different one using `--sdk` option.
 
 ```bash
 # Build the PSPDFKit Titanium module.
-$ node scripts/bootstrap.js build --key YOUR_COCOAPODS_KEY
+$ node scripts/bootstrap.js build
 ```
 
 Should something go wrong along the way, run the build script again with `--verbose` option to enable additional logging. You can also use `--help` to learn all available commands and options in the build script.

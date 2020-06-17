@@ -152,7 +152,7 @@ async function buildCommand(argv) {
 
     let podfileTemplatePath = path.resolve(__dirname, "templates", "podfile")
     let podfileGeneratedPath = path.resolve(srcroot, "Podfile")
-    let podfileData = { key: argv.key, version: pspdfkitVersion }
+    let podfileData = { version: pspdfkitVersion }
 
     try {
         await copyTemplateFile(podfileTemplatePath, podfileGeneratedPath, podfileData)
@@ -171,7 +171,7 @@ async function buildCommand(argv) {
         await spawn("pod", ["install", `--project-directory=${srcroot}`, "--no-ansi", "--verbose"], spawnOptions)
     } catch (error) {
         console.error(chalk.red(`Failed to download PSPDFKit binaries.`))
-        console.error(chalk.red(`Please make sure that your key is correct and that you have Internet connection.`))
+        console.error(chalk.red(`Please make sure that you have Internet connection.`))
         return false
     }
 
@@ -293,6 +293,11 @@ async function buildCommand(argv) {
 
 }
 
+/**
+ * Display information about required versions.
+ * @param {VersionsCommandArgv} argv Arguments to the build command.
+ * @returns {Promise<Boolean>} Value indicating whether the command succeeded.
+ */
 async function versionsCommand(argv) {
 
     // These are the shared options we will use in all command spawns.
@@ -424,10 +429,11 @@ async function which(command, options) {
 // Declare custom types for JSDoc comments.
 
 /**
- * @typedef {{key: String, verbose: Boolean}} BuildCommandArgv
+ * @typedef {{sdk?: String, verbose?: Boolean}} BuildCommandArgv
  * @typedef {import("child_process").ChildProcess} ChildProcess
  * @typedef {import("fs").PathLike} PathLike
- * @typedef {{verbose?: Boolean, validate?: Boolean, cwd?: String, env?: NodeJS.ProcessEnv}} SpawnOptions
+ * @typedef {{validate?: Boolean, cwd?: String, env?: NodeJS.ProcessEnv, verbose?: Boolean}} SpawnOptions
+ * @typedef {{just?: String}} VersionsCommandArgv
  */
 
 // Let Yargs handle the CLI frontend.
@@ -437,11 +443,6 @@ yargs
         command: "build",
         describe: "Build the PSPDFKit Titanium module.",
         builder: {
-            "key": {
-                type: "string",
-                describe: "Your PSPDFKit customer CocoaPods key.",
-                demandOption: true,
-            },
             "sdk": {
                 type: "string",
                 describe: "Titanium SDK version to use.",

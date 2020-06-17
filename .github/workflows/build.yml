@@ -1,0 +1,35 @@
+#
+#  Copyright (c) 2011-2020 PSPDFKit GmbH. All rights reserved.
+#
+#  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+#  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+#  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+#  This notice may not be removed from this file.
+#
+
+name: build
+on: pull_request
+
+jobs:
+  macos:
+    runs-on: macos-latest
+    steps:
+      # Check out the repository.
+      - name: checkout
+        uses: actions/checkout@v2
+      # Set up Node environment.
+      - name: setup-node
+        uses: actions/setup-node@v1
+        with: { node-version: 12.x }
+      # Install required Node packages.
+      - name: setup-npm
+        run: npm install
+      # Set up Titanium environment.
+      - name: setup-titanium
+        run: npx titanium sdk install $(node ./scripts/bootstrap.js versions --just titanium)
+      # Select the latest Xcode.
+      - name: setup-xcode
+        run: sudo xcode-select -switch /Applications/Xcode_11.5.app
+      # Build the module.
+      - name: build
+        run: node ./scripts/bootstrap.js build

@@ -49,9 +49,6 @@ $ nvm use 12
 # Install CocoaPods globally.
 $ gem install cocoapods
 
-# Install Titanium CLI globally.
-$ npm install -g titanium
-
 # Install local build script dependencies.
 $ npm install
 ```
@@ -81,8 +78,8 @@ $ cd ..
 # You can use nvm to manage multiple Node versions.
 $ nvm use 12
 
-# Install Appcelerator CLI globally.
-$ npm install -g appcelerator
+# Install Appcelerator and Titanium CLIs globally.
+$ npm install -g appcelerator titanium
 
 # Run through the basic Appcelerator setup. Requires you to log in.
 $ appc setup

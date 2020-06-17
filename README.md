@@ -126,7 +126,7 @@ $ mv MyApp/app MyApp/alloy
 $ cp -R Appcelerator-iOS/example MyApp/Resources
 ```
 
-Open `MyApp/Resources/app.js` and update your license key, which you can retrieve from the [customer portal](https://customers.pspdfkit.com/customers/sign_in). Please note that this is a different key from the one you used to build the module.
+Open `MyApp/Resources/app.js` and update your license key, which you can retrieve from the [customer portal](https://customers.pspdfkit.com/customers/sign_in).
 
 ```diff
 // You need to activate your PSPDFKit before you can use it.
@@ -188,7 +188,7 @@ The Titanium SDK version you use to build the module must be the same version th
 
 ```bash
 # Use Titanium SDK 9.0.0.GA to build the module.
-$ node script/bootstrap.js build --key YOUR_COCOAPODS_KEY --sdk 9.0.0.GA
+$ node script/bootstrap.js build --sdk 9.0.0.GA
 ```
 
 If you want to install the minimal version that PSPDFKit for iOS Titanium module requires, you can ask the build script for it:

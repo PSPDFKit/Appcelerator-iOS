@@ -115,17 +115,6 @@ async function buildCommand(argv) {
 
     console.log(chalk.green(`CocoaPods ${cocoapodsVersion} is installed.`))
 
-    // Altough we will use a local Titanium CLI binary from node_modules, check
-    // if it's also installed globally.
-
-    let titaniumInstalled = await which("titanium", spawnOptions)
-
-    if (!titaniumInstalled) {
-        console.error(chalk.red(`Titanium Command-Line Interface is not installed.`))
-        console.error(chalk.red(`Please run \`npm install -g titanium\` first and try again.`))
-        return false
-    }
-
     // Check that the required Titanium SDK is installed and grab its root. We'll
     // use it later to generate xcconfig files.
 
@@ -136,7 +125,7 @@ async function buildCommand(argv) {
 
     if (!_.isString(titaniumSdkroot) || !fs.existsSync(titaniumSdkroot)) {
         console.error(chalk.red(`Titanium SDK ${titaniumVersion} is not installed.`))
-        console.error(chalk.red(`Please run \`titanium sdk install ${titaniumVersion}\` first and try again.`))
+        console.error(chalk.red(`Please run \`npx titanium sdk install ${titaniumVersion}\` first and try again.`))
         return false
     }
 

@@ -15,21 +15,21 @@ jobs:
     runs-on: macos-latest
     steps:
       # Check out the repository.
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v2
-      # Set up Node environment.
-      - name: setup-node
+      # Choose Xcode version.
+      - name: Choose Xcode version
+        run: sudo xcode-select -switch /Applications/Xcode_11.5.app
+      # Choose Node version.
+      - name: Choose Node version
         uses: actions/setup-node@v1
         with: { node-version: 12.x }
-      # Install required Node packages.
-      - name: setup-npm
+      # Install Node dependencies.
+      - name: Install Node dependencies
         run: npm install
-      # Set up Titanium environment.
-      - name: setup-titanium
+      # Install Titanium SDK.
+      - name: Install Titanium SDK
         run: npx titanium sdk install $(node ./scripts/bootstrap.js versions --just titanium)
-      # Select the latest Xcode.
-      - name: setup-xcode
-        run: sudo xcode-select -switch /Applications/Xcode_11.5.app
       # Build the module.
-      - name: build
-        run: node ./scripts/bootstrap.js build
+      - name: Build
+        run: node ./scripts/bootstrap.js build --verbose

@@ -11,9 +11,10 @@ platform :ios, "12.0"
 use_frameworks!
 
 install! "cocoapods", {
-  integrate_targets: false
+  integrate_targets: false,
+  warn_for_unused_master_specs_repo: false,
 }
 
 target "PSPDFKit" do
-    pod "PSPDFKit", podspec: "https://customers.pspdfkit.com/pspdfkit-ios/<%= version %>-framework.podspec"
+  pod "PSPDFKit", podspec: "https://customers.pspdfkit.com/pspdfkit-ios/<%= version %>-framework.podspec"
 end

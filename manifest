@@ -9,7 +9,7 @@
 
 # The following values will be used by the build script.
 
-version: 9.5.1
+version: 10.0.0
 minsdk: 9.1.0.GA
 
 # Do not edit the below lines.

@@ -141,7 +141,6 @@
 				D2AAC07A0554694100DB518D /* Headers */,
 				D2AAC07B0554694100DB518D /* Sources */,
 				D2AAC07C0554694100DB518D /* Frameworks */,
-				3A7C67712512BC330059F1BD /* Remove Apple Silicon Slice */,
 			);
 			buildRules = (
 			);
@@ -179,28 +178,6 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		3A7C67712512BC330059F1BD /* Remove Apple Silicon Slice */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Remove Apple Silicon Slice";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Until Titanium supports XCFrameworks, we need to remove the Apple Silicon\n# slice fromm the iOS Simulator binary.\nif [[ $PLATFORM_NAME == \"iphonesimulator\" ]]; then\n  if [[ $(/usr/bin/lipo -archs \"$BUILT_PRODUCTS_DIR/libComPspdfkit.a\") =~ \"arm64\" ]]; then\n    echo \"note: Thinning the $PLATFORM_NAME binary to only include x86_64 slice.\"\n    /usr/bin/lipo -thin x86_64 \"$BUILT_PRODUCTS_DIR/libComPspdfkit.a\" -output \"$BUILT_PRODUCTS_DIR/libComPspdfkit.a\"\n  fi\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		D2AAC07B0554694100DB518D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -227,6 +204,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/ComPspdfkit.dst;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/platform\"",
@@ -328,6 +306,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/ComPspdfkit.dst;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/platform\"",

@@ -218,6 +218,29 @@ $ npx appc --help
 
 If you see a similar error when running the project, it's likely because the PSPDFKit for iOS Titanium module was not included in your project's `tiapp.xml`. Please refer to [importing the module](#importing-the-module) section to learn more.
 
+### Building for Apple Silicon
+
+```none
+[ERROR] fatal error: build/Release-iphoneos/libComPspdfkit.a and build/Release-iphonesimulator/libComPspdfkit.a have the same architectures (arm64) and can't be in the same fat output file
+```
+
+```none
+[TRACE] ld: building for iOS Simulator, but linking in dylib built for iOS, file 'Frameworks/TitaniumKit.framework/TitaniumKit' for architecture arm64
+[ERROR] ** BUILD FAILED **
+[ERROR] The following build commands failed:
+[ERROR]  Ld build/iphone/build/Intermediates/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/Binary/MyApp normal arm64
+[ERROR]  (1 failure)
+```
+
+If you see one of the above errors while building or using PSPDFKit for iOS Titanium module, this is because Titanium SDK doesn't support building for Apple Silicon yet. To resolve these errors, make sure that you're up-to-date with this repository and that you use the latest version of PSPDFKit for iOS Titanium module.
+
+Alternatively, make sure to exclude `arm64` architecture slice from your iOS Simulator builds until Titanium SDK officially supports Apple Silicon. You can do it by either editing your Xcode project or by editing an `xcconfig` file:
+
+```bash
+# Exclude the Apple Silicon architecture when building for iOS Simulator.
+EXCLUDED_ARCHS[sdk=iphonesimulator*] = $(inherited) arm64
+```
+
 ## License
 
 This project can be used for evaluation or if you have a valid PSPDFKit for iOS license. All items and source code Copyright © 2010-2020 PSPDFKit GmbH. See [LICENSE](LICENSE) for details.

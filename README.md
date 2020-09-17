@@ -232,9 +232,9 @@ If you see a similar error when running the project, it's likely because the PSP
 [ERROR]  (1 failure)
 ```
 
-If you see one of the above errors while building or using PSPDFKit for iOS Titanium module, this is because Titanium SDK doesn't support building for Apple Silicon yet. To resolve these errors, make sure that you're up-to-date with this repository and that you use the latest version of PSPDFKit for iOS Titanium module.
+If you see one of the above errors while building or using PSPDFKit for iOS Titanium module, this is because Titanium SDK doesn't support building for Apple Silicon yet. To resolve these errors, make sure that you're using the latest version of the module.
 
-Alternatively, make sure to exclude `arm64` architecture slice from your iOS Simulator builds until Titanium SDK officially supports Apple Silicon. You can do it by either editing your Xcode project or by editing an `xcconfig` file:
+If the issue persists, try excluding the `arm64` architecture slice from your iOS Simulator builds until Titanium SDK officially supports Apple Silicon. You can do it by editing your project's build settings in Xcode or in an `xcconfig` file:
 
 ```bash
 # Exclude the Apple Silicon architecture when building for iOS Simulator.

@@ -2,7 +2,7 @@
 
 **[PSPDFKit for iOS](https://pspdfkit.com/pdf-sdk/ios) — the best way to handle PDF documents on iOS.** A high-performance viewer, extensive annotation and document editing tools, digital signatures, and more. All engineered for the best possible user and developer experience.
 
-PSPDFKit for iOS Titanium module requires a valid license of PSPDFKit for iOS. You can [request a trial license here](https://pspdfkit.com/try). PSPDFKit 9.5.1 for iOS requires Xcode 11.5 or later and supports iOS 12 or later. Read more about version support [in our guides](https://pspdfkit.com/guides/ios/current/announcements/version-support).
+PSPDFKit for iOS Titanium module requires a valid license of PSPDFKit for iOS. You can [request a trial license here](https://pspdfkit.com/try). PSPDFKit 10 for iOS requires Xcode 12 or later and supports iOS 12 or later. Read more about version support [in our guides](https://pspdfkit.com/guides/ios/current/announcements/version-support).
 
 ## Support, Issues and License Questions
 
@@ -217,6 +217,29 @@ $ npx appc --help
 ```
 
 If you see a similar error when running the project, it's likely because the PSPDFKit for iOS Titanium module was not included in your project's `tiapp.xml`. Please refer to [importing the module](#importing-the-module) section to learn more.
+
+### Building for Apple Silicon
+
+```none
+[ERROR] fatal error: build/Release-iphoneos/libComPspdfkit.a and build/Release-iphonesimulator/libComPspdfkit.a have the same architectures (arm64) and can't be in the same fat output file
+```
+
+```none
+[TRACE] ld: building for iOS Simulator, but linking in dylib built for iOS, file 'Frameworks/TitaniumKit.framework/TitaniumKit' for architecture arm64
+[ERROR] ** BUILD FAILED **
+[ERROR] The following build commands failed:
+[ERROR]  Ld build/iphone/build/Intermediates/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/Binary/MyApp normal arm64
+[ERROR]  (1 failure)
+```
+
+If you see one of the above errors while building or using PSPDFKit for iOS Titanium module, this is because Titanium SDK doesn't support building for Apple Silicon yet. To resolve these errors, make sure that you're using the latest version of the module.
+
+If the issue persists, try excluding the `arm64` architecture slice from your iOS Simulator builds until Titanium SDK officially supports Apple Silicon. You can do it by editing your project's build settings in Xcode or in an `xcconfig` file:
+
+```bash
+# Exclude the Apple Silicon architecture when building for iOS Simulator.
+EXCLUDED_ARCHS[sdk=iphonesimulator*] = $(inherited) arm64
+```
 
 ## License
 

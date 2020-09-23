@@ -7,4 +7,5 @@
 //  This notice may not be removed from this file.
 //
 
+EXCLUDED_ARCHS[sdk=iphonesimulator*] = arm64
 OTHER_LDFLAGS = <%= other_ldflags %>

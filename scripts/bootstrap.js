@@ -242,7 +242,7 @@ async function buildCommand(argv) {
                 fs.move(bcSourcePath, bcDestinationPath)
             }
         } catch (error) {
-            console.error(chalk.red(`Failed to move PSPDFKit BCSymbolMaps from '${dsymSourcePath}' to '${dsymDestinationPath}'.`))
+            console.error(chalk.red(`Failed to move PSPDFKit BCSymbolMaps from '${bcSourcePath}' to '${bcDestinationPath}'.`))
             console.error(chalk.red(`Please make sure this script has read-write access to the above locations.`))
             return false
         }
@@ -256,7 +256,7 @@ async function buildCommand(argv) {
                 fs.move(bcSourcePath, bcDestinationPath)
             }
         } catch (error) {
-            console.error(chalk.red(`Failed to move PSPDFKitUI BCSymbolMaps from '${dsymSourcePath}' to '${dsymDestinationPath}'.`))
+            console.error(chalk.red(`Failed to move PSPDFKitUI BCSymbolMaps from '${bcSourcePath}' to '${bcDestinationPath}'.`))
             console.error(chalk.red(`Please make sure this script has read-write access to the above locations.`))
             return false
         }

@@ -64,7 +64,7 @@ async function buildCommand(argv) {
         titaniumVersion = argv.sdk
     }
 
-    console.log(chalk.green(`Using PSPDFKit ${pspdfkitVersion}.`))
+    console.log(chalk.green(`Using PSPDFKit ${pspdfkitVersion} for iOS.`))
     console.log(chalk.green(`Using Titanium SDK ${titaniumVersion}.`))
 
     // STEP 2: Make sure `xcodebuild`, `pod` and `titanium` are installed. Also
@@ -167,14 +167,17 @@ async function buildCommand(argv) {
     // Copy PSPDFKit binaries to their expected location.
 
     let podsPath = path.resolve(srcroot, "Pods", "PSPDFKit")
-    let pspdfkitSourcePath = path.resolve(podsPath, "PSPDFKit.framework")
-    let pspdfkituiSourcePath = path.resolve(podsPath, "PSPDFKitUI.framework")
+    let pspdfkitSourcePath = path.resolve(podsPath, "PSPDFKit.xcframework")
+    let pspdfkituiSourcePath = path.resolve(podsPath, "PSPDFKitUI.xcframework")
 
     let platformPath = path.resolve(srcroot, "platform")
-    let pspdfkitDestinationPath = path.resolve(platformPath, "PSPDFKit.framework")
-    let pspdfkituiDestinationPath = path.resolve(platformPath, "PSPDFKitUI.framework")
+    let pspdfkitDestinationPath = path.resolve(platformPath, "PSPDFKit.xcframework")
+    let pspdfkituiDestinationPath = path.resolve(platformPath, "PSPDFKitUI.xcframework")
 
     try {
+        if (fs.pathExistsSync(pspdfkitDestinationPath)) {
+            fs.rmdirSync(pspdfkitDestinationPath, { recursive: true })
+        }
         fs.ensureDirSync(pspdfkitDestinationPath)
         fs.copySync(pspdfkitSourcePath, pspdfkitDestinationPath)
     } catch (error) {
@@ -184,12 +187,79 @@ async function buildCommand(argv) {
     }
 
     try {
+        if (fs.pathExistsSync(pspdfkituiDestinationPath)) {
+            fs.rmdirSync(pspdfkituiDestinationPath, { recursive: true })
+        }
         fs.ensureDirSync(pspdfkituiDestinationPath)
         fs.copySync(pspdfkituiSourcePath, pspdfkituiDestinationPath)
     } catch (error) {
         console.error(chalk.red(`Failed to copy PSPDFKitUI binary from '${pspdfkituiSourcePath}' to '${platformPath}'.`))
         console.error(chalk.red(`Please make sure this script has read-write access to the above locations.`))
         return false
+    }
+
+    // Copy PSPDFKit dSYMs to their expected locations.
+
+    let pspdfkitDsymSourcePaths = readDir(path.resolve(podsPath, "PSPDFKit.dSYMs"))
+    let pspdfkituiDsymSourcePaths = readDir(path.resolve(podsPath, "PSPDFKitUI.dSYMs"))
+
+    for (dsymSourcePath of pspdfkitDsymSourcePaths) {
+        let dsymMetadata = interpretDsym(dsymSourcePath)
+        let dsymDestinationPath = path.resolve(pspdfkitDestinationPath, dsymMetadata.arch, "dSYMs", `${dsymMetadata.name}.dSYM`)
+        try {
+            fs.ensureDirSync(path.dirname(dsymDestinationPath))
+            fs.copySync(dsymSourcePath, dsymDestinationPath)
+        } catch (error) {
+            console.error(chalk.red(`Failed to copy PSPDFKit dSYM from '${dsymSourcePath}' to '${dsymDestinationPath}'.`))
+            console.error(chalk.red(`Please make sure this script has read-write access to the above locations.`))
+            return false
+        }
+    }
+
+    for (dsymSourcePath of pspdfkituiDsymSourcePaths) {
+        let dsymMetadata = interpretDsym(dsymSourcePath)
+        let dsymDestinationPath = path.resolve(pspdfkituiDestinationPath, dsymMetadata.arch, "dSYMs", `${dsymMetadata.name}.dSYM`)
+        try {
+            fs.ensureDirSync(path.dirname(dsymDestinationPath))
+            fs.copySync(dsymSourcePath, dsymDestinationPath)
+        } catch (error) {
+            console.error(chalk.red(`Failed to copy PSPDFKitUI dSYM from '${dsymSourcePath}' to '${dsymDestinationPath}'.`))
+            console.error(chalk.red(`Please make sure this script has read-write access to the above locations.`))
+            return false
+        }
+    }
+
+    // Move PSPDFKit BCSymbolMaps to their expected locations.
+
+    let pspdfkitDestinationArchPaths = readDir(pspdfkitDestinationPath, { subdirs: true })
+    let pspdfkituiDestinationArchPaths = readDir(pspdfkituiDestinationPath, { subdirs: true })
+
+    for (archPath of pspdfkitDestinationArchPaths) {
+        let bcSourcePath = path.resolve(archPath, "PSPDFKit.framework", "BCSymbolMaps")
+        let bcDestinationPath = path.resolve(archPath, "BCSymbolMaps")
+        try {
+            if (fs.pathExistsSync(bcSourcePath)) {
+                fs.move(bcSourcePath, bcDestinationPath)
+            }
+        } catch (error) {
+            console.error(chalk.red(`Failed to move PSPDFKit BCSymbolMaps from '${dsymSourcePath}' to '${dsymDestinationPath}'.`))
+            console.error(chalk.red(`Please make sure this script has read-write access to the above locations.`))
+            return false
+        }
+    }
+
+    for (archPath of pspdfkituiDestinationArchPaths) {
+        let bcSourcePath = path.resolve(archPath, "PSPDFKitUI.framework", "BCSymbolMaps")
+        let bcDestinationPath = path.resolve(archPath, "BCSymbolMaps")
+        try {
+            if (fs.pathExistsSync(bcSourcePath)) {
+                fs.move(bcSourcePath, bcDestinationPath)
+            }
+        } catch (error) {
+            console.error(chalk.red(`Failed to move PSPDFKitUI BCSymbolMaps from '${dsymSourcePath}' to '${dsymDestinationPath}'.`))
+            console.error(chalk.red(`Please make sure this script has read-write access to the above locations.`))
+            return false
+        }
     }
 
     console.log(chalk.green(`Successfully downloaded PSPDFKit binaries to '${platformPath}'.`))
@@ -372,9 +442,43 @@ async function copyTemplateFile(source, destination, data) {
 }
 
 /**
+ * Extracts metadata of a dSYM file based on its file name.
+ * @param {PathLike} path Location of the dSYM file.
+ * @returns {DsymMetadata} Metadata of a dSYM file.
+ */
+function interpretDsym(source) {
+    let filename = path.basename(source)
+    let components = _.split(filename, ".")
+    if (components.length != 4) {
+        throw new Error(`The dSYM file name '${filename}' is invalid.`)
+    }
+    return {
+        name: `${components[0]}.${components[1]}`,
+        arch: components[2],
+    }
+}
+
+/**
+ * Reads contents of `source` directory.
+ * @param {PathLike} source Directory location.
+ * @param {ReadDirOptions} options Reading options.
+ * @returns {Array<PathLike>} Locations of files inside `source` directory.
+ */
+function readDir(source, options) {
+    options = _.defaults({}, options, { subdirs: false })
+    return fs.readdirSync(source).map(name => path.resolve(source, name)).filter(path => {
+        if (options.subdirs) {
+            return fs.statSync(path).isDirectory()
+        } else {
+            return true
+        }
+    })
+}
+
+/**
  * Spawns a child process as a promise. Each value in `arguments` is shell-
  * escaped. If `verbose` is `true`, the full invocation and process's output is
- * printed, otherwise it's muted but still available in the returned
+ * printed, otherwise it's muted but still available in the returned value.
  * @param {String} command Command to spawn.
  * @param {Array<String>} arguments Arguments of `command`.
  * @param {SpawnOptions} options Spawn options of `command`.
@@ -420,7 +524,9 @@ async function which(command, options) {
 /**
  * @typedef {{sdk?: String, verbose?: Boolean}} BuildCommandArgv
  * @typedef {import("child_process").ChildProcess} ChildProcess
+ * @typedef {{name: String, arch: String}} DsymMetadata
  * @typedef {import("fs").PathLike} PathLike
+ * @typedef {subdirs?: Boolean} ReadDirOptions
  * @typedef {{validate?: Boolean, cwd?: String, env?: NodeJS.ProcessEnv, verbose?: Boolean}} SpawnOptions
  * @typedef {{just?: String}} VersionsCommandArgv
  */

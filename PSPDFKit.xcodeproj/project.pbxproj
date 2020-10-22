@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3ACB40052541D527000561FC /* PSPDFKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACB3FF92541C690000561FC /* PSPDFKit.xcframework */; };
+		3ACB40072541D52C000561FC /* PSPDFKitUI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACB3FFA2541C691000561FC /* PSPDFKitUI.xcframework */; };
 		3AFF6A032465F159004587CE /* TIPSPDFAnnotationProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AFF69F22465F159004587CE /* TIPSPDFAnnotationProxy.h */; };
 		3AFF6A042465F159004587CE /* PSPDFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF69F32465F159004587CE /* PSPDFUtils.m */; };
 		3AFF6A052465F159004587CE /* ComPspdfkitViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF69F42465F159004587CE /* ComPspdfkitViewProxy.m */; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
+		3ACB3FF92541C690000561FC /* PSPDFKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PSPDFKit.xcframework; path = platform/PSPDFKit.xcframework; sourceTree = SOURCE_ROOT; };
+		3ACB3FFA2541C691000561FC /* PSPDFKitUI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PSPDFKitUI.xcframework; path = platform/PSPDFKitUI.xcframework; sourceTree = SOURCE_ROOT; };
 		3AFF69F22465F159004587CE /* TIPSPDFAnnotationProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIPSPDFAnnotationProxy.h; sourceTree = "<group>"; };
 		3AFF69F32465F159004587CE /* PSPDFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUtils.m; sourceTree = "<group>"; };
 		3AFF69F42465F159004587CE /* ComPspdfkitViewProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComPspdfkitViewProxy.m; sourceTree = "<group>"; };
@@ -53,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ACB40072541D52C000561FC /* PSPDFKitUI.xcframework in Frameworks */,
+				3ACB40052541D527000561FC /* PSPDFKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +78,7 @@
 			children = (
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
+				3ACB3FF82541C690000561FC /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
 			);
 			indentWidth = 4;
@@ -110,6 +117,15 @@
 				24DD6D1B1134B66800162E58 /* titanium.xcconfig */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		3ACB3FF82541C690000561FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3ACB3FF92541C690000561FC /* PSPDFKit.xcframework */,
+				3ACB3FFA2541C691000561FC /* PSPDFKitUI.xcframework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,7 +176,7 @@
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "PSPDFKit GmbH";
 			};
-			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "PSPDFKit-Titanium" */;
+			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "PSPDFKit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
@@ -204,11 +220,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/ComPspdfkit.dst;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(PROJECT_DIR)/platform\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/Classes/ComPspdfkitPrefix.pch";
@@ -308,11 +320,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/ComPspdfkit.dst;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(PROJECT_DIR)/platform\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/Classes/ComPspdfkitPrefix.pch";
@@ -333,7 +341,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "PSPDFKit-Titanium" */ = {
+		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "PSPDFKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB922308733DC00010E9CD /* Debug */,

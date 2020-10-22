@@ -15,5 +15,5 @@ install! "cocoapods", {
 }
 
 target "PSPDFKit" do
-  pod "PSPDFKit", podspec: "https://customers.pspdfkit.com/pspdfkit-ios/<%= version %>-framework.podspec"
+  pod "PSPDFKit", podspec: "https://customers.pspdfkit.com/pspdfkit-ios/<%= version %>.podspec"
 end

@@ -8,4 +8,5 @@
 //
 
 TITANIUM_SDK = <%= titanium_sdkroot %>
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$(TITANIUM_SDK)/iphone/Frameworks"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$(TITANIUM_SDK)/iphone/Frameworks/**"
+HEADER_SEARCH_PATHS = $(inherited) "$(TITANIUM_SDK)/iphone/include"

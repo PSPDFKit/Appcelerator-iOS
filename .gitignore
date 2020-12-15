@@ -24,10 +24,15 @@ titanium.xcconfig
 !scripts/templates/*
 
 # Node.js artifacts.
-.nvmrc
 package-lock.json
 node_modules
 
+# Version manager artifacts.
+.nvmrc
+.tool-versions
+
 # PSPDFKit binaries.
 PSPDFKit.framework
+PSPDFKit.xcframework
 PSPDFKitUI.framework
+PSPDFKitUI.xcframework

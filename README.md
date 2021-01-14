@@ -220,7 +220,7 @@ If you see a similar error when running the project, it's likely because the PSP
 
 ## License
 
-This project can be used for evaluation or if you have a valid PSPDFKit for iOS license. All items and source code Copyright © 2010-2020 PSPDFKit GmbH. See [LICENSE](LICENSE) for details.
+This project can be used for evaluation or if you have a valid PSPDFKit for iOS license. All items and source code Copyright © 2010-2021 PSPDFKit GmbH. See [LICENSE](LICENSE) for details.
 
 ## Contributing
 

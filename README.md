@@ -1,3 +1,7 @@
+# Axway Appcelerator End-of-Support Notice
+
+Axway announced [End-of-Support for the Titanium SDK](https://devblog.axway.com/featured/product-update-changes-to-application-development-services-appcelerator/) effective 1 March 2022. PSPDFKit stopped updating and supporting the PSPDFKit for iOS Titanium Module as of 1 March 2021. The module is open source, so if you require more time to transition to a different platform, it can still be updated and customized to your needs.
+
 # PSPDFKit for iOS Titanium Module
 
 **[PSPDFKit for iOS](https://pspdfkit.com/pdf-sdk/ios) — the best way to handle PDF documents on iOS.** A high-performance viewer, extensive annotation and document editing tools, digital signatures, and more. All engineered for the best possible user and developer experience.
